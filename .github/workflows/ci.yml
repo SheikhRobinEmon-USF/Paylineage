@@ -37,6 +37,7 @@ jobs:
       - name: no host built-ins in the compiled module
         run: uv run python -c "from paylineage.policy.wasm_host import load_policy; from pathlib import Path; load_policy(Path('policy/dist/policy.wasm'), fuel=10**7)"
       - run: make parity
+      - run: make policy-mutants
 
   python:
     name: python (ruff, mypy --strict, pytest)

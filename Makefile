@@ -7,7 +7,7 @@ PY := $(UV) run python
 PYTEST := $(UV) run pytest
 TEST_DATABASE_URL ?= postgresql+psycopg://paylineage:paylineage_dev@localhost:5432/paylineage_test
 
-.PHONY: help setup db-up db-down migrate policy-build policy-test parity vectors test-fast test-deep \
+.PHONY: help setup db-up db-down migrate policy-build policy-test policy-mutants parity vectors test-fast test-deep \
         mutation lint dev demo eval web-test e2e seed clean
 
 help: ## Show targets
@@ -37,6 +37,9 @@ policy-test: ## opa test against the exact staged build input
 	opa check --strict policy/build/stage
 	set -o pipefail; opa test policy/build/stage policy/tests --coverage --format=json | $(PY) policy/scripts/coverage_gate.py 95
 
+policy-mutants: ## Hand-planted Rego mutants; every one must be killed
+	$(PY) policy/scripts/rego_mutants.py
+
 vectors: ## Regenerate shared decision and digest vectors
 	$(PY) policy/scripts/gen_vectors.py
 	$(PY) policy/scripts/gen_digest_vectors.py
@@ -44,7 +47,7 @@ vectors: ## Regenerate shared decision and digest vectors
 parity: ## Shared vectors through Python and Node; must match
 	$(PY) policy/scripts/parity.py
 
-test-fast: policy-test parity ## PR level: unit, policy, parity, regression, small Hypothesis budget
+test-fast: policy-test policy-mutants parity ## PR level: unit, policy, parity, regression, small Hypothesis budget
 	HYPOTHESIS_PROFILE=fast TEST_DATABASE_URL=$(TEST_DATABASE_URL) $(PYTEST) -q -m "not deep"
 	pnpm -r --if-present test
 
