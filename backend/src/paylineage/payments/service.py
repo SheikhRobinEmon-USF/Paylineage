@@ -96,8 +96,17 @@ def _exposure(decision: PolicyDecision, amount: int) -> int:
     return amount if decision.decision != "allow" else 0
 
 
-def _snapshot(decision: PolicyDecision, fields: list[FieldFacts], stage: str) -> dict[str, Any]:
-    return {**decision.as_dict(), "stage": stage, "fields": [f.as_view() for f in fields]}
+def _snapshot(
+    decision: PolicyDecision, fields: list[FieldFacts], stage: str, operation: str = "propose_payment"
+) -> dict[str, Any]:
+    # The operation the agent requested is part of the evidence: replaying the
+    # decision needs it (found by the demo replay check for S8).
+    return {
+        **decision.as_dict(),
+        "stage": stage,
+        "requested_operation": operation,
+        "fields": [f.as_view() for f in fields],
+    }
 
 
 def propose(ctx: Ctx, agent: Actor, prop: Proposal, *, signature_valid: bool) -> EvaluationResult:
@@ -199,7 +208,7 @@ def evaluate(
     )
     d = decide(ctx, pin, actor=actor, stage="evaluate", payment_id=p.id, payment_version=p.version)
     _move(p, {"allow": PayEvent.READY, "hold": PayEvent.HOLD, "deny": PayEvent.DENY}[d.decision])
-    p.last_decision = _snapshot(d, fields, "evaluate")
+    p.last_decision = _snapshot(d, fields, "evaluate", operation)
     p.exposure_minor = _exposure(d, p.amount_minor)
     p.updated_at = ctx.now()
     append(
