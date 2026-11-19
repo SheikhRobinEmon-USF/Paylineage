@@ -1,5 +1,7 @@
 # Roadmap
 
+Current status and open items: [STATUS.md](STATUS.md).
+
 Estimate: 150 to 200 hours over 10 to 12 weeks. No UI work until the M0 gate passes.
 
 ## M0: Feasibility and spec pack (week 1 to 2)
