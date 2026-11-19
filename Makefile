@@ -56,7 +56,7 @@ test-deep: ## Nightly: large Hypothesis budget, stateful, concurrency, adversari
 	$(PY) -m paylineage.eval.run --tracks B C --extractor adversarial_stub
 
 mutation: ## mutmut on policy adapter, approvals, permits, executor
-	@echo "Python mutation testing is an open item: mutmut 3 cannot map mutants in this backend/src workspace (docs/EVALUATION_RESULTS.md)."
+	@echo "Python mutation testing is an open item: mutmut 3 cannot map mutants in this backend/src workspace (docs/STATUS.md)."
 	@echo "Policy mutation testing runs in make policy-mutants."; exit 1
 
 lint: ## ruff, mypy --strict, eslint, tsc --noEmit

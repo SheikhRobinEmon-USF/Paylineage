@@ -56,6 +56,7 @@ known-first-party = ["paylineage"]
 "scenarios/**" = ["S", "PLR", "E501", "C408"]
 "policy/scripts/**" = ["S603", "S607", "T20", "E402"]
 "policy/scripts/gen_vectors.py" = ["E702", "E501"]
+"policy/scripts/rego_mutants.py" = ["E501"]
 
 [tool.mypy]
 strict = true
