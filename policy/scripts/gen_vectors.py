@@ -196,6 +196,12 @@ def build() -> None:
     p(b)["agent"]["signature_valid"] = False
     vec("agent_signature_invalid", b, "deny", ["AGENT_SIGNATURE_INVALID"])
     b = base()
+    p(b)["mandate"]["supplier_scope"] = ["*"]
+    vec("wildcard_supplier_scope_allows", b, "allow", [])
+    b = base()
+    p(b)["mandate"]["supplier_scope"] = ["sup-*"]
+    vec("malformed_partial_wildcard_scope", b, "deny", ["INPUT_INVALID"])
+    b = base()
     p(b)["daily_total_minor"] = 14_000_000
     vec("daily_ceiling", b, "deny", ["OVER_CEILING"])
 
