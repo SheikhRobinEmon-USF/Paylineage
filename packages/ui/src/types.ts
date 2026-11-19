@@ -199,7 +199,8 @@ export interface ApprovalResult {
 
 export interface ActionResult {
   state?: string;
-  decision?: Decision;
+  /** A plain verdict (permit, recheck) or the executor's decision object. */
+  decision?: Decision | { decision: Decision; reasons: string[] };
   reasons?: string[];
   [k: string]: unknown;
 }

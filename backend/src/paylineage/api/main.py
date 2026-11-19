@@ -824,9 +824,19 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
         events = load_events(ctx.session)
         problems, _last, head = verify_events(events)
         return {
-            "events": [{"seq": e.seq, "kind": e.kind, "actor": views.user_name(ctx.session, e.actor) or e.actor,
-                        "at": e.created_at.isoformat(), "hash": e.hash[:12]} for e in events[-500:]],
-            "verified": not problems, "problems": [p.__dict__ for p in problems], "head": head,
+            "events": [
+                {
+                    "seq": e.seq,
+                    "kind": e.kind,
+                    "actor": views.user_name(ctx.session, e.actor) or e.actor,
+                    "at": e.created_at.isoformat(),
+                    "hash": e.hash[:12],
+                }
+                for e in events[-500:]
+            ],
+            "verified": not problems,
+            "problems": [p.__dict__ for p in problems],
+            "head": head,
             "note": "Signed checkpoints are verified by the audit job outside the database.",
         }
 

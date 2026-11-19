@@ -171,7 +171,7 @@ export function PaymentControl() {
                   className={cx("rounded px-2 py-0.5 text-[12.5px]", filter === f.id ? "bg-ink text-paper" : "text-ink-2 hover:bg-surface-2")}
                 >
                   {f.label}
-                  <span className="num ml-1 opacity-70">{all.filter(f.test).length}</span>
+                  <span className="num ml-1">{all.filter(f.test).length}</span>
                 </button>
               ))}
             </span>
