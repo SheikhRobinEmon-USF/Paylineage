@@ -819,6 +819,17 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
 
     # ---- audit ----
 
+    @r.get("/audit/events")
+    def audit_events(_m: Me = Depends(current_user), ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
+        events = load_events(ctx.session)
+        problems, _last, head = verify_events(events)
+        return {
+            "events": [{"seq": e.seq, "kind": e.kind, "actor": views.user_name(ctx.session, e.actor) or e.actor,
+                        "at": e.created_at.isoformat(), "hash": e.hash[:12]} for e in events[-500:]],
+            "verified": not problems, "problems": [p.__dict__ for p in problems], "head": head,
+            "note": "Signed checkpoints are verified by the audit job outside the database.",
+        }
+
     @r.get("/audit/verify")
     def audit_verify(_m: Me = Depends(current_user), ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
         events = load_events(ctx.session)
