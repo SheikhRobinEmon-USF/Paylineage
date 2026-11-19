@@ -1,0 +1,116 @@
+{
+  "expected": {
+    "decision": "deny",
+    "reasons": [
+      "INPUT_INVALID"
+    ]
+  },
+  "input": {
+    "now_ms": 1800000000000,
+    "payment": {
+      "agent": {
+        "agent_id": "AP-Agent-001",
+        "signature_valid": true
+      },
+      "approvals": [],
+      "beneficiary": {
+        "account_id": "acct-acme-1",
+        "cooling_off_until_ms": null,
+        "status": "verified",
+        "supplier_id": "sup-acme"
+      },
+      "daily_total_minor": 0,
+      "duplicate_invoice": false,
+      "fields": [
+        {
+          "consistency": "consistent",
+          "field_name": "amount",
+          "master_matched": true,
+          "source_kind": "email_attachment",
+          "trust_class": "untrusted_external"
+        },
+        {
+          "consistency": "consistent",
+          "field_name": "beneficiary_account",
+          "master_matched": true,
+          "source_kind": "email_attachment",
+          "trust_class": "untrusted_external"
+        },
+        {
+          "consistency": "consistent",
+          "field_name": "currency",
+          "master_matched": true,
+          "source_kind": "email_attachment",
+          "trust_class": "untrusted_external"
+        },
+        {
+          "consistency": "consistent",
+          "field_name": "invoice_number",
+          "master_matched": false,
+          "source_kind": "system",
+          "trust_class": "system_generated"
+        },
+        {
+          "consistency": "consistent",
+          "field_name": "supplier_name",
+          "master_matched": true,
+          "source_kind": "email_attachment",
+          "trust_class": "untrusted_external"
+        }
+      ],
+      "hold_clearances": [],
+      "mandate": {
+        "agent_id": "AP-Agent-001",
+        "approver_role": "finance_approver",
+        "daily_ceiling_minor": 15000000,
+        "expires_at_ms": 1802592000000,
+        "forbidden_operations": [
+          "change_bank_details",
+          "approve",
+          "execute",
+          "edit_mandate"
+        ],
+        "mandate_id": "mdt-001",
+        "not_before_ms": 1797408000000,
+        "per_proposal_ceiling_minor": 5000000,
+        "permitted_operations": [
+          "read_invoice",
+          "extract_fields",
+          "propose_payment"
+        ],
+        "revoked": false,
+        "second_approver_above_minor": 2500000,
+        "supplier_scope": [
+          "sup-acme"
+        ],
+        "version": 3
+      },
+      "operation": "propose_payment",
+      "permit": null,
+      "record": {
+        "amount_minor": "1250000",
+        "beneficiary_account_id": "acct-acme-1",
+        "currency": "USD",
+        "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "invoice_id": "inv-1",
+        "mandate_version": 3,
+        "payment_id": "pay-1",
+        "policy_version": "1.0.0",
+        "supplier_id": "sup-acme",
+        "version": 1
+      },
+      "requested_by": "AP-Agent-001",
+      "signals": [],
+      "stage": "evaluate",
+      "supplier": {
+        "has_verified_account": true,
+        "status": "verified",
+        "supplier_id": "sup-acme"
+      },
+      "supplier_changes": []
+    },
+    "request_kind": "payment",
+    "schema_version": "1"
+  },
+  "name": "malformed_amount_string"
+}

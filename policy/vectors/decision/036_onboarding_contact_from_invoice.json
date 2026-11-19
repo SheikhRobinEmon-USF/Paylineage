@@ -1,0 +1,34 @@
+{
+  "expected": {
+    "decision": "deny",
+    "reasons": [
+      "VERIFICATION_CONTACT_INVALID"
+    ]
+  },
+  "input": {
+    "now_ms": 1800000000000,
+    "onboarding": {
+      "action": "record_verification",
+      "actor_id": "u-ver-1",
+      "actor_roles": [
+        "verifier"
+      ],
+      "assignee_id": null,
+      "kind": "bank_change",
+      "requester_id": "u-ap-1",
+      "supplier_id": "sup-acme",
+      "verification": {
+        "bank_confirmed": true,
+        "contact_recorded_at_ms": 1792224000000,
+        "contact_source": "invoice",
+        "method": "callback_on_file",
+        "registry_match": true,
+        "request_created_at_ms": 1799913600000
+      },
+      "verifier_id": "u-ver-1"
+    },
+    "request_kind": "onboarding",
+    "schema_version": "1"
+  },
+  "name": "onboarding_contact_from_invoice"
+}
