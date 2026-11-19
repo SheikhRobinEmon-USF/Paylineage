@@ -1,0 +1,110 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_FROZEN: "1"
+
+jobs:
+  policy:
+    name: policy (opa test, reproducible build, parity)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "22", cache: pnpm }
+      - run: uv sync
+      - run: pnpm install --frozen-lockfile
+      - run: ./scripts/install_opa.sh
+      - run: make policy-test
+      - name: committed policy.wasm must be reproducible from source
+        run: |
+          cp policy/dist/policy.sha256 /tmp/committed.sha256
+          make policy-build
+          diff /tmp/committed.sha256 policy/dist/policy.sha256
+      - name: no host built-ins in the compiled module
+        run: uv run python -c "from paylineage.policy.wasm_host import load_policy; from pathlib import Path; load_policy(Path('policy/dist/policy.wasm'), fuel=10**7)"
+      - run: make parity
+
+  python:
+    name: python (ruff, mypy --strict, pytest)
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16.10-alpine
+        env:
+          POSTGRES_USER: paylineage
+          POSTGRES_PASSWORD: paylineage_dev
+          POSTGRES_DB: paylineage_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U paylineage" --health-interval 3s --health-retries 20
+    env:
+      TEST_DATABASE_URL: postgresql+psycopg://paylineage:paylineage_dev@localhost:5432/paylineage_test
+      HYPOTHESIS_PROFILE: fast
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "22", cache: pnpm }
+      - run: uv sync
+      - run: pnpm install --frozen-lockfile
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - run: uv run pytest -q -m "not deep" --cov --cov-report=term-missing:skip-covered
+      - name: Tracks B and C with the adversarial stub (headline claim)
+        run: uv run python -m paylineage.eval.run --tracks B C --extractor adversarial_stub --gate
+
+  node:
+    name: node (tsc, eslint, vitest)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "22", cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --if-present typecheck
+      - run: pnpm -r --if-present lint
+      - run: pnpm -r --if-present test
+
+  e2e:
+    name: e2e (Playwright + axe on the static demo)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "22", cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @paylineage/demo exec playwright install --with-deps chromium
+      - run: pnpm --filter @paylineage/demo build
+      - run: pnpm --filter @paylineage/demo e2e -- --trace off
+
+  security:
+    name: security (gitleaks, semgrep, dependency audit)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { fetch-depth: 0 }
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - run: uvx semgrep scan --config p/python --config p/typescript --config p/secrets --error --exclude apps/demo/out
+      - run: uv export --no-dev --format requirements-txt > /tmp/req.txt && uvx pip-audit -r /tmp/req.txt --strict
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - run: pnpm audit --prod --audit-level high
