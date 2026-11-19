@@ -1,0 +1,19 @@
+{
+  "name": "@paylineage/policy-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Loads policy.wasm, validates input, fail-closed wrapper. Same semantics as the Python adapter.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json",
+    "parity": "node scripts/run-vectors.ts"
+  },
+  "dependencies": {
+    "@open-policy-agent/opa-wasm": "^1.10.0",
+    "ajv": "^8.20.0"
+  }
+}
