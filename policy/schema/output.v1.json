@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paylineage.dev/schema/output.v1.json",
+  "title": "PayLineage policy output v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision",
+    "reasons",
+    "policy_version"
+  ],
+  "properties": {
+    "decision": {
+      "enum": [
+        "allow",
+        "hold",
+        "deny"
+      ]
+    },
+    "reasons": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "AGENT_SIGNATURE_INVALID",
+          "MANDATE_MISSING",
+          "MANDATE_EXPIRED",
+          "MANDATE_REVOKED",
+          "MANDATE_VERSION_STALE",
+          "OP_FORBIDDEN",
+          "OVER_CEILING",
+          "SUPPLIER_OUT_OF_SCOPE",
+          "TRUST_CLASS_INVALID",
+          "EVIDENCE_MISSING",
+          "FIELD_NO_PROVENANCE",
+          "ACCOUNT_SUSPENDED",
+          "APPROVAL_MISSING",
+          "APPROVAL_DIGEST_MISMATCH",
+          "APPROVAL_EXPIRED",
+          "APPROVAL_REVOKED",
+          "APPROVER_NOT_AUTHORIZED",
+          "SOD_VIOLATION",
+          "POLICY_VERSION_STALE",
+          "PERMIT_MISSING",
+          "PERMIT_CONSUMED",
+          "PERMIT_EXPIRED",
+          "PERMIT_DIGEST_MISMATCH",
+          "ROLE_REQUIRED",
+          "VERIFIER_NOT_ASSIGNED",
+          "VERIFICATION_CONTACT_INVALID",
+          "VERIFICATION_FAILED",
+          "INPUT_INVALID",
+          "POLICY_UNDEFINED",
+          "POLICY_ERROR",
+          "PARITY_MISMATCH",
+          "BENEFICIARY_NOT_VERIFIED",
+          "BENEFICIARY_MISMATCH",
+          "FIELD_UNTRUSTED_MATERIAL",
+          "FIELD_INCONSISTENT",
+          "FIELD_UNCHECKED",
+          "COOLING_OFF_ACTIVE",
+          "DUPLICATE_INVOICE",
+          "SUPPLIER_UNKNOWN",
+          "SUPPLIER_NOT_VERIFIED",
+          "SECOND_APPROVAL_REQUIRED",
+          "SIGNAL_LOOKALIKE_DOMAIN",
+          "SIGNAL_DMARC_FAIL",
+          "SIGNAL_REPLY_TO_MISMATCH",
+          "SIGNAL_HIDDEN_TEXT",
+          "SIGNAL_PROMPT_INJECTION",
+          "SIGNAL_TOOL_POISONING"
+        ]
+      }
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    }
+  }
+}
