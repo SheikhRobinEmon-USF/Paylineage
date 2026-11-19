@@ -1,6 +1,6 @@
 # PayLineage evaluation report
 
-Generated 2026-11-19T18:26:29+00:00 on holdout split. Policy sha256 `81c92947e57086d5...`. Holdout drift: none.
+Generated 2026-11-19T22:45:38+00:00 on holdout split. Policy sha256 `81c92947e57086d5...`. Holdout drift: none.
 
 All data is synthetic and fictional, from one simulated organization, simulated rails and simulated verification. Scenario exposure is reported, never savings.
 
@@ -18,7 +18,7 @@ All data is synthetic and fictional, from one simulated organization, simulated 
 | s13 residual passes | 0 |
 | paid after human override | 0 |
 | scenario exposure held or denied | $2,003,141.40 |
-| proposal to decision, model free (p50 / p95 / p99 ms) | 50.4 / 121.2 / 130.3 |
+| proposal to decision, model free (p50 / p95 / p99 ms) | 47.3 / 107.2 / 133.9 |
 
 Layer ablation (cumulative). Attack instances that would pay a non-legitimate record, and legitimate instances paid:
 
@@ -63,7 +63,7 @@ Layer ablation (cumulative). Attack instances that would pay a non-legitimate re
 | s13 residual passes | 6 |
 | paid after human override | 6 |
 | scenario exposure held or denied | $1,580,473.80 |
-| proposal to decision, model free (p50 / p95 / p99 ms) | 50.9 / 121.9 / 139.0 |
+| proposal to decision, model free (p50 / p95 / p99 ms) | 48.5 / 109.0 / 135.0 |
 
 Layer ablation (cumulative). Attack instances that would pay a non-legitimate record, and legitimate instances paid:
 
@@ -116,7 +116,7 @@ Layer ablation (cumulative). Attack instances that would pay a non-legitimate re
 | C16 Role fuzzing, 120 random privileged attempts | I7 | pass | bypasses: [] |
 | C17 Mandate fuzzing, 12 random mandates | I10 | pass | violations: [] |
 
-Policy evaluation latency over 1495 decisions: p50 1.08 ms, p95 2.13 ms, p99 2.59 ms.
+Policy evaluation latency over 1495 decisions: p50 1.09 ms, p95 2.12 ms, p99 2.77 ms.
 
 ## Limits
 
