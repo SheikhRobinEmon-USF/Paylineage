@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } fro
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
-import { createPolicyRuntime, type PolicyArtifacts, type PolicyRuntime } from "../src/index.ts";
+import { createPolicyRuntime, type PolicyArtifacts, type PolicyRuntime, precompiledValidators } from "../src/index.ts";
 
 const policyDir = resolve(import.meta.dirname, "../../../policy");
 const read = (p: string): unknown => JSON.parse(readFileSync(join(policyDir, p), "utf8"));
@@ -106,5 +106,26 @@ describe("policy-runtime", () => {
     expect(out.trim().split("\n")).toHaveLength(vectors.length);
     const dir = mkdtempSync(join(tmpdir(), "parity-"));
     writeFileSync(join(dir, "out.jsonl"), out);
+  });
+});
+
+describe("precompiled validators (strict CSP path)", () => {
+  it("decide every vector exactly like runtime compiled schemas", async () => {
+    const { inputSchema: _i, outputSchema: _o, ...rest } = artifacts();
+    const pre = await createPolicyRuntime({ ...rest, validators: precompiledValidators });
+    const live = await createPolicyRuntime(artifacts());
+    expect(pre.loadError).toBeNull();
+    for (const v of vectors.filter((x) => x.input !== undefined)) {
+      const a = pre.evaluate(v.input);
+      const b = live.evaluate(v.input);
+      expect([a.decision, [...a.reasons]]).toEqual([b.decision, [...b.reasons]]);
+    }
+  });
+
+  it("generated file is up to date with policy/schema", () => {
+    const file = resolve(import.meta.dirname, "../src/validators.gen.js");
+    const before = readFileSync(file, "utf8");
+    execFileSync("node", [resolve(import.meta.dirname, "../scripts/gen-validators.ts")]);
+    expect(readFileSync(file, "utf8")).toBe(before);
   });
 });

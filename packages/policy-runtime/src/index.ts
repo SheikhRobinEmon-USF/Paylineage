@@ -12,7 +12,17 @@
  * A browser result is display only. The backend recomputes everything (I9).
  */
 import { loadPolicy, type LoadedPolicy } from "@open-policy-agent/opa-wasm";
-import { Ajv2020, type ValidateFunction } from "ajv/dist/2020.js";
+import { Ajv2020 } from "ajv/dist/2020.js";
+import { validateInput as preInput, validateOutput as preOutput } from "./validators.gen.js";
+
+/** A schema validator: Ajv compiled at runtime (Node) or precompiled standalone (browsers, strict CSP). */
+export interface Validator {
+  (data: unknown): boolean;
+  errors?: { message?: string }[] | null | undefined;
+}
+
+/** Precompiled from policy/schema by scripts/gen-validators.ts. No eval, safe under a strict CSP. */
+export const precompiledValidators: { input: Validator; output: Validator } = { input: preInput, output: preOutput };
 
 export const ENTRYPOINT = "paylineage/decision";
 
@@ -37,8 +47,10 @@ export interface ReasonRegistry {
 export interface PolicyArtifacts {
   wasm: Uint8Array;
   expectedSha256: string;
-  inputSchema: object;
-  outputSchema: object;
+  /** Provide schemas (compiled with Ajv at runtime) or validators (precompiled). */
+  inputSchema?: object;
+  outputSchema?: object;
+  validators?: { input: Validator; output: Validator };
   reasonCodes: ReasonRegistry;
 }
 
@@ -97,14 +109,14 @@ class WasmRuntime implements PolicyRuntime {
   readonly loadError = null;
   readonly sha256: string;
   private readonly policy: LoadedPolicy;
-  private readonly validateInput: ValidateFunction;
-  private readonly validateOutput: ValidateFunction;
+  private readonly validateInput: Validator;
+  private readonly validateOutput: Validator;
   private readonly registry: ReasonRegistry;
   constructor(
     sha256: string,
     policy: LoadedPolicy,
-    validateInput: ValidateFunction,
-    validateOutput: ValidateFunction,
+    validateInput: Validator,
+    validateOutput: Validator,
     registry: ReasonRegistry,
   ) {
     this.sha256 = sha256;
@@ -177,9 +189,18 @@ export async function createPolicyRuntime(artifacts: PolicyArtifacts): Promise<P
     if (sha !== artifacts.expectedSha256) {
       return new UnavailableRuntime(sha, "policy.wasm hash mismatch");
     }
-    const ajv = new Ajv2020({ allErrors: false, strict: true, strictRequired: false, strictTypes: false });
-    const validateInput = ajv.compile(artifacts.inputSchema);
-    const validateOutput = ajv.compile(artifacts.outputSchema);
+    let validateInput: Validator;
+    let validateOutput: Validator;
+    if (artifacts.validators) {
+      validateInput = artifacts.validators.input;
+      validateOutput = artifacts.validators.output;
+    } else if (artifacts.inputSchema && artifacts.outputSchema) {
+      const ajv = new Ajv2020({ allErrors: false, strict: true, strictRequired: false, strictTypes: false });
+      validateInput = ajv.compile(artifacts.inputSchema);
+      validateOutput = ajv.compile(artifacts.outputSchema);
+    } else {
+      return new UnavailableRuntime(sha, "no schema validators");
+    }
     const policy = await loadPolicy(new Uint8Array(artifacts.wasm), { initial: 5, maximum: 1024 });
     const needed = requiredBuiltins(policy);
     if (Object.keys(needed).length > 0) {
