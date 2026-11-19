@@ -15,7 +15,7 @@ from typing import Any
 from sqlalchemy import select
 
 from paylineage.audit.chain import append
-from paylineage.db.models import HoldClearance, Invoice, Payment, Supplier, SupplierBankAccount
+from paylineage.db.models import HoldClearance, Invoice, Payment, Signal, Supplier, SupplierBankAccount
 from paylineage.db.vault import account_token, mask_account
 from paylineage.domain.context import Actor, ConflictError, Ctx, ForbiddenError, NotFoundError
 from paylineage.domain.enums import PaymentState
@@ -27,6 +27,7 @@ from paylineage.payments.record import compute_digest
 from paylineage.policy.engine import PolicyDecision, configured_policy_version
 from paylineage.policy.input_builder import FieldFacts, build_payment_input, current_mandate
 from paylineage.policy.record import decide
+from paylineage.signals.detect import tool_poisoning_signal
 
 PROPOSAL_TTL = timedelta(days=7)
 
@@ -42,6 +43,8 @@ class Proposal:
     beneficiary_account: str
     idempotency_key: str
     operation: str = "propose_payment"
+    # Descriptions of the tools the agent used. Untrusted: scanned for steering, never obeyed.
+    tool_descriptions: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -139,6 +142,8 @@ def propose(ctx: Ctx, agent: Actor, prop: Proposal, *, signature_valid: bool) ->
     _refresh_record(ctx, p)
     ctx.session.add(p)
     ctx.session.flush()
+    for hit in tool_poisoning_signal(list(prop.tool_descriptions)):
+        ctx.session.add(Signal(invoice_id=inv.id, code=hit.code, severity=hit.severity, detail=hit.detail))
     append(
         ctx.session,
         actor=agent.id,
