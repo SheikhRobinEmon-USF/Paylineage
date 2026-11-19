@@ -18,7 +18,27 @@ MATERIAL_FIELDS = (
 )
 
 
+_REQUIRED = (
+    "id",
+    "version",
+    "amount_minor",
+    "currency",
+    "invoice_id",
+    "invoice_digest",
+    "agent_id",
+    "mandate_version",
+    "policy_version",
+    "policy_sha256",
+    "operation",
+    "nonce",
+    "expires_at",
+)
+
+
 def canonical_record(p: Payment) -> dict[str, Any]:
+    missing = [f for f in _REQUIRED if getattr(p, f) in (None, "")]
+    if missing:
+        raise ValueError(f"canonical record needs ids and fields: {missing}")
     return {
         "schema": PAYMENT_RECORD_SCHEMA,
         "payment_id": p.id,

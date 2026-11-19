@@ -19,6 +19,7 @@ from paylineage.db.models import HoldClearance, Invoice, Payment, Supplier, Supp
 from paylineage.db.vault import account_token, mask_account
 from paylineage.domain.context import Actor, ConflictError, Ctx, ForbiddenError, NotFoundError
 from paylineage.domain.enums import PaymentState
+from paylineage.domain.ids import new_id
 from paylineage.domain.reason_codes import code_class
 from paylineage.onboarding.service import supplier_changes_for
 from paylineage.payments.machine import IllegalPaymentTransitionError, PayEvent, next_state
@@ -110,6 +111,10 @@ def propose(ctx: Ctx, agent: Actor, prop: Proposal, *, signature_valid: bool) ->
     token = account_token(prop.beneficiary_account)
     m = current_mandate(ctx.session, agent.id)
     p = Payment(
+        # Every hashed field is set here, not by a flush-time column default (regression I3).
+        id=new_id(),
+        version=1,
+        operation="pay_invoice",
         state=PaymentState.PROPOSED.value,
         amount_minor=prop.amount_minor,
         currency=prop.currency,
