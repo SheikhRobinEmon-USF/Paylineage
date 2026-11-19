@@ -194,6 +194,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <div className="min-w-0">
                 <div className="truncate font-medium text-ink">{me?.name ?? "Signed out"}</div>
                 <div className="truncate text-muted">{me?.roles.join(", ").replace(/_/g, " ")}</div>
+                {me && source.mode === "live" && <AddPasskey />}
               </div>
               <button type="button" onClick={toggleTheme} className="rounded p-1.5 text-ink-2 hover:bg-surface-2" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>
                 {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
@@ -229,6 +230,19 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function AddPasskey() {
+  const { source } = useEnv();
+  const [s, setS] = useState<"idle" | "busy" | "ok" | "err">("idle");
+  return (
+    <button type="button" className="mt-0.5 text-[11.5px] text-brand underline-offset-2 hover:underline disabled:opacity-60" disabled={s === "busy"} onClick={() => {
+      setS("busy");
+      source.registerPasskey().then(() => setS("ok")).catch(() => setS("err"));
+    }}>
+      {s === "ok" ? "Passkey added on this device" : s === "err" ? "Passkey not added, try again" : "Add a passkey on this device"}
+    </button>
   );
 }
 
