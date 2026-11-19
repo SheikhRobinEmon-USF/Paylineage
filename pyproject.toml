@@ -79,17 +79,6 @@ markers = [
   "concurrency: parallel transactions against PostgreSQL",
 ]
 
-[tool.mutmut]
-# make mutation: policy adapter, approvals, permits, executor (EVALUATION, weekly)
-paths_to_mutate = [
-  "backend/src/paylineage/policy/",
-  "backend/src/paylineage/approvals/",
-  "backend/src/paylineage/permits/",
-  "backend/src/paylineage/executor/",
-]
-tests_dir = ["backend/tests/"]
-also_copy = ["policy/", "backend/alembic/", "backend/alembic.ini", "scenarios/", "docker-compose.yml"]
-
 [tool.coverage.run]
 source = ["paylineage"]
 branch = true

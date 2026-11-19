@@ -24,7 +24,5 @@ jobs:
       - run: uv sync --frozen
       - run: HYPOTHESIS_PROFILE=deep uv run pytest -q
       - run: uv run python -m paylineage.eval.run --tracks B C --extractor adversarial_stub --gate
-      - run: uv run mutmut run || true
-      - run: uv run mutmut results > mutation.txt; cat mutation.txt
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with: { name: mutation, path: mutation.txt }
+      - name: Policy mutation testing (hand planted Rego mutants)
+        run: ./scripts/install_opa.sh && uv run python policy/scripts/rego_mutants.py

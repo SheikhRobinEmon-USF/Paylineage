@@ -1,0 +1,12 @@
+# Gitleaks: default rules plus allowlisted fictional fixtures (no real secrets exist in this repo).
+[extend]
+useDefault = true
+
+[allowlist]
+description = "fictional data and generated artifacts"
+paths = [
+  '''policy/vectors/.*''',
+  '''apps/demo/src/fixtures/.*''',
+  '''packages/policy-runtime/src/validators\.gen\.js''',
+  '''scenarios/holdout\.lock\.json''',
+]
