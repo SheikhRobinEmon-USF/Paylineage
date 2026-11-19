@@ -43,9 +43,9 @@ def db_engine() -> Iterator[Engine]:
     eng.dispose()
 
 
-@pytest.fixture
-def maker(db_engine: Engine) -> Iterator[sessionmaker[Session]]:
-    with db_engine.begin() as c:
+def reset_db(maker_or_engine) -> None:  # type: ignore[no-untyped-def]
+    eng = maker_or_engine.kw["bind"] if isinstance(maker_or_engine, sessionmaker) else maker_or_engine
+    with eng.begin() as c:
         tables = [
             r[0]
             for r in c.execute(
@@ -58,6 +58,11 @@ def maker(db_engine: Engine) -> Iterator[sessionmaker[Session]]:
         c.execute(text("ALTER TABLE audit_events DISABLE TRIGGER USER"))
         c.execute(text(f"TRUNCATE {', '.join(tables)} RESTART IDENTITY CASCADE"))
         c.execute(text("ALTER TABLE audit_events ENABLE TRIGGER USER"))
+
+
+@pytest.fixture
+def maker(db_engine: Engine) -> sessionmaker[Session]:
+    reset_db(db_engine)
     return sessionmaker(bind=db_engine, expire_on_commit=False)
 
 
