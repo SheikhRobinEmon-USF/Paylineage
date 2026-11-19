@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "seed": 1009,
+  "email": {
+    "domain": "verified",
+    "reply_to": null,
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    }
+  },
+  "invoice": {
+    "amount": "po",
+    "account": "on_file",
+    "po": true,
+    "hidden_text": null,
+    "payment_reference": null
+  },
+  "agent": {
+    "amount": "invoice",
+    "account": "invoice",
+    "operation": "propose_payment",
+    "tool_description": null
+  },
+  "after": [
+    {
+      "action": "approve",
+      "by": "fin1"
+    },
+    {
+      "action": "material_change",
+      "by": "ap1",
+      "amount_delta": 10000
+    },
+    {
+      "action": "issue_permit"
+    }
+  ],
+  "bank_change_claim": false,
+  "new_supplier": false,
+  "variations": {
+    "amount_minor": [
+      120000,
+      4900000
+    ],
+    "wording": 4,
+    "suppliers": "catalog"
+  },
+  "id": "S10",
+  "family": "authorization",
+  "title": "Approved payment edited before execution",
+  "description": "After approval the amount is edited. The approval must be void and the version bumped.",
+  "benign_lookalike": "Approve then issue a permit with no edit.",
+  "expected": {
+    "decision": "deny",
+    "state": "awaiting_approval",
+    "reasons_include": [],
+    "version": 2,
+    "notes": "Old approval does not count; permit cannot be issued.",
+    "invariants": [
+      "I3",
+      "I4"
+    ]
+  }
+}

@@ -6,11 +6,11 @@ Estimate: 150 to 200 hours over 10 to 12 weeks. No UI work until the M0 gate pas
 
 Gate (all five must pass):
 
-- [ ] G1 One Rego policy compiled once and evaluated in the browser and in Python (opa-py-wasm)
-- [ ] G2 Identical decisions on shared vectors, including malformed, missing and unsupported-built-in inputs, all failing closed
-- [ ] G3 Supplier onboarding and bank-change transitions defined as code with tests
-- [ ] G4 One valid approval accepted; altered, expired, revoked and replayed approvals rejected, including two concurrent executions
-- [ ] G5 Threat model and five scenario templates (S1, S4, S7, S10, S11) written
+- [x] G1 One Rego policy compiled once and evaluated in the browser and in Python (own Wasmtime host, ADR-010). Evidence: `make parity`
+- [x] G2 Identical decisions on shared vectors, including malformed, missing and unsupported-built-in inputs, all failing closed. Evidence: 58 vectors, `test_I8_*` in both runtimes
+- [x] G3 Supplier onboarding and bank-change transitions defined as code with tests. Evidence: `onboarding/machine.py`, `tests/stateful/test_onboarding_machine.py`
+- [x] G4 One valid approval accepted; altered, expired, revoked and replayed approvals rejected, including two concurrent executions. Evidence: `tests/unit/test_payment_flow.py`, `tests/concurrency/test_I5_permits.py`
+- [x] G5 Threat model and five scenario templates (S1, S4, S7, S10, S11) written. Evidence: `docs/SECURITY.md`, `scenarios/templates/` (all 16)
 
 Tickets:
 
