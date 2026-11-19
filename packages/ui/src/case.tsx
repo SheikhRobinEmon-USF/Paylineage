@@ -61,7 +61,7 @@ function Lineage({ d }: { d: PaymentDetail }) {
     edge("p2", "po", "policy", null),
   ];
   return (
-    <div className="h-[240px] rounded-md border border-line bg-surface-2" aria-label="Data lineage from email to decision" role="img">
+    <div className="h-[280px] rounded-md border border-line bg-surface-2" aria-label="Data lineage from email to decision" role="img">
       <ReactFlow nodes={nodes} edges={edges} fitView fitViewOptions={{ padding: 0.06 }} nodesDraggable={false} nodesConnectable={false} elementsSelectable={false} panOnDrag={false} zoomOnScroll={false} proOptions={{ hideAttribution: true }}>
         <Background gap={16} size={1} color="var(--line)" />
       </ReactFlow>
@@ -301,7 +301,6 @@ export function EvidenceInvestigation({ id }: { id: string | null }) {
             <p className="mt-2 text-[11.5px] text-muted"><span className="untrusted">Dotted violet</span> means untrusted origin with no match in a verified record. A span match proves extraction consistency, never authenticity.</p>
           </Panel>
           <Panel title="Beneficiary against the supplier master"><MasterDiff d={d} /></Panel>
-          <Panel title="Lineage"><Lineage d={d} /></Panel>
           <Panel title="Actions"><Actions d={d} /></Panel>
           <AiPanel id={d.id} />
         </div>
@@ -353,6 +352,10 @@ export function EvidenceInvestigation({ id }: { id: string | null }) {
           )}
         </div>
       </div>
+      <Panel className="mt-4" title="Lineage: from the email to the decision">
+        <Lineage d={d} />
+        <p className="mt-2 text-[11.5px] text-muted">Violet: untrusted origin. Green: trusted or matched to a verified record. Red dashed: no match or a failed span check.</p>
+      </Panel>
     </div>
   );
 }
