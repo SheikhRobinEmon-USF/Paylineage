@@ -1,0 +1,8 @@
+{
+  "name": "key_order_utf16_vs_codepoint",
+  "value_raw": "{\"\\ue000\": 1, \"\\ud83d\\ude00\": 2, \"a\": 3}",
+  "expected": {
+    "canonical": "{\"a\":3,\"\ud83d\ude00\":2,\"\ue000\":1}",
+    "sha256": "84495633024b0992798250783e7ccb01ab2875649ab22f353f14c0d6a8389fc2"
+  }
+}

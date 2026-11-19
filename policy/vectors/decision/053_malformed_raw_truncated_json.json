@@ -1,0 +1,10 @@
+{
+  "expected": {
+    "decision": "deny",
+    "reasons": [
+      "INPUT_INVALID"
+    ]
+  },
+  "input_raw": "{\"schema_version\": \"1\", \"request_kind\": \"payment\"",
+  "name": "malformed_raw_truncated_json"
+}

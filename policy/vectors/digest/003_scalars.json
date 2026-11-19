@@ -1,0 +1,8 @@
+{
+  "name": "scalars",
+  "value_raw": "[null, true, false, 0, 0, 1, -1]",
+  "expected": {
+    "canonical": "[null,true,false,0,0,1,-1]",
+    "sha256": "5c9a885b72cb5a9f1a1d096659fc78b30d5eef8a3112d0d3e5b93734d01e6e9c"
+  }
+}

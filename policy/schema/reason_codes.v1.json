@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paylineage.dev/schema/reason_codes.v1.json",
+  "title": "PayLineage reason codes v1",
+  "description": "Single registry of reason codes. class says which outcome a code forces.",
+  "codes": {
+    "AGENT_SIGNATURE_INVALID": {
+      "class": "deny",
+      "meaning": "Agent request signature missing or invalid"
+    },
+    "MANDATE_MISSING": {
+      "class": "deny",
+      "meaning": "No current mandate for this agent in the trusted store"
+    },
+    "MANDATE_EXPIRED": {
+      "class": "deny",
+      "meaning": "Mandate not yet valid or past expiry"
+    },
+    "MANDATE_REVOKED": {
+      "class": "deny",
+      "meaning": "Mandate revoked"
+    },
+    "MANDATE_VERSION_STALE": {
+      "class": "deny",
+      "meaning": "Payment was proposed under an older mandate version"
+    },
+    "OP_FORBIDDEN": {
+      "class": "deny",
+      "meaning": "Operation not permitted by mandate, or never permitted for agents"
+    },
+    "OVER_CEILING": {
+      "class": "deny",
+      "meaning": "Amount above the per proposal or daily mandate ceiling"
+    },
+    "SUPPLIER_OUT_OF_SCOPE": {
+      "class": "deny",
+      "meaning": "Supplier not in the mandate supplier scope"
+    },
+    "TRUST_CLASS_INVALID": {
+      "class": "deny",
+      "meaning": "Trust class does not match the source kind (client set its own trust)"
+    },
+    "EVIDENCE_MISSING": {
+      "class": "deny",
+      "meaning": "A required material field or verification record is missing or ambiguous"
+    },
+    "FIELD_NO_PROVENANCE": {
+      "class": "deny",
+      "meaning": "A material value was asserted by the agent with no document or master source"
+    },
+    "ACCOUNT_SUSPENDED": {
+      "class": "deny",
+      "meaning": "Account reported compromised, closed or disputed"
+    },
+    "APPROVAL_MISSING": {
+      "class": "deny",
+      "meaning": "No approval recorded for this payment version"
+    },
+    "APPROVAL_DIGEST_MISMATCH": {
+      "class": "deny",
+      "meaning": "Approval digest or version differs from the current canonical record"
+    },
+    "APPROVAL_EXPIRED": {
+      "class": "deny",
+      "meaning": "Approval past expiry"
+    },
+    "APPROVAL_REVOKED": {
+      "class": "deny",
+      "meaning": "Approval revoked"
+    },
+    "APPROVER_NOT_AUTHORIZED": {
+      "class": "deny",
+      "meaning": "Approver inactive or lacks the role the mandate requires"
+    },
+    "SOD_VIOLATION": {
+      "class": "deny",
+      "meaning": "Same person in conflicting roles"
+    },
+    "POLICY_VERSION_STALE": {
+      "class": "deny",
+      "meaning": "Record was evaluated under a different policy version"
+    },
+    "PERMIT_MISSING": {
+      "class": "deny",
+      "meaning": "No permit presented for execution"
+    },
+    "PERMIT_CONSUMED": {
+      "class": "deny",
+      "meaning": "Permit already used"
+    },
+    "PERMIT_EXPIRED": {
+      "class": "deny",
+      "meaning": "Permit past expiry"
+    },
+    "PERMIT_DIGEST_MISMATCH": {
+      "class": "deny",
+      "meaning": "Permit digest differs from the current canonical record"
+    },
+    "ROLE_REQUIRED": {
+      "class": "deny",
+      "meaning": "Actor lacks the role this onboarding action needs"
+    },
+    "VERIFIER_NOT_ASSIGNED": {
+      "class": "deny",
+      "meaning": "Actor is not the verifier assigned to this request"
+    },
+    "VERIFICATION_CONTACT_INVALID": {
+      "class": "deny",
+      "meaning": "Verification used a contact that is not on file or postdates the request"
+    },
+    "VERIFICATION_FAILED": {
+      "class": "deny",
+      "meaning": "Registry or bank confirmation failed"
+    },
+    "INPUT_INVALID": {
+      "class": "deny",
+      "meaning": "Policy input failed schema or consistency validation"
+    },
+    "POLICY_UNDEFINED": {
+      "class": "deny",
+      "meaning": "Policy produced no decision or the allow gate was not proven"
+    },
+    "POLICY_ERROR": {
+      "class": "deny",
+      "meaning": "Policy runtime error, timeout, unsupported built-in or integrity failure"
+    },
+    "PARITY_MISMATCH": {
+      "class": "deny",
+      "meaning": "Fallback runtime disagrees with the shared vectors"
+    },
+    "BENEFICIARY_NOT_VERIFIED": {
+      "class": "hold",
+      "meaning": "Account not in master with status verified"
+    },
+    "BENEFICIARY_MISMATCH": {
+      "class": "hold",
+      "meaning": "Proposed account differs from the supplier's verified account"
+    },
+    "FIELD_UNTRUSTED_MATERIAL": {
+      "class": "hold",
+      "meaning": "A material field has trust class untrusted_external and no master match"
+    },
+    "FIELD_INCONSISTENT": {
+      "class": "hold",
+      "meaning": "Span verifier failed"
+    },
+    "FIELD_UNCHECKED": {
+      "class": "hold",
+      "meaning": "Span verifier has not checked an untrusted material field"
+    },
+    "COOLING_OFF_ACTIVE": {
+      "class": "hold",
+      "meaning": "New account inside cooling-off"
+    },
+    "DUPLICATE_INVOICE": {
+      "class": "hold",
+      "meaning": "Invoice looks like a duplicate"
+    },
+    "SUPPLIER_UNKNOWN": {
+      "class": "hold",
+      "meaning": "No supplier master record for this invoice"
+    },
+    "SUPPLIER_NOT_VERIFIED": {
+      "class": "hold",
+      "meaning": "Supplier exists but is not verified"
+    },
+    "SECOND_APPROVAL_REQUIRED": {
+      "class": "hold",
+      "meaning": "Amount needs a second distinct approver"
+    },
+    "SIGNAL_LOOKALIKE_DOMAIN": {
+      "class": "hold",
+      "meaning": "Sender domain resembles a verified supplier domain"
+    },
+    "SIGNAL_DMARC_FAIL": {
+      "class": "hold",
+      "meaning": "Sender failed DMARC per our own receiving server"
+    },
+    "SIGNAL_REPLY_TO_MISMATCH": {
+      "class": "hold",
+      "meaning": "Reply-To differs from the sender domain"
+    },
+    "SIGNAL_HIDDEN_TEXT": {
+      "class": "hold",
+      "meaning": "Document contains hidden or invisible text"
+    },
+    "SIGNAL_PROMPT_INJECTION": {
+      "class": "hold",
+      "meaning": "Document contains instructions aimed at an AI agent"
+    },
+    "SIGNAL_TOOL_POISONING": {
+      "class": "hold",
+      "meaning": "A tool description tried to steer payment details"
+    }
+  }
+}

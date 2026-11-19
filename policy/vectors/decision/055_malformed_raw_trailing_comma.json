@@ -1,0 +1,10 @@
+{
+  "expected": {
+    "decision": "deny",
+    "reasons": [
+      "INPUT_INVALID"
+    ]
+  },
+  "input_raw": "{\"schema_version\": \"1\",}",
+  "name": "malformed_raw_trailing_comma"
+}

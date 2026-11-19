@@ -1,0 +1,91 @@
+# PayLineage local stack. Network layout enforces I6:
+#   agent  : ap-agent <-> api                (the agent's only route)
+#   edge   : web <-> api
+#   data   : api, executor <-> postgres
+#   rails  : executor <-> mockbank           (internal; nothing else joins it)
+# Only the executor holds MOCKBANK_TOKEN. The api never receives it.
+# backend/tests/isolation/test_I6_network_isolation.py asserts this file.
+name: paylineage
+
+services:
+  postgres:
+    image: postgres:16.10-alpine
+    environment:
+      POSTGRES_USER: paylineage
+      POSTGRES_PASSWORD: paylineage_dev
+      POSTGRES_DB: paylineage
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data", "./scripts/init-test-db.sql:/docker-entrypoint-initdb.d/10-test-db.sql:ro"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U paylineage"]
+      interval: 3s
+      retries: 20
+    networks: [data]
+
+  api:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    command: ["paylineage-api"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://paylineage:paylineage_dev@postgres:5432/paylineage
+      EXECUTOR_URL: http://executor:8100
+      EXECUTOR_TOKEN: ${EXECUTOR_TOKEN:-change-me-executor}
+      SESSION_SECRET: ${SESSION_SECRET:-change-me}
+      WEBAUTHN_RP_ID: localhost
+      WEBAUTHN_ORIGIN: http://localhost:3000
+      OLLAMA_URL: http://host.docker.internal:11434
+      EXTRACTOR: ${EXTRACTOR:-deterministic}
+      AUDIT_CHECKPOINT_KEY_PATH: /run/secrets/checkpoint_key
+    secrets: [checkpoint_key]
+    depends_on: { postgres: { condition: service_healthy } }
+    ports: ["127.0.0.1:8000:8000"]
+    networks: [edge, agent, data]
+
+  executor:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    command: ["paylineage-executor"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://paylineage:paylineage_dev@postgres:5432/paylineage
+      EXECUTOR_TOKEN: ${EXECUTOR_TOKEN:-change-me-executor}
+      MOCKBANK_URL: http://mockbank:8200
+      MOCKBANK_TOKEN: ${MOCKBANK_TOKEN:-change-me-mockbank}
+    depends_on: { postgres: { condition: service_healthy } }
+    networks: [data, rails]
+
+  mockbank:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    command: ["paylineage-mockbank"]
+    environment:
+      MOCKBANK_TOKEN: ${MOCKBANK_TOKEN:-change-me-mockbank}
+    networks: [rails]
+
+  ap-agent:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    command: ["python", "-m", "paylineage.agents.sim_agent", "--api", "http://api:8000"]
+    environment:
+      AGENT_KEY_PATH: /run/secrets/agent_key
+    secrets: [agent_key]
+    profiles: [agent]
+    networks: [agent]
+
+  web:
+    build: { context: ., dockerfile: apps/web/Dockerfile }
+    environment:
+      PAYLINEAGE_API_URL: http://api:8000
+    ports: ["127.0.0.1:3000:3000"]
+    depends_on: [api]
+    networks: [edge]
+
+networks:
+  edge: {}
+  agent: { internal: true }
+  data: { internal: true }
+  rails: { internal: true }
+
+volumes:
+  pgdata: {}
+
+secrets:
+  checkpoint_key:
+    file: ./var/keys/checkpoint_ed25519.pem
+  agent_key:
+    file: ./var/keys/agent_ed25519.pem

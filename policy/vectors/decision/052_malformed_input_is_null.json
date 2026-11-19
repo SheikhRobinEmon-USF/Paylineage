@@ -1,0 +1,10 @@
+{
+  "expected": {
+    "decision": "deny",
+    "reasons": [
+      "INPUT_INVALID"
+    ]
+  },
+  "input": null,
+  "name": "malformed_input_is_null"
+}

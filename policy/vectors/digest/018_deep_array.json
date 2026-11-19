@@ -1,0 +1,8 @@
+{
+  "name": "deep_array",
+  "value_raw": "[[[[[[[\"deep\"]]]]]]]",
+  "expected": {
+    "canonical": "[[[[[[[\"deep\"]]]]]]]",
+    "sha256": "9a2b69b555b250717a5afea8d5ba8a2c3df3ee4aa5889a936f7b7c5def5fafad"
+  }
+}

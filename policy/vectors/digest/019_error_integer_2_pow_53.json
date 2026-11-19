@@ -1,0 +1,7 @@
+{
+  "name": "error_integer_2_pow_53",
+  "value_raw": "{\"n\": 9007199254740992}",
+  "expected": {
+    "error": true
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "config": {
+    "policy_version": "1.0.0",
+    "supported_currencies": ["USD"],
+    "material_fields": ["amount", "beneficiary_account", "currency", "invoice_number", "supplier_name"],
+    "trust_class_by_source": {
+      "email_body": "untrusted_external",
+      "email_attachment": "untrusted_external",
+      "portal_upload": "untrusted_external",
+      "agent_asserted": "untrusted_external",
+      "supplier_master": "verified_master",
+      "user_entered": "user_entered",
+      "system": "system_generated"
+    },
+    "trusted_classes": ["verified_master", "user_entered", "system_generated"],
+    "agent_never_operations": ["change_bank_details", "approve", "execute", "edit_mandate", "create_supplier", "verify_supplier"],
+    "signal_severity_rank": {"low": 1, "medium": 2, "high": 3},
+    "signal_hold_min_severity": "medium",
+    "clearable_hold_codes": [
+      "DUPLICATE_INVOICE",
+      "SIGNAL_DMARC_FAIL",
+      "SIGNAL_HIDDEN_TEXT",
+      "SIGNAL_LOOKALIKE_DOMAIN",
+      "SIGNAL_PROMPT_INJECTION",
+      "SIGNAL_REPLY_TO_MISMATCH",
+      "SIGNAL_TOOL_POISONING"
+    ],
+    "sod_window_ms": 604800000,
+    "cooling_off_ms": {"low": 86400000, "medium": 172800000, "high": 432000000},
+    "approval_ttl_ms": 900000,
+    "permit_ttl_ms": 120000,
+    "onboarding_roles": {
+      "request_supplier": "ap_specialist",
+      "record_bank_change": "ap_specialist",
+      "assign_verifier": "steward",
+      "record_verification": "verifier",
+      "steward_approve": "steward",
+      "reject": "steward"
+    }
+  }
+}

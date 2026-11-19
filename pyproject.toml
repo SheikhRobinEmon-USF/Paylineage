@@ -1,0 +1,75 @@
+[project]
+name = "paylineage-workspace"
+version = "0.1.0"
+description = "PayLineage monorepo workspace root"
+requires-python = ">=3.12,<3.13"
+dependencies = ["paylineage"]
+
+[tool.uv]
+# Supply chain cooldown: never resolve a release younger than this date.
+# Bump deliberately when updating dependencies.
+exclude-newer = "2026-11-12T00:00:00Z"
+
+[tool.uv.workspace]
+members = ["backend"]
+
+[tool.uv.sources]
+paylineage = { workspace = true }
+
+[dependency-groups]
+dev = [
+  "pytest>=9.0",
+  "pytest-cov>=6.0",
+  "pytest-timeout>=2.3",
+  "hypothesis>=6.140",
+  "mypy>=2.0",
+  "ruff>=0.15",
+  "mutmut>=3.3",
+  "types-jsonschema",
+  "reportlab>=4.4",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = ["policy/build", "apps", "packages", "node_modules"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "BLE", "A", "C4", "PT", "RET", "SIM", "PL", "RUF", "TRY", "DTZ"]
+ignore = ["PLR0913", "PLR2004", "TRY003", "PLR0911", "PLR0912", "PLR0915", "S101", "RUF001", "RUF002", "RUF003", "TRY300", "TRY400"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["paylineage"]
+
+[tool.ruff.lint.per-file-ignores]
+"backend/tests/**" = ["S", "PLR", "B011", "PT011", "BLE001", "DTZ"]
+"eval/**" = ["S", "PLR", "T20"]
+"scenarios/**" = ["S", "PLR"]
+"policy/scripts/**" = ["S603", "S607", "T20", "E402"]
+"policy/scripts/gen_vectors.py" = ["E702", "E501"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+mypy_path = "backend/src"
+packages = ["paylineage"]
+plugins = ["pydantic.mypy"]
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["rfc8785", "wasmtime", "wasmtime.*", "webauthn", "webauthn.*", "pdfminer", "pdfminer.*", "reportlab", "reportlab.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+addopts = "-ra --strict-markers"
+timeout = 120
+markers = [
+  "db: needs PostgreSQL (DATABASE_URL)",
+  "deep: nightly level, large budgets",
+  "concurrency: parallel transactions against PostgreSQL",
+]
+
+[tool.coverage.run]
+source = ["paylineage"]
+branch = true

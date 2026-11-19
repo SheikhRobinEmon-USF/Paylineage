@@ -1,0 +1,8 @@
+{
+  "name": "key_order_ascii",
+  "value_raw": "{\"b\": 1, \"a\": 2, \"aa\": 3, \"A\": 4, \"_\": 5}",
+  "expected": {
+    "canonical": "{\"A\":4,\"_\":5,\"a\":2,\"aa\":3,\"b\":1}",
+    "sha256": "173f8a471aa94e800104b332842ab41294baf98432e71f336f4e3debf11fa2d9"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "escapes",
+  "value_raw": "{\"s\": \"quote \\\" backslash \\\\ slash / \"}",
+  "expected": {
+    "canonical": "{\"s\":\"quote \\\" backslash \\\\ slash / \"}",
+    "sha256": "2cb87a00d8a24f8e3e7566bd7a1bacabad0564ca3dd683084dce7449800e5e4b"
+  }
+}

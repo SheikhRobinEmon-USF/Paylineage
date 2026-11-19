@@ -1,0 +1,851 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paylineage.dev/schema/input.v1.json",
+  "title": "PayLineage policy input v1",
+  "description": "Built only by the server from trusted stores. Invalid input means deny (INPUT_INVALID). Integers are bounded to the IEEE 754 safe range so Python and JS agree. Times are UTC epoch milliseconds.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_kind",
+    "now_ms"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "request_kind": {
+      "enum": [
+        "payment",
+        "onboarding"
+      ]
+    },
+    "now_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "payment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "operation",
+        "agent",
+        "mandate",
+        "record",
+        "requested_by",
+        "daily_total_minor",
+        "fields",
+        "supplier",
+        "beneficiary",
+        "duplicate_invoice",
+        "signals",
+        "hold_clearances",
+        "supplier_changes",
+        "approvals",
+        "permit"
+      ],
+      "properties": {
+        "stage": {
+          "enum": [
+            "evaluate",
+            "permit",
+            "execute"
+          ]
+        },
+        "operation": {
+          "enum": [
+            "read_invoice",
+            "extract_fields",
+            "propose_payment",
+            "change_bank_details",
+            "approve",
+            "execute",
+            "edit_mandate",
+            "create_supplier",
+            "verify_supplier"
+          ]
+        },
+        "agent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "agent_id",
+            "signature_valid"
+          ],
+          "properties": {
+            "agent_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_.:-]+$"
+            },
+            "signature_valid": {
+              "type": "boolean"
+            }
+          }
+        },
+        "mandate": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mandate_id",
+                "version",
+                "agent_id",
+                "permitted_operations",
+                "forbidden_operations",
+                "supplier_scope",
+                "per_proposal_ceiling_minor",
+                "daily_ceiling_minor",
+                "approver_role",
+                "second_approver_above_minor",
+                "not_before_ms",
+                "expires_at_ms",
+                "revoked"
+              ],
+              "properties": {
+                "mandate_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9_.:-]+$"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "agent_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9_.:-]+$"
+                },
+                "permitted_operations": {
+                  "type": "array",
+                  "maxItems": 16,
+                  "items": {
+                    "enum": [
+                      "read_invoice",
+                      "extract_fields",
+                      "propose_payment",
+                      "change_bank_details",
+                      "approve",
+                      "execute",
+                      "edit_mandate",
+                      "create_supplier",
+                      "verify_supplier"
+                    ]
+                  }
+                },
+                "forbidden_operations": {
+                  "type": "array",
+                  "maxItems": 16,
+                  "items": {
+                    "enum": [
+                      "read_invoice",
+                      "extract_fields",
+                      "propose_payment",
+                      "change_bank_details",
+                      "approve",
+                      "execute",
+                      "edit_mandate",
+                      "create_supplier",
+                      "verify_supplier"
+                    ]
+                  }
+                },
+                "supplier_scope": {
+                  "type": "array",
+                  "maxItems": 1000,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  }
+                },
+                "per_proposal_ceiling_minor": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "daily_ceiling_minor": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "approver_role": {
+                  "enum": [
+                    "ap_specialist",
+                    "finance_approver",
+                    "steward",
+                    "verifier",
+                    "analyst",
+                    "platform_engineer",
+                    "admin"
+                  ]
+                },
+                "second_approver_above_minor": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "not_before_ms": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "expires_at_ms": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "revoked": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        "record": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "payment_id",
+            "version",
+            "amount_minor",
+            "currency",
+            "supplier_id",
+            "beneficiary_account_id",
+            "invoice_id",
+            "mandate_version",
+            "policy_version",
+            "digest"
+          ],
+          "properties": {
+            "payment_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_.:-]+$"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "amount_minor": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "supplier_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_.:-]+$"
+            },
+            "beneficiary_account_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_.:-]+$"
+            },
+            "invoice_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_.:-]+$"
+            },
+            "mandate_version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "policy_version": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "requested_by": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "daily_total_minor": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "fields": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field_name",
+              "source_kind",
+              "trust_class",
+              "consistency",
+              "master_matched"
+            ],
+            "properties": {
+              "field_name": {
+                "enum": [
+                  "amount",
+                  "beneficiary_account",
+                  "currency",
+                  "invoice_number",
+                  "supplier_name",
+                  "due_date",
+                  "remit_email",
+                  "po_number"
+                ]
+              },
+              "source_kind": {
+                "enum": [
+                  "email_body",
+                  "email_attachment",
+                  "portal_upload",
+                  "agent_asserted",
+                  "supplier_master",
+                  "user_entered",
+                  "system"
+                ]
+              },
+              "trust_class": {
+                "enum": [
+                  "untrusted_external",
+                  "verified_master",
+                  "user_entered",
+                  "system_generated"
+                ]
+              },
+              "consistency": {
+                "enum": [
+                  "consistent",
+                  "inconsistent",
+                  "unchecked"
+                ]
+              },
+              "master_matched": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "supplier": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "supplier_id",
+                "status",
+                "has_verified_account"
+              ],
+              "properties": {
+                "supplier_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9_.:-]+$"
+                },
+                "status": {
+                  "enum": [
+                    "requested",
+                    "unverified",
+                    "verifying",
+                    "steward_review",
+                    "verified",
+                    "rejected",
+                    "suspended"
+                  ]
+                },
+                "has_verified_account": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        "beneficiary": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "account_id",
+                "supplier_id",
+                "status",
+                "cooling_off_until_ms"
+              ],
+              "properties": {
+                "account_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9_.:-]+$"
+                },
+                "supplier_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9_.:-]+$"
+                },
+                "status": {
+                  "enum": [
+                    "pending",
+                    "verified",
+                    "suspended",
+                    "revoked"
+                  ]
+                },
+                "cooling_off_until_ms": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              }
+            }
+          ]
+        },
+        "duplicate_invoice": {
+          "type": "boolean"
+        },
+        "signals": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "severity"
+            ],
+            "properties": {
+              "code": {
+                "enum": [
+                  "SIGNAL_LOOKALIKE_DOMAIN",
+                  "SIGNAL_DMARC_FAIL",
+                  "SIGNAL_REPLY_TO_MISMATCH",
+                  "SIGNAL_HIDDEN_TEXT",
+                  "SIGNAL_PROMPT_INJECTION",
+                  "SIGNAL_TOOL_POISONING"
+                ]
+              },
+              "severity": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              }
+            }
+          }
+        },
+        "hold_clearances": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "cleared_by",
+              "at_ms"
+            ],
+            "properties": {
+              "code": {
+                "enum": [
+                  "BENEFICIARY_NOT_VERIFIED",
+                  "BENEFICIARY_MISMATCH",
+                  "FIELD_UNTRUSTED_MATERIAL",
+                  "FIELD_INCONSISTENT",
+                  "FIELD_UNCHECKED",
+                  "COOLING_OFF_ACTIVE",
+                  "DUPLICATE_INVOICE",
+                  "SUPPLIER_UNKNOWN",
+                  "SUPPLIER_NOT_VERIFIED",
+                  "SECOND_APPROVAL_REQUIRED",
+                  "SIGNAL_LOOKALIKE_DOMAIN",
+                  "SIGNAL_DMARC_FAIL",
+                  "SIGNAL_REPLY_TO_MISMATCH",
+                  "SIGNAL_HIDDEN_TEXT",
+                  "SIGNAL_PROMPT_INJECTION",
+                  "SIGNAL_TOOL_POISONING"
+                ]
+              },
+              "cleared_by": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "at_ms": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            }
+          }
+        },
+        "supplier_changes": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "actor_id",
+              "role",
+              "at_ms"
+            ],
+            "properties": {
+              "actor_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "role": {
+                "enum": [
+                  "requester",
+                  "bank_change_recorder",
+                  "verifier",
+                  "steward"
+                ]
+              },
+              "at_ms": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            }
+          }
+        },
+        "approvals": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approval_id",
+              "approver_id",
+              "digest",
+              "payment_version",
+              "expires_at_ms",
+              "revoked",
+              "approver_active",
+              "approver_roles"
+            ],
+            "properties": {
+              "approval_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "approver_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "digest": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "payment_version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000000
+              },
+              "expires_at_ms": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "revoked": {
+                "type": "boolean"
+              },
+              "approver_active": {
+                "type": "boolean"
+              },
+              "approver_roles": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "enum": [
+                    "ap_specialist",
+                    "finance_approver",
+                    "steward",
+                    "verifier",
+                    "analyst",
+                    "platform_engineer",
+                    "admin"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "permit": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "permit_id",
+                "digest",
+                "expires_at_ms",
+                "consumed"
+              ],
+              "properties": {
+                "permit_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9_.:-]+$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "expires_at_ms": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "consumed": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "onboarding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action",
+        "kind",
+        "actor_id",
+        "actor_roles",
+        "supplier_id",
+        "requester_id",
+        "verifier_id",
+        "assignee_id",
+        "verification"
+      ],
+      "properties": {
+        "action": {
+          "enum": [
+            "request_supplier",
+            "record_bank_change",
+            "assign_verifier",
+            "record_verification",
+            "steward_approve",
+            "reject"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "new_supplier",
+            "bank_change"
+          ]
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "actor_roles": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "enum": [
+              "ap_specialist",
+              "finance_approver",
+              "steward",
+              "verifier",
+              "analyst",
+              "platform_engineer",
+              "admin"
+            ]
+          }
+        },
+        "supplier_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "requester_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "verifier_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "assignee_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "verification": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "method",
+                "contact_source",
+                "contact_recorded_at_ms",
+                "request_created_at_ms",
+                "registry_match",
+                "bank_confirmed"
+              ],
+              "properties": {
+                "method": {
+                  "enum": [
+                    "callback_on_file",
+                    "simulated_validation_service"
+                  ]
+                },
+                "contact_source": {
+                  "enum": [
+                    "on_file",
+                    "invoice",
+                    "email",
+                    "none"
+                  ]
+                },
+                "contact_recorded_at_ms": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "request_created_at_ms": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "registry_match": {
+                  "type": "boolean"
+                },
+                "bank_confirmed": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "request_kind": {
+            "const": "payment"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "payment"
+        ],
+        "not": {
+          "required": [
+            "onboarding"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "request_kind": {
+            "const": "onboarding"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "onboarding"
+        ],
+        "not": {
+          "required": [
+            "payment"
+          ]
+        }
+      }
+    }
+  ]
+}

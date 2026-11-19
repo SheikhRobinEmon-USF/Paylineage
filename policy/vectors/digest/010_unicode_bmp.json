@@ -1,0 +1,8 @@
+{
+  "name": "unicode_bmp",
+  "value_raw": "{\"name\": \"Caf\\u00e9 M\\u00fcller Stra\\u00dfe\", \"jp\": \"\\u8acb\\u6c42\\u66f8\", \"rtl\": \"\\u05d7\\u05e9\\u05d1\\u05d5\\u05e0\\u05d9\\u05ea\"}",
+  "expected": {
+    "canonical": "{\"jp\":\"\u8acb\u6c42\u66f8\",\"name\":\"Caf\u00e9 M\u00fcller Stra\u00dfe\",\"rtl\":\"\u05d7\u05e9\u05d1\u05d5\u05e0\u05d9\u05ea\"}",
+    "sha256": "b7300dc4e1933373637333c5dac9c5fb5b9a0a06b256d8c2a2e1ad1336fa9a87"
+  }
+}
