@@ -27,6 +27,8 @@ dev = [
   "mutmut>=3.3",
   "types-jsonschema",
   "reportlab>=4.4",
+  "pyyaml>=6.0.3",
+  "types-pyyaml>=6.0.12.20261111",
 ]
 
 [tool.ruff]
@@ -36,7 +38,10 @@ extend-exclude = ["policy/build", "apps", "packages", "node_modules"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "S", "BLE", "A", "C4", "PT", "RET", "SIM", "PL", "RUF", "TRY", "DTZ"]
-ignore = ["PLR0913", "PLR2004", "TRY003", "PLR0911", "PLR0912", "PLR0915", "S101", "RUF001", "RUF002", "RUF003", "TRY300", "TRY400", "PLC0415"]
+ignore = ["PLR0913", "PLR2004", "TRY003", "PLR0911", "PLR0912", "PLR0915", "S101", "RUF001", "RUF002", "RUF003", "TRY300", "TRY400", "PLC0415", "PLR0917"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Header", "fastapi.Query"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["paylineage"]
