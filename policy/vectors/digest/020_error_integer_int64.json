@@ -1,0 +1,7 @@
+{
+  "name": "error_integer_int64",
+  "value_raw": "{\"amount_minor\": 9223372036854775807}",
+  "expected": {
+    "error": true
+  }
+}

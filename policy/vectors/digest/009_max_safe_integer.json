@@ -1,0 +1,8 @@
+{
+  "name": "max_safe_integer",
+  "value_raw": "{\"n\": 9007199254740991, \"m\": -9007199254740991}",
+  "expected": {
+    "canonical": "{\"m\":-9007199254740991,\"n\":9007199254740991}",
+    "sha256": "3f54c80abdfbc38f08ed5654622eea6e7d7e58cbac36cf5a0670c8aeb054703d"
+  }
+}

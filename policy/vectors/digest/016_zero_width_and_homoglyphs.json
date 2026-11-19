@@ -1,0 +1,8 @@
+{
+  "name": "zero_width_and_homoglyphs",
+  "value_raw": "{\"domain\": \"acme-supp\\u200bly.com\", \"cyr\": \"\\u0430cme\"}",
+  "expected": {
+    "canonical": "{\"cyr\":\"\u0430cme\",\"domain\":\"acme-supp\u200bly.com\"}",
+    "sha256": "dca32967ff6bb066b91db30c15e2978ae0d99cf813405269b5a14f62ca477400"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "control_chars",
+  "value_raw": "{\"s\": \"tab\\tnl\\ncr\\rnul\\u0000bell\\u0007\"}",
+  "expected": {
+    "canonical": "{\"s\":\"tab\\tnl\\ncr\\rnul\\u0000bell\\u0007\"}",
+    "sha256": "be58ca4254f927ea729edc1c39c04e314a3b02305836e655ec5ce09572c0dcdd"
+  }
+}

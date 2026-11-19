@@ -1,0 +1,7 @@
+{
+  "name": "error_integral_float_1e21",
+  "value_raw": "[1e21]",
+  "expected": {
+    "error": true
+  }
+}

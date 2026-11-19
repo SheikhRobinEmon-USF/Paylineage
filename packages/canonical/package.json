@@ -1,0 +1,17 @@
+{
+  "name": "@paylineage/canonical",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "RFC 8785 canonical JSON and SHA-256 digests, shared vectors with Python",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "canonicalize": "^5.1.0"
+  }
+}

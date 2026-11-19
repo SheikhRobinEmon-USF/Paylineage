@@ -1,0 +1,7 @@
+{
+  "name": "error_lone_surrogate",
+  "value_raw": "{\"s\": \"\\ud800\"}",
+  "expected": {
+    "error": true
+  }
+}

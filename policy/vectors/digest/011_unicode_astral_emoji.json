@@ -1,0 +1,8 @@
+{
+  "name": "unicode_astral_emoji",
+  "value_raw": "{\"e\": \"\\ud83d\\udcb8 invoice \\ud83e\\uddfe\"}",
+  "expected": {
+    "canonical": "{\"e\":\"\ud83d\udcb8 invoice \ud83e\uddfe\"}",
+    "sha256": "e88371d864402d88969b1cc2b272028767026f28746fb662e2e47a52c41a91ac"
+  }
+}

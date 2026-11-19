@@ -1,0 +1,7 @@
+{
+  "name": "error_integral_float_1e30",
+  "value_raw": "{\"numbers\": [1E30]}",
+  "expected": {
+    "error": true
+  }
+}

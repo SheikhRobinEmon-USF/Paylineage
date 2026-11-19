@@ -1,0 +1,8 @@
+{
+  "name": "payment_record",
+  "value_raw": "{\"schema\": \"paylineage.payment.v1\", \"payment_id\": \"0190f5a2-7c1e-7d3a-9b2f-3c4d5e6f7a8b\", \"version\": 1, \"amount_minor\": 1250000, \"currency\": \"USD\", \"supplier_id\": \"0190f5a2-0000-7000-8000-000000000001\", \"beneficiary_account_id\": \"0190f5a2-0000-7000-8000-0000000000a1\", \"invoice_id\": \"0190f5a2-0000-7000-8000-0000000000f1\", \"invoice_digest\": \"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\", \"agent_id\": \"AP-Agent-001\", \"mandate_version\": 3, \"policy_version\": \"1.0.0\", \"policy_sha256\": \"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\", \"operation\": \"pay_invoice\", \"nonce\": \"n-7f3a\", \"expires_at_ms\": 1800000600000}",
+  "expected": {
+    "canonical": "{\"agent_id\":\"AP-Agent-001\",\"amount_minor\":1250000,\"beneficiary_account_id\":\"0190f5a2-0000-7000-8000-0000000000a1\",\"currency\":\"USD\",\"expires_at_ms\":1800000600000,\"invoice_digest\":\"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\",\"invoice_id\":\"0190f5a2-0000-7000-8000-0000000000f1\",\"mandate_version\":3,\"nonce\":\"n-7f3a\",\"operation\":\"pay_invoice\",\"payment_id\":\"0190f5a2-7c1e-7d3a-9b2f-3c4d5e6f7a8b\",\"policy_sha256\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"policy_version\":\"1.0.0\",\"schema\":\"paylineage.payment.v1\",\"supplier_id\":\"0190f5a2-0000-7000-8000-000000000001\",\"version\":1}",
+    "sha256": "5705d57c1abc5479f0c56e3c4e9cad457d6981b592eecf4c6c13d7fcdb77f798"
+  }
+}
