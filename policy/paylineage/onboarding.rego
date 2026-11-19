@@ -8,10 +8,10 @@ import rego.v1
 
 o := input.onboarding
 
-required_role := cfg.onboarding_roles[o.action]
-
+# STATE_MACHINES: the verifier or the steward may reject; other actions need one role.
 actor_has_role if {
-	required_role in o.actor_roles
+	some role in cfg.onboarding_roles[o.action]
+	role in o.actor_roles
 }
 
 onboarding_deny contains "ROLE_REQUIRED" if {
@@ -42,6 +42,13 @@ onboarding_deny contains "SOD_VIOLATION" if {
 
 onboarding_deny contains "VERIFIER_NOT_ASSIGNED" if {
 	o.action == "record_verification"
+	o.actor_id != o.verifier_id
+}
+
+# A verifier may reject only the case assigned to them; a steward may reject any.
+onboarding_deny contains "VERIFIER_NOT_ASSIGNED" if {
+	o.action == "reject"
+	not "steward" in o.actor_roles
 	o.actor_id != o.verifier_id
 }
 

@@ -110,3 +110,19 @@ test_failed_registry_match_denied if {
 	v := object.union(verification, {"registry_match": false})
 	has(onb({"verification": v}), "VERIFICATION_FAILED")
 }
+
+test_assigned_verifier_may_reject if {
+	decided(onb({"action": "reject", "verification": null}), "allow")
+}
+
+test_unassigned_verifier_may_not_reject if {
+	has(onb({"action": "reject", "actor_id": "u-ver-2", "verification": null}), "VERIFIER_NOT_ASSIGNED")
+}
+
+test_steward_may_reject if {
+	decided(onb({"action": "reject", "actor_id": "u-stw-1", "actor_roles": ["steward"], "verification": null}), "allow")
+}
+
+test_ap_specialist_may_not_reject if {
+	has(onb({"action": "reject", "actor_id": "u-ap-2", "actor_roles": ["ap_specialist"], "verification": null}), "ROLE_REQUIRED")
+}
