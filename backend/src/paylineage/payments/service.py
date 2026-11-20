@@ -12,7 +12,8 @@ from dataclasses import dataclass
 from datetime import timedelta
 from typing import Any
 
-from sqlalchemy import select
+from sqlalchemy import select, text
+from sqlalchemy.orm import Session
 
 from paylineage.audit.chain import append
 from paylineage.db.models import HoldClearance, Invoice, Payment, Signal, Supplier, SupplierBankAccount
@@ -109,8 +110,20 @@ def _snapshot(
     }
 
 
+def idempotency_lock(session: Session, scope: str, key: str) -> None:
+    """Serialize concurrent requests that share one idempotency key (transaction scoped).
+
+    Without it two retries racing past the "already seen?" check both insert and
+    the loser gets a unique violation instead of the first response.
+    """
+    session.execute(
+        text("SELECT pg_advisory_xact_lock(hashtextextended(:k, 0))"), {"k": f"idem:{scope}:{key}"}
+    )
+
+
 def propose(ctx: Ctx, agent: Actor, prop: Proposal, *, signature_valid: bool) -> EvaluationResult:
     """Create (or idempotently return) a proposal, then evaluate it."""
+    idempotency_lock(ctx.session, f"agent:{agent.id}", prop.idempotency_key)
     existing = ctx.session.execute(
         select(Payment).where(Payment.agent_id == agent.id, Payment.idempotency_key == prop.idempotency_key)
     ).scalar_one_or_none()

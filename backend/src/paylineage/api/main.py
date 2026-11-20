@@ -567,6 +567,7 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
                     body = ProposalIn.model_validate_json(raw)
                 except ValueError as exc:
                     raise HTTPException(422, {"code": "INPUT_INVALID", "message": "bad proposal"}) from exc
+                payments.idempotency_lock(ctx.session, f"agent:{agent_id}", idempotency_key)
                 cached = _idempotent(ctx, f"agent:{agent_id}", idempotency_key, body.model_dump())
                 if cached is not None:
                     return cached
@@ -989,6 +990,11 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
     def audit_verify(_m: Me = Depends(current_user), ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
         events = load_events(ctx.session)
         problems, last, head = verify_events(events)
+        key = _checkpoint_key()
+        if key is not None:
+            problems = list(
+                checkpoint_verify(ctx.session, key.public_key(), CheckpointStore(s.audit_checkpoint_dir))
+            )
         return {
             "events": len(events),
             "last_seq": last,
