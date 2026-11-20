@@ -68,10 +68,12 @@ def build(opa: str) -> str:
     check_opa(opa)
     staged = stage()
     bundle = ROOT / "build" / "bundle.tar.gz"
+    # Run from inside the stage with a relative path: OPA embeds source paths in the
+    # module, so an absolute path would make the hash depend on where the checkout lives.
     subprocess.run(
-        [opa, "build", "-t", "wasm", "-e", ENTRYPOINT, "-O=1", str(staged), "-o", str(bundle)],
+        [opa, "build", "-t", "wasm", "-e", ENTRYPOINT, "-O=1", ".", "-o", str(bundle)],
         check=True,
-        cwd=ROOT,
+        cwd=staged,
     )
     with tarfile.open(bundle, "r:gz") as tar:
         member = tar.getmember("/policy.wasm")
