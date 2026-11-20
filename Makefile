@@ -8,7 +8,7 @@ PYTEST := $(UV) run pytest
 , := ,
 TEST_DATABASE_URL ?= postgresql+psycopg://paylineage:paylineage_dev@localhost:5432/paylineage_test
 
-.PHONY: help setup keys images stack db-up db-down migrate policy-build policy-test policy-mutants parity vectors test-fast test-deep \
+.PHONY: help setup keys images stack screenshots db-up db-down migrate policy-build policy-test policy-mutants parity vectors test-fast test-deep \
         mutation lint dev demo eval web-test e2e seed clean
 
 help: ## Show targets
@@ -89,6 +89,10 @@ dev: ## backend + executor + mockbank + web locally
 
 demo: ## Static demo export with the current policy.wasm
 	pnpm --filter @paylineage/demo build
+
+screenshots: ## README screenshots from the static demo (docs/images)
+	pnpm --filter @paylineage/demo build
+	node apps/demo/scripts/screenshots.mjs
 
 e2e: ## Playwright + axe against the static demo
 	pnpm --filter @paylineage/demo e2e

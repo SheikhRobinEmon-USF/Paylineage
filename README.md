@@ -4,6 +4,8 @@
 
 PayLineage stops AI accounts payable agents from paying unverified or unauthorized beneficiaries. It sits between an agent that reads invoices and the money. Invoice and email content can never become payment authority, even when the model is fully manipulated and a person clicks approve.
 
+**Live demo:** https://sheikhrobinemon-usf.github.io/Paylineage/ (nothing to install, no sign-up). The demo runs the real `policy.wasm`, RFC 8785 digests, permits and the audit hash chain in your browser. Extraction outputs and agent runs are replayed recordings from the Python system, and every recorded decision is re-run in the browser to prove it matches. Run the project locally for the full backend, passkeys and a local model.
+
 > Simulation only. Rails, bank accounts and supplier verification are simulated. Every company, person and account is fictional. PayLineage enforces verification decisions; it does not prove real bank account ownership.
 
 ![Payment Control](docs/images/payment-control.png)
@@ -75,9 +77,19 @@ Six independent checks, each with a clear limit:
 | Attack Lab | Does it hold up? Build an attack and watch the real `policy.wasm` decide in the browser |
 | Audit Trail | Can I prove what happened? Hash chain verification |
 
-| Evidence Investigation | Attack Lab |
+## Screens
+
+| Evidence Investigation | Approval Center |
 | --- | --- |
-| ![Evidence](docs/images/evidence-investigation.png) | ![Attack Lab](docs/images/attack-lab.png) |
+| ![Evidence Investigation: each field linked to its source line, hidden text and a lookalike domain exposed](docs/images/evidence-investigation.png) | ![Approval Center: the exact canonical record and its SHA-256 digest before a passkey approval](docs/images/approval-center.png) |
+| **Attack Lab** | **Supplier Master** |
+| ![Attack Lab: build an attack and watch policy.wasm hold it in the browser](docs/images/attack-lab.png) | ![Supplier Master: verified accounts, pending bank changes and separation of duties](docs/images/supplier-master.png) |
+| **Agent Authority** | **Audit Trail** |
+| ![Agent Authority: RFC 9421 request signing key and the versioned mandate](docs/images/agent-authority.png) | ![Audit Trail: hash chain recomputed and verified in the browser](docs/images/audit-trail.png) |
+| **Dark mode** | |
+| ![Payment Control in dark mode](docs/images/payment-control-dark.png) | |
+
+Screenshots come from the public demo with `make screenshots`, so they always match the current UI.
 
 ## Quick start
 
@@ -112,6 +124,16 @@ docker compose --profile agent up -d ap-agent
 Behind a TLS inspecting proxy, pass its CA to the build with `make stack BUILD_CA_FILE=/path/to/ca.pem`.
 
 The public demo needs nothing installed: it runs the same UI against an in-browser engine (`make demo`, deployed to GitHub Pages from `main`).
+
+## Deployment
+
+Every push to `main` publishes the public demo to GitHub Pages through [`.github/workflows/pages.yml`](.github/workflows/pages.yml):
+
+1. The demo is built as a static export with the committed `policy.wasm`, whose SHA-256 is pinned in the page.
+2. The exact artifact is tested first: Playwright and axe run against it, including the replay of every recorded backend decision in the browser.
+3. The site is published to GitHub Pages (Settings, Pages, Source: GitHub Actions). No server, no API keys.
+
+The full stack runs in Docker with `make stack` (see Quick start). The images run as a non root user, carry no keys, and are built on every pull request.
 
 ## Testing
 
@@ -155,6 +177,10 @@ PayLineage builds on, and does not claim, the ideas in aiAuthZ, Interbolt (prove
 ## Limits
 
 Synthetic scenarios from one simulated organization. Simulated rails and simulated verification. The adversarial stub models a fully manipulated model; it does not measure how a real model reacts. Residual risks are listed in [`docs/SECURITY.md`](docs/SECURITY.md).
+
+## Disclaimer
+
+An independent portfolio project. Simulation only: no real payment rails, bank APIs, credentials, personal data or money. Every company, person, domain and account is fictional, and any resemblance to a real one is a coincidence. Supplier verification is simulated. Not affiliated with or endorsed by any bank, payment network or vendor named in the research notes.
 
 ## License
 
