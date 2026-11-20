@@ -37,6 +37,7 @@ jobs:
       - name: no host built-ins in the compiled module
         run: uv run python -c "from paylineage.policy.wasm_host import load_policy; from pathlib import Path; load_policy(Path('policy/dist/policy.wasm'), fuel=10**7)"
       - run: make parity
+      - run: make policy-mutants
 
   python:
     name: python (ruff, mypy --strict, pytest)
@@ -93,7 +94,18 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @paylineage/demo exec playwright install --with-deps chromium
       - run: pnpm --filter @paylineage/demo build
-      - run: pnpm --filter @paylineage/demo e2e -- --trace off
+      - run: pnpm --filter @paylineage/demo exec playwright test --trace off
+
+  images:
+    name: images (backend and web Dockerfiles build)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: docker build -f backend/Dockerfile -t paylineage-api:ci .
+      - run: docker build -f apps/web/Dockerfile -t paylineage-web:ci .
+      - name: image carries no keys or env files
+        run: |
+          ! docker run --rm --entrypoint sh paylineage-api:ci -c 'ls -A /app/var/keys /app/.env 2>/dev/null | grep .'
 
   security:
     name: security (gitleaks, semgrep, dependency audit)
@@ -105,6 +117,8 @@ jobs:
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
       - run: uvx semgrep scan --config p/python --config p/typescript --config p/secrets --error --exclude apps/demo/out
-      - run: uv export --no-dev --format requirements-txt > /tmp/req.txt && uvx pip-audit -r /tmp/req.txt --strict
+      - run: >-
+          uv export --frozen --no-dev --all-extras --no-emit-workspace --format requirements-txt > /tmp/req.txt
+          && uvx pip-audit -r /tmp/req.txt --strict --disable-pip --no-deps
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - run: pnpm audit --prod --audit-level high

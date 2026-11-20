@@ -4,6 +4,7 @@
 #   data   : api, executor <-> postgres
 #   rails  : executor <-> mockbank           (internal; nothing else joins it)
 # Only the executor holds MOCKBANK_TOKEN. The api never receives it.
+# First run: `make stack` (creates the two key files below, builds, starts).
 # backend/tests/isolation/test_I6_network_isolation.py asserts this file.
 name: paylineage
 
@@ -22,55 +23,90 @@ services:
       retries: 20
     networks: [data]
 
+  # One shot: apply migrations, then seed fictional data only if the database is empty.
+  migrate:
+    image: paylineage-api:local
+    build: { context: ., dockerfile: backend/Dockerfile }
+    command: ["sh", "-c", "alembic -c backend/alembic.ini upgrade head && python -m paylineage.db.seed --if-empty"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://paylineage:paylineage_dev@postgres:5432/paylineage
+      VAULT_PEPPER: ${VAULT_PEPPER:-change-me-vault}
+      AGENT_KEY_PATH: /run/secrets/agent_key
+    secrets: [agent_key]
+    group_add: ["${KEYS_GID:-1000}"]
+    depends_on: { postgres: { condition: service_healthy } }
+    networks: [data]
+
   api:
+    image: paylineage-api:local
     build: { context: ., dockerfile: backend/Dockerfile }
     command: ["paylineage-api"]
     environment:
+      BIND_HOST: 0.0.0.0
       DATABASE_URL: postgresql+psycopg://paylineage:paylineage_dev@postgres:5432/paylineage
       EXECUTOR_URL: http://executor:8100
       EXECUTOR_TOKEN: ${EXECUTOR_TOKEN:-change-me-executor}
       SESSION_SECRET: ${SESSION_SECRET:-change-me}
+      VAULT_PEPPER: ${VAULT_PEPPER:-change-me-vault}
+      INGEST_TOKEN: ${INGEST_TOKEN:-change-me-ingest}
       WEBAUTHN_RP_ID: localhost
       WEBAUTHN_ORIGIN: http://localhost:3000
       OLLAMA_URL: http://host.docker.internal:11434
       EXTRACTOR: ${EXTRACTOR:-deterministic}
       AUDIT_CHECKPOINT_KEY_PATH: /run/secrets/checkpoint_key
+      AUDIT_CHECKPOINT_DIR: /app/var/checkpoints
     secrets: [checkpoint_key]
-    depends_on: { postgres: { condition: service_healthy } }
+    # File secrets are bind mounts (mode 0640): join the key files' group to read them.
+    group_add: ["${KEYS_GID:-1000}"]
+    volumes: ["checkpoints:/app/var/checkpoints"]
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
     ports: ["127.0.0.1:8000:8000"]
     networks: [edge, agent, data]
 
   executor:
+    image: paylineage-api:local
     build: { context: ., dockerfile: backend/Dockerfile }
     command: ["paylineage-executor"]
     environment:
+      BIND_HOST: 0.0.0.0
       DATABASE_URL: postgresql+psycopg://paylineage:paylineage_dev@postgres:5432/paylineage
       EXECUTOR_TOKEN: ${EXECUTOR_TOKEN:-change-me-executor}
       MOCKBANK_URL: http://mockbank:8200
       MOCKBANK_TOKEN: ${MOCKBANK_TOKEN:-change-me-mockbank}
-    depends_on: { postgres: { condition: service_healthy } }
+    depends_on:
+      migrate: { condition: service_completed_successfully }
     networks: [data, rails]
 
   mockbank:
+    image: paylineage-api:local
     build: { context: ., dockerfile: backend/Dockerfile }
     command: ["paylineage-mockbank"]
     environment:
+      BIND_HOST: 0.0.0.0
       MOCKBANK_TOKEN: ${MOCKBANK_TOKEN:-change-me-mockbank}
     networks: [rails]
 
   ap-agent:
+    image: paylineage-api:local
     build: { context: ., dockerfile: backend/Dockerfile }
+    # Polls for invoices with no proposal and proposes them (simulated agent).
     command: ["python", "-m", "paylineage.agents.sim_agent", "--api", "http://api:8000"]
     environment:
       AGENT_KEY_PATH: /run/secrets/agent_key
     secrets: [agent_key]
+    group_add: ["${KEYS_GID:-1000}"]
+    depends_on: [api]
     profiles: [agent]
     networks: [agent]
 
   web:
-    build: { context: ., dockerfile: apps/web/Dockerfile }
-    environment:
-      PAYLINEAGE_API_URL: http://api:8000
+    image: paylineage-web:local
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args: { PAYLINEAGE_API_URL: "http://api:8000" }
     ports: ["127.0.0.1:3000:3000"]
     depends_on: [api]
     networks: [edge]
@@ -83,6 +119,7 @@ networks:
 
 volumes:
   pgdata: {}
+  checkpoints: {}
 
 secrets:
   checkpoint_key:

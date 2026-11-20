@@ -10,3 +10,7 @@ onlyBuiltDependencies:
   - sharp
   - "@tailwindcss/oxide"
   - unrs-resolver
+
+# typescript-eslint supports TypeScript < 6.1. Keep one TypeScript for typecheck and lint.
+overrides:
+  typescript: 6.0.3

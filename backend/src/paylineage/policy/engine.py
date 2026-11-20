@@ -234,6 +234,17 @@ class OpaServerPolicyEngine(_ValidatingEngine):
 # ---------------- loading and self test ----------------
 
 
+@lru_cache(maxsize=4)
+def _configured_version(policy_dir: Path) -> str:
+    cfg = json.loads((policy_dir / "data" / "config.v1.json").read_text())
+    return str(cfg["config"]["policy_version"])
+
+
+def configured_policy_version(settings: Settings | None = None) -> str:
+    """The policy version compiled into policy.wasm (from the same config file)."""
+    return _configured_version((settings or get_settings()).policy_dir)
+
+
 def read_expected_sha(settings: Settings) -> str:
     line = settings.policy_sha256_path.read_text().strip().split()
     if not line or len(line[0]) != 64:

@@ -1,0 +1,136 @@
+/*
+ * PayLineage design tokens. One OKLCH token set for light and dark (docs/UI.md).
+ * Light first: paper and ink, like a ledger. Status always pairs a word and an icon with color.
+ */
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --paper: oklch(0.985 0.005 85);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.972 0.006 85);
+  --surface-3: oklch(0.947 0.008 85);
+  --ink: oklch(0.235 0.022 262);
+  --ink-2: oklch(0.38 0.02 262);
+  --muted: oklch(0.53 0.016 262);
+  --line: oklch(0.905 0.008 85);
+  --line-strong: oklch(0.83 0.01 85);
+  --brand: oklch(0.43 0.13 258);
+  --brand-ink: oklch(0.98 0.01 258);
+  --brand-soft: oklch(0.95 0.03 258);
+  --focus: oklch(0.55 0.18 258);
+  --allow: oklch(0.52 0.13 152);
+  --allow-soft: oklch(0.95 0.045 152);
+  --hold: oklch(0.6 0.14 68);
+  --hold-ink: oklch(0.44 0.11 62);
+  --hold-soft: oklch(0.96 0.05 85);
+  --deny: oklch(0.54 0.19 27);
+  --deny-soft: oklch(0.955 0.03 27);
+  --untrusted: oklch(0.52 0.2 300);
+  --untrusted-soft: oklch(0.96 0.03 300);
+  --shadow: 0 1px 0 oklch(0.2 0.02 262 / 0.04), 0 1px 3px oklch(0.2 0.02 262 / 0.06);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: oklch(0.165 0.012 262);
+  --surface: oklch(0.2 0.013 262);
+  --surface-2: oklch(0.225 0.014 262);
+  --surface-3: oklch(0.26 0.015 262);
+  --ink: oklch(0.95 0.006 85);
+  --ink-2: oklch(0.85 0.01 85);
+  --muted: oklch(0.7 0.012 262);
+  --line: oklch(0.3 0.014 262);
+  --line-strong: oklch(0.38 0.016 262);
+  --brand: oklch(0.72 0.12 258);
+  --brand-ink: oklch(0.18 0.02 258);
+  --brand-soft: oklch(0.3 0.05 258);
+  --focus: oklch(0.75 0.14 258);
+  --allow: oklch(0.74 0.14 152);
+  --allow-soft: oklch(0.3 0.05 152);
+  --hold: oklch(0.8 0.14 78);
+  --hold-ink: oklch(0.85 0.12 80);
+  --hold-soft: oklch(0.32 0.06 75);
+  --deny: oklch(0.72 0.16 27);
+  --deny-soft: oklch(0.32 0.07 27);
+  --untrusted: oklch(0.76 0.15 300);
+  --untrusted-soft: oklch(0.3 0.06 300);
+  --shadow: 0 1px 0 oklch(0 0 0 / 0.3);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-focus: var(--focus);
+  --color-allow: var(--allow);
+  --color-allow-soft: var(--allow-soft);
+  --color-hold: var(--hold);
+  --color-hold-ink: var(--hold-ink);
+  --color-hold-soft: var(--hold-soft);
+  --color-deny: var(--deny);
+  --color-deny-soft: var(--deny-soft);
+  --color-untrusted: var(--untrusted);
+  --color-untrusted-soft: var(--untrusted-soft);
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --shadow-card: var(--shadow);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1, "zero" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--paper);
+}
+
+/* Visible focus everywhere (WCAG 2.2 focus appearance). */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible,
+[data-focus-visible] {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* Untrusted origin: violet dotted underline wherever such a value appears (docs/UI.md). */
+.untrusted {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--untrusted);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

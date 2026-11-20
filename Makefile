@@ -5,9 +5,10 @@ export PATH := $(CURDIR)/.tools/bin:$(PATH)
 UV ?= uv
 PY := $(UV) run python
 PYTEST := $(UV) run pytest
+, := ,
 TEST_DATABASE_URL ?= postgresql+psycopg://paylineage:paylineage_dev@localhost:5432/paylineage_test
 
-.PHONY: help setup db-up db-down migrate policy-build policy-test parity vectors test-fast test-deep \
+.PHONY: help setup keys images stack screenshots db-up db-down migrate policy-build policy-test policy-mutants parity vectors test-fast test-deep \
         mutation lint dev demo eval web-test e2e seed clean
 
 help: ## Show targets
@@ -18,6 +19,10 @@ setup: ## uv sync, pnpm install, pinned OPA, .env
 	pnpm install --frozen-lockfile
 	./scripts/install_opa.sh
 	@[ -f .env ] || cp .env.example .env
+	$(MAKE) keys
+
+keys: ## Local Ed25519 keys for audit checkpoints and the simulated agent (kept if present)
+	$(PY) -m paylineage.devkeys
 
 db-up: ## Start PostgreSQL in docker
 	docker compose up -d postgres
@@ -37,6 +42,9 @@ policy-test: ## opa test against the exact staged build input
 	opa check --strict policy/build/stage
 	set -o pipefail; opa test policy/build/stage policy/tests --coverage --format=json | $(PY) policy/scripts/coverage_gate.py 95
 
+policy-mutants: ## Hand-planted Rego mutants; every one must be killed
+	$(PY) policy/scripts/rego_mutants.py
+
 vectors: ## Regenerate shared decision and digest vectors
 	$(PY) policy/scripts/gen_vectors.py
 	$(PY) policy/scripts/gen_digest_vectors.py
@@ -44,7 +52,7 @@ vectors: ## Regenerate shared decision and digest vectors
 parity: ## Shared vectors through Python and Node; must match
 	$(PY) policy/scripts/parity.py
 
-test-fast: policy-test parity ## PR level: unit, policy, parity, regression, small Hypothesis budget
+test-fast: policy-test policy-mutants parity ## PR level: unit, policy, parity, regression, small Hypothesis budget
 	HYPOTHESIS_PROFILE=fast TEST_DATABASE_URL=$(TEST_DATABASE_URL) $(PYTEST) -q -m "not deep"
 	pnpm -r --if-present test
 
@@ -52,8 +60,8 @@ test-deep: ## Nightly: large Hypothesis budget, stateful, concurrency, adversari
 	HYPOTHESIS_PROFILE=deep TEST_DATABASE_URL=$(TEST_DATABASE_URL) $(PYTEST) -q
 	$(PY) -m paylineage.eval.run --tracks B C --extractor adversarial_stub
 
-mutation: ## mutmut on policy adapter, approvals, permits, executor
-	$(UV) run mutmut run
+mutation: ## Hand-planted Python mutants on policy engine, approvals, permits, executor (ADR-016)
+	$(PY) backend/scripts/py_mutants.py
 
 lint: ## ruff, mypy --strict, eslint, tsc --noEmit
 	$(UV) run ruff check .
@@ -68,11 +76,23 @@ eval: ## Tracks B and C, all layers, writes eval/results
 seed: ## Seed fictional demo data into DATABASE_URL
 	$(PY) -m paylineage.db.seed
 
+images: ## Build container images (BUILD_CA_FILE=path adds a CA for TLS inspecting proxies)
+	docker build $(if $(BUILD_CA_FILE),--secret id=ca$(,)src=$(BUILD_CA_FILE)) -f backend/Dockerfile -t paylineage-api:local .
+	docker build $(if $(BUILD_CA_FILE),--secret id=ca$(,)src=$(BUILD_CA_FILE)) -f apps/web/Dockerfile -t paylineage-web:local .
+
+stack: keys images ## Full stack in docker: migrate, seed if empty, api, executor, mock bank, web
+	KEYS_GID=$$($(PY) -c "import os; print(os.stat('var/keys/checkpoint_ed25519.pem').st_gid)") docker compose up -d --no-build
+	@echo "Open http://localhost:3000 (simulation only). Agent: docker compose --profile agent up -d ap-agent"
+
 dev: ## backend + executor + mockbank + web locally
 	./scripts/dev.sh
 
 demo: ## Static demo export with the current policy.wasm
 	pnpm --filter @paylineage/demo build
+
+screenshots: ## README screenshots from the static demo (docs/images)
+	pnpm --filter @paylineage/demo build
+	node apps/demo/scripts/screenshots.mjs
 
 e2e: ## Playwright + axe against the static demo
 	pnpm --filter @paylineage/demo e2e

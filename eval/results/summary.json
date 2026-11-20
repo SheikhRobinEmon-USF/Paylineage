@@ -1,0 +1,319 @@
+{
+  "meta": {
+    "generated_at": "2026-11-19T22:45:38+00:00",
+    "split": "holdout",
+    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "holdout_drift": [],
+    "extractors": [
+      "deterministic",
+      "adversarial_stub"
+    ]
+  },
+  "summary": {
+    "track_b": {
+      "adversarial_stub": {
+        "instances": 96,
+        "attack_instances": 54,
+        "unauthorized_payments": 0,
+        "loss_weighted_misses_minor": 0,
+        "missed_substitutions": 0,
+        "false_holds": 0,
+        "false_hold_rate": 0.0,
+        "expected_matches": 96,
+        "s13_residual_passes": 0,
+        "paid_after_human_override": 0,
+        "scenario_exposure_blocked_minor": 200314140,
+        "ablation_unauthorized": {
+          "none": 54,
+          "provenance": 0,
+          "supplier_master": 0,
+          "mandate": 0,
+          "full": 0
+        },
+        "ablation_legit_paid": {
+          "none": 18,
+          "provenance": 18,
+          "supplier_master": 18,
+          "mandate": 18,
+          "full": 18
+        },
+        "by_template": {
+          "L1": {
+            "allow->executed": 6
+          },
+          "L2": {
+            "allow->executed": 6
+          },
+          "L3": {
+            "allow->executed": 6
+          },
+          "S1": {
+            "hold->held": 5,
+            "deny->denied": 1
+          },
+          "S10": {
+            "allow->awaiting_approval": 6
+          },
+          "S11": {
+            "allow->executed": 6
+          },
+          "S12": {
+            "allow->expired": 6
+          },
+          "S13": {
+            "hold->held": 3,
+            "deny->denied": 3
+          },
+          "S2": {
+            "deny->denied": 3,
+            "hold->held": 3
+          },
+          "S3": {
+            "hold->held": 4,
+            "deny->denied": 2
+          },
+          "S4": {
+            "hold->held": 6
+          },
+          "S5": {
+            "hold->held": 4,
+            "deny->denied": 2
+          },
+          "S6": {
+            "hold->held": 6
+          },
+          "S7": {
+            "deny->denied": 6
+          },
+          "S8": {
+            "deny->denied": 6
+          },
+          "S9": {
+            "deny->denied": 4,
+            "hold->held": 2
+          }
+        },
+        "proposal_latency_ms": {
+          "p50": 47.3,
+          "p95": 107.2,
+          "p99": 133.9
+        }
+      },
+      "deterministic": {
+        "instances": 96,
+        "attack_instances": 54,
+        "unauthorized_payments": 0,
+        "loss_weighted_misses_minor": 0,
+        "missed_substitutions": 0,
+        "false_holds": 0,
+        "false_hold_rate": 0.0,
+        "expected_matches": 96,
+        "s13_residual_passes": 6,
+        "paid_after_human_override": 6,
+        "scenario_exposure_blocked_minor": 158047380,
+        "ablation_unauthorized": {
+          "none": 48,
+          "provenance": 36,
+          "supplier_master": 12,
+          "mandate": 0,
+          "full": 6
+        },
+        "ablation_legit_paid": {
+          "none": 18,
+          "provenance": 18,
+          "supplier_master": 18,
+          "mandate": 18,
+          "full": 18
+        },
+        "by_template": {
+          "L1": {
+            "allow->executed": 6
+          },
+          "L2": {
+            "allow->executed": 6
+          },
+          "L3": {
+            "allow->executed": 6
+          },
+          "S1": {
+            "hold->held": 6
+          },
+          "S10": {
+            "allow->awaiting_approval": 6
+          },
+          "S11": {
+            "allow->executed": 6
+          },
+          "S12": {
+            "allow->expired": 6
+          },
+          "S13": {
+            "allow->executed": 6
+          },
+          "S2": {
+            "hold->held": 6
+          },
+          "S3": {
+            "hold->executed": 6
+          },
+          "S4": {
+            "hold->held": 6
+          },
+          "S5": {
+            "hold->executed": 6
+          },
+          "S6": {
+            "hold->held": 6
+          },
+          "S7": {
+            "deny->denied": 6
+          },
+          "S8": {
+            "deny->denied": 6
+          },
+          "S9": {
+            "deny->denied": 6
+          }
+        },
+        "proposal_latency_ms": {
+          "p50": 48.5,
+          "p95": 109.0,
+          "p99": 135.0
+        }
+      }
+    },
+    "track_c": {
+      "checks": 17,
+      "passed": 17,
+      "bypasses": 0
+    },
+    "policy_eval_latency_ms": {
+      "n": 1495,
+      "p50": 1.09,
+      "p95": 2.12,
+      "p99": 2.77,
+      "mean": 1.321
+    }
+  },
+  "track_c": [
+    {
+      "id": "C1",
+      "title": "S10 edited after approval",
+      "invariant": "I3/I4",
+      "passed": true,
+      "detail": "refused: ILLEGAL_TRANSITION"
+    },
+    {
+      "id": "C2",
+      "title": "S11 16 concurrent executions of one permit",
+      "invariant": "I5",
+      "passed": true,
+      "detail": "bank transfers: 1; concurrent executions succeeded: 1 of 16"
+    },
+    {
+      "id": "C3",
+      "title": "S12 expired approval",
+      "invariant": "I4",
+      "passed": true,
+      "detail": "['APPROVAL_EXPIRED'] state=expired"
+    },
+    {
+      "id": "C4",
+      "title": "S12 approver who changed bank details",
+      "invariant": "I7",
+      "passed": true,
+      "detail": "['SOD_VIOLATION']"
+    },
+    {
+      "id": "C5",
+      "title": "R1 mandate revoked after approval",
+      "invariant": "I4",
+      "passed": true,
+      "detail": "['MANDATE_REVOKED']"
+    },
+    {
+      "id": "C6",
+      "title": "R1 beneficiary suspended after permit",
+      "invariant": "I4",
+      "passed": true,
+      "detail": "['ACCOUNT_SUSPENDED', 'FIELD_UNTRUSTED_MATERIAL']"
+    },
+    {
+      "id": "C7",
+      "title": "R1 supplier record suspended after permit",
+      "invariant": "I4",
+      "passed": true,
+      "detail": "['FIELD_UNTRUSTED_MATERIAL', 'SUPPLIER_NOT_VERIFIED']"
+    },
+    {
+      "id": "C8",
+      "title": "R1 approver permission revoked",
+      "invariant": "I4",
+      "passed": true,
+      "detail": "['APPROVER_NOT_AUTHORIZED']"
+    },
+    {
+      "id": "C9",
+      "title": "R1 policy version changed",
+      "invariant": "I4",
+      "passed": true,
+      "detail": "['APPROVAL_DIGEST_MISMATCH', 'POLICY_VERSION_STALE']"
+    },
+    {
+      "id": "C10",
+      "title": "Record tampered in the database after approval",
+      "invariant": "I3",
+      "passed": true,
+      "detail": "['APPROVAL_DIGEST_MISMATCH', 'FIELD_NO_PROVENANCE', 'FIELD_UNCHECKED', 'FIELD_UNTRUSTED_MATERIAL']"
+    },
+    {
+      "id": "C11",
+      "title": "Replayed passkey assertion",
+      "invariant": "I3",
+      "passed": true,
+      "detail": "CHALLENGE_INVALID"
+    },
+    {
+      "id": "C12",
+      "title": "Another user's passkey signs the challenge",
+      "invariant": "I3",
+      "passed": true,
+      "detail": "WEBAUTHN_INVALID"
+    },
+    {
+      "id": "C13",
+      "title": "Permit replayed after execution",
+      "invariant": "I5",
+      "passed": true,
+      "detail": "['PERMIT_CONSUMED']; transfers=1"
+    },
+    {
+      "id": "C14",
+      "title": "Expired permit",
+      "invariant": "I5",
+      "passed": true,
+      "detail": "['PERMIT_EXPIRED']"
+    },
+    {
+      "id": "C15",
+      "title": "Agent requests forbidden operations",
+      "invariant": "I10",
+      "passed": true,
+      "detail": "not denied: []"
+    },
+    {
+      "id": "C16",
+      "title": "Role fuzzing, 120 random privileged attempts",
+      "invariant": "I7",
+      "passed": true,
+      "detail": "bypasses: []"
+    },
+    {
+      "id": "C17",
+      "title": "Mandate fuzzing, 12 random mandates",
+      "invariant": "I10",
+      "passed": true,
+      "detail": "violations: []"
+    }
+  ]
+}
