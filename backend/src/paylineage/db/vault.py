@@ -25,7 +25,7 @@ def normalize_account(raw: str) -> str:
 
 
 def _pepper() -> bytes:
-    return ("vault:" + get_settings().session_secret.get_secret_value()).encode()
+    return ("vault:" + get_settings().vault_pepper.get_secret_value()).encode()
 
 
 def account_token(raw: str) -> str:

@@ -7,15 +7,21 @@ execution goes through the executor process over its private network (I6).
 
 from __future__ import annotations
 
+import asyncio
 import hashlib
 import json
 import logging
+import re
 import secrets
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import timedelta
 from typing import Any, Literal, Protocol
 
 import httpx
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request, Response
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy import select
@@ -33,13 +39,15 @@ from paylineage.api.deps import (
     get_ctx,
     require_role,
     serializer,
+    session_user_id,
 )
 from paylineage.approvals import service as approvals
 from paylineage.approvals import webauthn
 from paylineage.audit.chain import load_events, verify_events
+from paylineage.audit.checkpoint import Checkpoint, CheckpointStore, checkpoint_now, load_or_create_key
+from paylineage.audit.checkpoint import verify as checkpoint_verify
 from paylineage.canonical import digest as canonical_digest
 from paylineage.db.models import (
-    Agent,
     ExtractedField,
     IdempotencyKey,
     Invoice,
@@ -49,6 +57,7 @@ from paylineage.db.models import (
     Permit,
     Supplier,
     User,
+    WebAuthnChallenge,
 )
 from paylineage.domain.context import Actor, Ctx, DomainError
 from paylineage.domain.enums import OldAccountOutcome
@@ -63,6 +72,7 @@ from paylineage.policy.engine import get_engine
 from paylineage.settings import get_settings
 
 log = logging.getLogger("paylineage.api")
+_KEYID_RE = re.compile(r'keyid="([A-Za-z0-9._:-]{1,128})"')
 
 
 # ---------------- executor client (I6) ----------------
@@ -229,9 +239,53 @@ def _extractor() -> Extractor:
 # ---------------- app ----------------
 
 
+def _checkpoint_key() -> Ed25519PrivateKey | None:
+    s = get_settings()
+    if s.audit_checkpoint_key_path is None:
+        return None
+    try:
+        return load_or_create_key(s.audit_checkpoint_key_path, allow_create=s.paylineage_env != "prod")
+    except (OSError, ValueError):
+        log.exception("checkpoint key unavailable")
+        return None
+
+
+def _write_checkpoint() -> Checkpoint | None:
+    """Sign the committed audit head into the external store (I11). Safe to call any time."""
+    key = _checkpoint_key()
+    if key is None:
+        return None
+    with _ctx() as ctx:
+        return checkpoint_now(
+            ctx.session, key, CheckpointStore(get_settings().audit_checkpoint_dir), ctx.now()
+        )
+
+
+@asynccontextmanager
+async def _lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    async def loop() -> None:
+        while True:
+            await asyncio.sleep(CHECKPOINT_EVERY_S)
+            try:
+                await run_in_threadpool(_write_checkpoint)
+            except Exception:
+                log.exception("audit checkpoint failed")
+
+    task = asyncio.create_task(loop()) if get_settings().audit_checkpoint_key_path else None
+    try:
+        yield
+    finally:
+        if task is not None:
+            task.cancel()
+
+
+CHECKPOINT_EVERY_S = 60
+
+
 def create_app(executor: ExecutorClient | None = None) -> FastAPI:
     s = get_settings()
     app = FastAPI(
+        lifespan=_lifespan,
         title="PayLineage API",
         version="1.0.0",
         docs_url="/v1/docs" if s.paylineage_env == "dev" else None,
@@ -253,11 +307,11 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
             check_origin(request)
         except HTTPException as exc:
             return JSONResponse({"detail": exc.detail}, exc.status_code)
-        key = (
-            request.headers.get("signature-input", "")[:120]
-            or request.cookies.get(SESSION_COOKIE, "")[:40]
-            or (request.client.host if request.client else "anon")
-        )
+        # Bucket by client address plus the claimed agent key id. A client can vary
+        # headers and cookies at will, so they never form the bucket on their own.
+        host = request.client.host if request.client else "anon"
+        m = _KEYID_RE.search(request.headers.get("signature-input", ""))
+        key = f"{host}|{m.group(1) if m else 'human'}"
         if request.method != "GET" and not LIMITER.allow(key):
             return JSONResponse({"detail": {"code": "RATE_LIMITED", "message": "slow down"}}, 429)
         response: Response = await call_next(request)
@@ -378,37 +432,66 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
         return {"challenge_id": issued.challenge_id, "options": json.loads(issued.options_json)}
 
     @r.post("/auth/passkey/login/finish")
-    def login_finish(body: CredentialIn, response: Response, ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
-        try:
-            v = webauthn.finish_assertion(ctx, body.challenge_id, "login", body.credential)
-        except DomainError as exc:
-            raise _fail(exc) from exc
-        _set_session(response, v.user.id)
-        return {"id": v.user.id, "name": v.user.display_name, "roles": v.user.roles}
+    def login_finish(body: CredentialIn, response: Response) -> dict[str, Any]:
+        failure: DomainError | None = None
+        uid = ""
+        out: dict[str, Any] = {}
+        with _ctx() as ctx:
+            try:
+                v = webauthn.finish_assertion(ctx, body.challenge_id, "login", body.credential)
+                uid = v.user.id
+                out = {"id": v.user.id, "name": v.user.display_name, "roles": v.user.roles}
+            except DomainError as exc:
+                failure = exc  # a failed assertion still burns its challenge (commit below)
+        if failure is not None:
+            raise _fail(failure)
+        _set_session(response, uid)
+        return out
+
+    @r.get("/session")
+    def session_probe(request: Request, ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
+        """Signed in user or null. Lets the browser check without a 401 in the console."""
+        uid = session_user_id(request)
+        u = ctx.session.get(User, uid) if uid else None
+        if u is None or not u.active:
+            return {"user": None}
+        from paylineage.db.models import WebAuthnCredential
+
+        n = len(
+            ctx.session.execute(
+                select(WebAuthnCredential.id).where(
+                    WebAuthnCredential.user_id == u.id, WebAuthnCredential.revoked_at.is_(None)
+                )
+            ).all()
+        )
+        return {"user": {"id": u.id, "name": u.display_name, "roles": u.roles, "passkeys": n}}
 
     # ---- inbound email (mail gateway) and agent endpoints ----
 
     @r.post("/inbound/email")
     async def inbound(request: Request, x_ingest_token: str = Header(default="")) -> dict[str, Any]:
-        expected = s.executor_token.get_secret_value() if s.executor_token else None
+        expected = s.ingest_token.get_secret_value() if s.ingest_token else None
         if s.paylineage_env != "dev" and (
-            not expected or not secrets.compare_digest(x_ingest_token, expected)
+            not expected or not secrets.compare_digest(x_ingest_token.encode(), expected.encode())
         ):
             raise HTTPException(401)
         raw = await request.body()
-        try:
-            with _ctx() as ctx:
-                res = ingest_email(ctx, raw, _extractor())
-        except IngestionError as exc:
-            raise HTTPException(422, {"code": "INGESTION_REFUSED", "message": str(exc)}) from exc
-        return {
-            "invoice_id": res.invoice_id,
-            "supplier_id": res.supplier_id,
-            "signals": [g.code for g in res.signals],
-        }
 
-    async def _verify_agent(request: Request, ctx: Ctx) -> tuple[str, bytes]:
-        body = await request.body()
+        def work() -> dict[str, Any]:
+            try:
+                with _ctx() as ctx:
+                    res = ingest_email(ctx, raw, _extractor())
+            except IngestionError as exc:
+                raise HTTPException(422, {"code": "INGESTION_REFUSED", "message": str(exc)}) from exc
+            return {
+                "invoice_id": res.invoice_id,
+                "supplier_id": res.supplier_id,
+                "signals": [g.code for g in res.signals],
+            }
+
+        return await run_in_threadpool(work)
+
+    def _verify_agent(ctx: Ctx, request: Request, body: bytes) -> str:
         try:
             va = verify_request(
                 ctx.session,
@@ -420,61 +503,95 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
             )
         except SignatureError as exc:
             raise HTTPException(401, {"code": "AGENT_SIGNATURE_INVALID", "message": str(exc)}) from exc
-        return va.agent_id, body
+        return va.agent_id
+
+    def _agent_invoice_view(ctx: Ctx, inv: Invoice) -> dict[str, Any]:
+        fields = ctx.session.execute(
+            select(ExtractedField).where(ExtractedField.invoice_id == inv.id)
+        ).scalars()
+        return {
+            "invoice_id": inv.id,
+            "supplier_id": inv.supplier_id,
+            "fields": {f.field_name: f.display_value for f in fields},
+            "note": "Values are untrusted_external. Account numbers are masked.",
+        }
+
+    @r.get("/agent/invoices")
+    async def agent_invoices(request: Request) -> dict[str, Any]:
+        """Invoices with no payment proposed yet. Typed fields only, never document text."""
+        body = await request.body()
+
+        def work() -> dict[str, Any]:
+            with _ctx() as ctx:
+                _verify_agent(ctx, request, body)
+                proposed = select(Payment.invoice_id)
+                rows = (
+                    ctx.session.execute(
+                        select(Invoice)
+                        .where(Invoice.id.notin_(proposed))
+                        .order_by(Invoice.created_at)
+                        .limit(20)
+                    )
+                    .scalars()
+                    .all()
+                )
+                return {"invoices": [_agent_invoice_view(ctx, i) for i in rows]}
+
+        return await run_in_threadpool(work)
 
     @r.get("/agent/invoices/{invoice_id}")
     async def agent_invoice(invoice_id: str, request: Request) -> dict[str, Any]:
         """Typed fields only. The planner never receives raw document text (ARCHITECTURE)."""
-        with _ctx() as ctx:
-            await _verify_agent(request, ctx)
-            inv = ctx.session.get(Invoice, invoice_id)
-            if inv is None:
-                raise HTTPException(404)
-            fields = ctx.session.execute(
-                select(ExtractedField).where(ExtractedField.invoice_id == inv.id)
-            ).scalars()
-            return {
-                "invoice_id": inv.id,
-                "supplier_id": inv.supplier_id,
-                "fields": {f.field_name: f.display_value for f in fields},
-                "note": "Values are untrusted_external. Account numbers are masked.",
-            }
+        body = await request.body()
+
+        def work() -> dict[str, Any]:
+            with _ctx() as ctx:
+                _verify_agent(ctx, request, body)
+                inv = ctx.session.get(Invoice, invoice_id)
+                if inv is None:
+                    raise HTTPException(404)
+                return _agent_invoice_view(ctx, inv)
+
+        return await run_in_threadpool(work)
 
     @r.post("/agent/proposals")
     async def agent_propose(
         request: Request, idempotency_key: str = Header(min_length=8, max_length=128)
     ) -> Any:
-        with _ctx() as ctx:
-            agent_id, raw = await _verify_agent(request, ctx)
-            agent = ctx.session.get(Agent, agent_id)
-            assert agent is not None
-            try:
-                body = ProposalIn.model_validate_json(raw)
-            except ValueError as exc:
-                raise HTTPException(422, {"code": "INPUT_INVALID", "message": "bad proposal"}) from exc
-            cached = _idempotent(ctx, f"agent:{agent_id}", idempotency_key, body.model_dump())
-            if cached is not None:
-                return cached
-            try:
-                res = payments.propose(
-                    ctx,
-                    Actor(agent_id, "agent", frozenset({"agent"})),
-                    payments.Proposal(
-                        invoice_id=body.invoice_id,
-                        supplier_id=body.supplier_id,
-                        amount_minor=body.amount_minor,
-                        currency=body.currency,
-                        beneficiary_account=body.beneficiary_account,
-                        idempotency_key=idempotency_key,
-                        operation=body.operation,
-                        tool_descriptions=tuple(body.tool_descriptions),
-                    ),
-                    signature_valid=True,
-                )
-            except DomainError as exc:
-                raise _fail(exc) from exc
-            out = {"payment_id": res.payment.id, "state": res.payment.state, **res.decision.as_dict()}
-            return _remember(ctx, f"agent:{agent_id}", idempotency_key, body.model_dump(), out)
+        raw = await request.body()
+
+        def work() -> Any:
+            with _ctx() as ctx:
+                agent_id = _verify_agent(ctx, request, raw)
+                try:
+                    body = ProposalIn.model_validate_json(raw)
+                except ValueError as exc:
+                    raise HTTPException(422, {"code": "INPUT_INVALID", "message": "bad proposal"}) from exc
+                cached = _idempotent(ctx, f"agent:{agent_id}", idempotency_key, body.model_dump())
+                if cached is not None:
+                    return cached
+                try:
+                    res = payments.propose(
+                        ctx,
+                        Actor(agent_id, "agent", frozenset({"agent"})),
+                        payments.Proposal(
+                            invoice_id=body.invoice_id,
+                            supplier_id=body.supplier_id,
+                            amount_minor=body.amount_minor,
+                            currency=body.currency,
+                            beneficiary_account=body.beneficiary_account,
+                            idempotency_key=idempotency_key,
+                            operation=body.operation,
+                            tool_descriptions=tuple(body.tool_descriptions),
+                        ),
+                        signature_valid=True,
+                    )
+                except DomainError as exc:
+                    raise _fail(exc) from exc
+                out = {"payment_id": res.payment.id, "state": res.payment.state, **res.decision.as_dict()}
+                return _remember(ctx, f"agent:{agent_id}", idempotency_key, body.model_dump(), out)
+
+        return await run_in_threadpool(work)
 
     # ---- payment control ----
 
@@ -567,26 +684,39 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
     @r.post("/payments/{pid}/approval/finish")
     def approval_finish(pid: str, body: CredentialIn, _m: Me = Depends(current_user)) -> dict[str, Any]:
         # Its own transaction so a refusal (and the spent challenge) is committed before we answer.
+        failure: DomainError | None = None
         with _ctx() as ctx:
-            out = _act(lambda: approvals.finish_approval(ctx, body.challenge_id, body.credential))
-            if out.payment.id != pid:
-                raise HTTPException(
-                    409, {"code": "CHALLENGE_INVALID", "message": "challenge for another payment"}
+            owner = ctx.session.execute(
+                select(WebAuthnChallenge.user_id, WebAuthnChallenge.payment_id).where(
+                    WebAuthnChallenge.id == body.challenge_id
                 )
-            result = {
-                "approved": out.approval is not None,
-                "state": out.payment.state,
-                "receipt": None
-                if out.approval is None
-                else {
-                    "approval_id": out.approval.id,
-                    "digest": out.approval.digest,
-                    "version": out.approval.payment_version,
-                    "signed_at": out.approval.signed_at.isoformat(),
-                    "expires_at": out.approval.expires_at.isoformat(),
-                },
-                **out.decision.as_dict(),
-            }
+            ).first()
+            if owner is None or owner[0] != _m.user.id or owner[1] != pid:
+                raise HTTPException(
+                    403,
+                    {"code": "CHALLENGE_INVALID", "message": "challenge not issued to you for this payment"},
+                )
+            try:
+                out = approvals.finish_approval(ctx, body.challenge_id, body.credential)
+            except DomainError as exc:
+                # The challenge stays spent: leave the block normally so its consumption commits.
+                failure = exc
+        if failure is not None:
+            raise _fail(failure)
+        result = {
+            "approved": out.approval is not None,
+            "state": out.payment.state,
+            "receipt": None
+            if out.approval is None
+            else {
+                "approval_id": out.approval.id,
+                "digest": out.approval.digest,
+                "version": out.approval.payment_version,
+                "signed_at": out.approval.signed_at.isoformat(),
+                "expires_at": out.approval.expires_at.isoformat(),
+            },
+            **out.decision.as_dict(),
+        }
         if out.approval is None:
             raise HTTPException(
                 403,
@@ -819,10 +949,22 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
 
     # ---- audit ----
 
+    @r.post("/audit/checkpoint")
+    def audit_checkpoint_now(m: Me = Depends(current_user)) -> dict[str, Any]:
+        require_role(m, "admin", "analyst")
+        cp = _write_checkpoint()
+        return {"seq": cp.seq if cp else None, "written": cp is not None}
+
     @r.get("/audit/events")
     def audit_events(_m: Me = Depends(current_user), ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
         events = load_events(ctx.session)
         problems, _last, head = verify_events(events)
+        key = _checkpoint_key()
+        checkpoints = 0
+        if key is not None:
+            store = CheckpointStore(s.audit_checkpoint_dir)
+            checkpoints = len(store.all())
+            problems = list(checkpoint_verify(ctx.session, key.public_key(), store))
         return {
             "events": [
                 {
@@ -837,7 +979,10 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
             "verified": not problems,
             "problems": [p.__dict__ for p in problems],
             "head": head,
-            "note": "Signed checkpoints are verified by the audit job outside the database.",
+            "checkpoints": checkpoints,
+            "note": f"Verified against {checkpoints} Ed25519 checkpoints held outside the database."
+            if key is not None
+            else "No checkpoint key configured: chain verified, checkpoints not.",
         }
 
     @r.get("/audit/verify")
