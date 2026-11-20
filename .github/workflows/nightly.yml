@@ -25,4 +25,4 @@ jobs:
       - run: HYPOTHESIS_PROFILE=deep uv run pytest -q
       - run: uv run python -m paylineage.eval.run --tracks B C --extractor adversarial_stub --gate
       - name: Policy mutation testing (hand planted Rego mutants)
-        run: ./scripts/install_opa.sh && uv run python policy/scripts/rego_mutants.py
+        run: ./scripts/install_opa.sh && make policy-mutants

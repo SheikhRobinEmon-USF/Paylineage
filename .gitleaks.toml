@@ -10,3 +10,8 @@ paths = [
   '''packages/policy-runtime/src/validators\.gen\.js''',
   '''scenarios/holdout\.lock\.json''',
 ]
+# Python type annotations such as `key: Ed25519PrivateKey | None` look like key assignments.
+regexTarget = "line"
+regexes = [
+  '''^\s*(self\.)?\w*key\w*:\s*Ed25519PrivateKey(\s*\|\s*None)?(\s*=\s*None)?,?\s*$''',
+]

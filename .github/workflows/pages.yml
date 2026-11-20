@@ -28,7 +28,7 @@ jobs:
         run: |
           NEXT_PUBLIC_BASE_PATH= pnpm --filter @paylineage/demo build
           pnpm --filter @paylineage/demo exec playwright install --with-deps chromium
-          pnpm --filter @paylineage/demo e2e -- --trace off
+          pnpm --filter @paylineage/demo exec playwright test --trace off
           NEXT_PUBLIC_BASE_PATH=/Paylineage pnpm --filter @paylineage/demo build
       - run: touch apps/demo/out/.nojekyll
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
