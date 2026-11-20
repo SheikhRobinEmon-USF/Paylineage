@@ -63,3 +63,8 @@ Consequences: the old account keeps working for ordinary updates; the new accoun
 Context: ARCHITECTURE asks for Ed25519 request verification. Visa's Trusted Agent Protocol and Web Bot Auth both use HTTP Message Signatures (RFC 9421) with Ed25519.
 Decision: agents sign `@method`, `@target-uri`, `content-digest` (RFC 9530), `created`, `nonce` and `keyid` with Ed25519 per RFC 9421. The server checks the key, a 5 minute window and a single use nonce.
 Consequences: an industry standard wire format instead of a custom header; the same agent identity could later be presented to other relying parties.
+
+## ADR-016 Hand-planted Python mutants instead of mutmut (Proposed)
+Context: ARCHITECTURE and EVALUATION name mutmut for the policy adapter, approvals, permits and executor. mutmut 3 names mutants by file path (`backend.src.paylineage...`) while the code imports as `paylineage...`, so in this workspace layout it never maps tests to mutants, and its parallel workers share one test database.
+Decision: `backend/scripts/py_mutants.py` (`make mutation`) plants one mutant per guard on the authorization path, in the same style as the Rego mutants. Each mutant weakens one check (single use consume, revalidation, digest binding, fail closed output checks, the hash pin, the idempotency lock). Mutants run one at a time on a temporary copy of the source placed first on `PYTHONPATH`, so the checkout is never edited. Every mutant must be killed. It runs nightly.
+Consequences: coverage is chosen by hand, so it tests the guards that matter rather than every operator. A new guard needs a new mutant. mutmut stays a dev dependency until the owner decides.

@@ -26,3 +26,5 @@ jobs:
       - run: uv run python -m paylineage.eval.run --tracks B C --extractor adversarial_stub --gate
       - name: Policy mutation testing (hand planted Rego mutants)
         run: ./scripts/install_opa.sh && make policy-mutants
+      - name: Python mutation testing (hand planted mutants on the authorization path)
+        run: make mutation
