@@ -89,7 +89,8 @@ export function DecisionBadge({ decision }: { decision: Decision | null | undefi
   );
 }
 
-export function ReasonChip({ code, cls, meaning }: { code: string; cls?: "deny" | "hold" | undefined; meaning?: string | undefined }) {
+/** onPress: the chip is a button (for its tooltip), so it swallows clicks; pass the action of its container. */
+export function ReasonChip({ code, cls, meaning, onPress }: { code: string; cls?: "deny" | "hold" | undefined; meaning?: string | undefined; onPress?: () => void }) {
   const tone: Tone = code.startsWith("SIGNAL_") ? "untrusted" : cls === "deny" ? "deny" : cls === "hold" ? "hold" : "neutral";
   const chip = (
     <Pill tone={tone} className="font-mono text-[11px]" icon={code.startsWith("SIGNAL_") ? <FileWarning size={12} aria-hidden /> : undefined}>
@@ -99,7 +100,7 @@ export function ReasonChip({ code, cls, meaning }: { code: string; cls?: "deny" 
   if (!meaning) return chip;
   return (
     <TooltipTrigger delay={300}>
-      <AriaButton className="cursor-help rounded-md outline-none">{chip}</AriaButton>
+      <AriaButton className={cx("rounded-md outline-none", onPress ? "cursor-pointer" : "cursor-help")} {...(onPress ? { onPress } : {})}>{chip}</AriaButton>
       <Tooltip className="max-w-xs rounded-md border border-line bg-surface px-2 py-1 text-xs text-ink shadow-card" offset={6}>
         {humanize(code)}: {meaning}
       </Tooltip>

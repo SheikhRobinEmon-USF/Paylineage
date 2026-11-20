@@ -103,3 +103,11 @@ test("revoke mandate: confirm dialog, cancel keeps it, revoke records it", async
   await dialog.getByRole("button", { name: "Revoke", exact: true }).click();
   await expect(page.getByText(/Mandate revoked/)).toBeVisible();
 });
+
+test("queue: clicking a reason chip inside a held row opens the case", async ({ page }) => {
+  await signIn(page, /Continue as Quinn/);
+  await page.getByRole("tab", { name: /^Held/ }).click();
+  await page.locator("tbody tr").first().getByRole("button").first().click();
+  await expect(page).toHaveURL(/\/case\/?\?id=/);
+  await expect(page.getByRole("heading", { name: "Why" })).toBeVisible();
+});

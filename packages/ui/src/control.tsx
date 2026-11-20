@@ -83,7 +83,7 @@ export function PaymentControl() {
         return (
           <div className="flex flex-wrap gap-1">
             {r.slice(0, 3).map((code) => (
-              <ReasonChip key={code} code={code} cls={policy?.reason_codes[code]?.class} meaning={policy?.reason_codes[code]?.meaning} />
+              <ReasonChip key={code} code={code} cls={policy?.reason_codes[code]?.class} meaning={policy?.reason_codes[code]?.meaning} onPress={() => navigate(`/case?id=${c.row.original.id}`)} />
             ))}
             {r.length > 3 && <span className="text-[12px] text-muted">+{r.length - 3}</span>}
           </div>
@@ -92,7 +92,7 @@ export function PaymentControl() {
     },
     { id: "amount", accessorKey: "amount_minor", header: () => <span className="block text-right">Amount</span>, cell: (c) => <div className="text-right"><Money minor={c.row.original.amount_minor} currency={c.row.original.currency} /></div>, sortFn: "basic" },
     { id: "age", accessorFn: (r) => r.created_at ?? "", header: "Age", cell: (c) => <span className="num text-[12px] text-muted">{ago(c.row.original.created_at)}</span>, sortFn: "alphanumeric" },
-  ], [policy]);
+  ], [policy, navigate]);
 
   const table = useTable({ features, columns, data: items, getRowId: (r) => r.id });
   const rows = table.getRowModel().rows;
