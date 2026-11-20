@@ -75,7 +75,8 @@ def test_I4_challenge_from_another_user_refused(world: World, api: tuple[TestCli
     cred = world.keys["fin1"].get_assertion(json.dumps(begin["options"]))
     _login(c, "fin2")  # a different signed in user replays fin1's challenge
     r = c.post(
-        f"/v1/payments/{pid}/approval/finish", json={"challenge_id": begin["challenge_id"], "credential": cred}
+        f"/v1/payments/{pid}/approval/finish",
+        json={"challenge_id": begin["challenge_id"], "credential": cred},
     )
     assert r.status_code == 403
     assert r.json()["detail"]["code"] == "CHALLENGE_INVALID"
@@ -113,9 +114,7 @@ def test_I4_failed_assertion_burns_challenge(world: World, api: tuple[TestClient
 # ---- inbound email token ----
 
 
-def test_inbound_email_requires_token_outside_dev(
-    world: World, monkeypatch: pytest.MonkeyPatch
-) -> None:
+def test_inbound_email_requires_token_outside_dev(world: World, monkeypatch: pytest.MonkeyPatch) -> None:
     make_shop(world)
     client_for(world, TEST_DB)
     monkeypatch.setenv("PAYLINEAGE_ENV", "test")
