@@ -246,3 +246,30 @@ def test_sim_agent_amounts_are_exact(text: str, minor: int) -> None:
 def test_sim_agent_rejects_unreadable_amount() -> None:
     with pytest.raises(ValueError, match="unreadable"):
         amount_minor("12 thousand")
+
+
+def test_I11_unreadable_checkpoint_key_is_a_problem_not_a_pass(
+    world: World, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    make_shop(world).ready_payment("ckpt-bad")
+    bad = tmp_path / "key.pem"
+    bad.write_text("not a key")
+    monkeypatch.setenv("AUDIT_CHECKPOINT_KEY_PATH", str(bad))
+    monkeypatch.setenv("AUDIT_CHECKPOINT_DIR", str(tmp_path / "checkpoints"))
+    c = client_for(world, TEST_DB)
+    _login(c, "ana1")
+    ev = c.get("/v1/audit/events").json()
+    assert ev["verified"] is False
+    assert [p["kind"] for p in ev["problems"]] == ["checkpoint_key_unavailable"]
+    assert c.post("/v1/audit/checkpoint").json()["written"] is False
+
+
+def test_devkeys_creates_group_readable_keys_and_keeps_existing(tmp_path: Path) -> None:
+    from paylineage.devkeys import ensure_keys
+
+    made = ensure_keys(tmp_path)
+    assert len(made) == 2
+    before = {p.name: p.read_bytes() for p in made}
+    assert all(p.stat().st_mode & 0o777 == 0o640 for p in made)
+    assert ensure_keys(tmp_path) == []
+    assert {p.name: p.read_bytes() for p in made} == before

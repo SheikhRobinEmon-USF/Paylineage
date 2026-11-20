@@ -24,6 +24,10 @@ dependencies = [
   "itsdangerous>=2.2",
 ]
 
+[project.optional-dependencies]
+# Renders the fictional invoice PDFs for `make seed` and the scenario generator.
+seed = ["reportlab>=4.4"]
+
 [project.scripts]
 paylineage-api = "paylineage.api.main:run"
 paylineage-executor = "paylineage.executor.app:run"

@@ -7,14 +7,16 @@ signed API uses, and the policy decides. Nothing is written around the policy.
 
 from __future__ import annotations
 
+import os
 import sys
 from datetime import UTC, datetime, timedelta
+from pathlib import Path
 
-from cryptography.hazmat.primitives import serialization
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker
 
 from paylineage.agents.planner import AdversarialPlanner, DeterministicPlanner, PlannerInput
+from paylineage.audit.checkpoint import load_or_create_key
 from paylineage.db.base import get_engine
 from paylineage.domain.clock import FrozenClock
 from paylineage.domain.enums import OldAccountOutcome
@@ -27,6 +29,16 @@ from paylineage.policy.engine import build_engine
 from paylineage.settings import REPO_ROOT
 
 QUEUE = ["L1", "L1", "S1", "S2", "S3", "S4", "S6", "S7", "S9", "L1", "S5", "L2", "S8"]
+
+
+def agent_key_path() -> Path:
+    return Path(os.environ.get("AGENT_KEY_PATH") or REPO_ROOT / "var" / "keys" / "agent_ed25519.pem")
+
+
+def is_seeded() -> bool:
+    """Payments are written last, so a seed that crashed half way reads as not seeded."""
+    with get_engine().connect() as c:
+        return bool(c.execute(text("SELECT EXISTS (SELECT 1 FROM payments)")).scalar())
 
 
 def seed(*, reset: bool = True) -> None:
@@ -48,14 +60,14 @@ def seed(*, reset: bool = True) -> None:
     clock = FrozenClock(now - timedelta(days=45))
     w = World(sessionmaker(bind=engine, expire_on_commit=False), clock, build_engine())
     w.setup_people()
-    w.setup_agent(scope=["*"], ceiling=5_000_000, daily=100_000_000, second_above=2_500_000)
-    assert w.agent_key is not None
-    keys = REPO_ROOT / "var" / "keys"
-    keys.mkdir(parents=True, exist_ok=True)
-    (keys / "agent_ed25519.pem").write_bytes(
-        w.agent_key.private_bytes(
-            serialization.Encoding.PEM, serialization.PrivateFormat.PKCS8, serialization.NoEncryption()
-        )
+    # Reuse the agent key from `make keys` (or the compose secret) so the running
+    # agent and the seeded public key always match. Created only when absent.
+    w.setup_agent(
+        scope=["*"],
+        ceiling=5_000_000,
+        daily=100_000_000,
+        second_above=2_500_000,
+        key=load_or_create_key(agent_key_path(), allow_create=True),
     )
     sids = {}
     for sup in CATALOG[:4]:
@@ -99,9 +111,12 @@ def seed(*, reset: bool = True) -> None:
     clock.set(now)
     print(
         f"seeded {len(QUEUE)} payments, {len(sids)} suppliers, {len(w.users)} people. "
-        "Sign in with any persona (dev only). Agent key: var/keys/agent_ed25519.pem"
+        f"Sign in with any persona (dev only). Agent key: {agent_key_path()}"
     )
 
 
 if __name__ == "__main__":
-    seed(reset="--no-reset" not in sys.argv)
+    if "--if-empty" in sys.argv and is_seeded():
+        print("database already seeded; leaving it alone")
+    else:
+        seed(reset="--no-reset" not in sys.argv)

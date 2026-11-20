@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="", env_file=".env", extra="ignore")
 
     paylineage_env: Literal["dev", "test", "prod"] = "dev"
+    # Loopback by default. Containers set BIND_HOST=0.0.0.0 on their private networks.
+    bind_host: str = "127.0.0.1"
     database_url: str = "postgresql+psycopg://paylineage:paylineage_dev@localhost:5432/paylineage"
 
     policy_dir: Path = REPO_ROOT / "policy"

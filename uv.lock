@@ -702,6 +702,11 @@ dependencies = [
     { name = "webauthn" },
 ]
 
+[package.optional-dependencies]
+seed = [
+    { name = "reportlab" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "alembic", specifier = ">=1.17" },
@@ -714,12 +719,14 @@ requires-dist = [
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2" },
     { name = "pydantic", specifier = ">=2.12" },
     { name = "pydantic-settings", specifier = ">=2.11" },
+    { name = "reportlab", marker = "extra == 'seed'", specifier = ">=4.4" },
     { name = "rfc8785", specifier = ">=0.1.4" },
     { name = "sqlalchemy", specifier = ">=2.0.44" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.38" },
     { name = "wasmtime", specifier = ">=38" },
     { name = "webauthn", specifier = ">=2.7" },
 ]
+provides-extras = ["seed"]
 
 [[package]]
 name = "paylineage-workspace"

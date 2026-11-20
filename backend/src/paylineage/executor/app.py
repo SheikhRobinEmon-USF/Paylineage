@@ -87,4 +87,4 @@ def create_app() -> FastAPI:
 def run() -> None:
     import uvicorn
 
-    uvicorn.run(create_app(), host="0.0.0.0", port=8100)  # noqa: S104 (container internal network)
+    uvicorn.run(create_app(), host=get_settings().bind_host, port=8100)

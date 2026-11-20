@@ -98,6 +98,7 @@ def append(
 class ChainProblem:
     seq: int
     kind: str  # modified | deleted | reordered | truncated | checkpoint_signature | checkpoint_mismatch
+    # | checkpoint_key_unavailable
     detail: str
 
 

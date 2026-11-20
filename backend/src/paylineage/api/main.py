@@ -43,7 +43,7 @@ from paylineage.api.deps import (
 )
 from paylineage.approvals import service as approvals
 from paylineage.approvals import webauthn
-from paylineage.audit.chain import load_events, verify_events
+from paylineage.audit.chain import ChainProblem, load_events, verify_events
 from paylineage.audit.checkpoint import Checkpoint, CheckpointStore, checkpoint_now, load_or_create_key
 from paylineage.audit.checkpoint import verify as checkpoint_verify
 from paylineage.canonical import digest as canonical_digest
@@ -259,6 +259,24 @@ def _write_checkpoint() -> Checkpoint | None:
         return checkpoint_now(
             ctx.session, key, CheckpointStore(get_settings().audit_checkpoint_dir), ctx.now()
         )
+
+
+def _with_checkpoints(ctx: Ctx, problems: list[ChainProblem]) -> tuple[list[ChainProblem], int, str]:
+    """Add checkpoint checks. A configured key that cannot be read is a problem, never a pass."""
+    s = get_settings()
+    if s.audit_checkpoint_key_path is None:
+        return problems, 0, "No checkpoint key configured: chain verified, checkpoints not."
+    key = _checkpoint_key()
+    if key is None:
+        missing = ChainProblem(0, "checkpoint_key_unavailable", "checkpoint key configured but unreadable")
+        return [*problems, missing], 0, "Checkpoint key unreadable: checkpoints could not be verified."
+    store = CheckpointStore(s.audit_checkpoint_dir)
+    n = len(store.all())
+    return (
+        list(checkpoint_verify(ctx.session, key.public_key(), store)),
+        n,
+        f"Verified against {n} Ed25519 checkpoints held outside the database.",
+    )
 
 
 @asynccontextmanager
@@ -960,12 +978,7 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
     def audit_events(_m: Me = Depends(current_user), ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
         events = load_events(ctx.session)
         problems, _last, head = verify_events(events)
-        key = _checkpoint_key()
-        checkpoints = 0
-        if key is not None:
-            store = CheckpointStore(s.audit_checkpoint_dir)
-            checkpoints = len(store.all())
-            problems = list(checkpoint_verify(ctx.session, key.public_key(), store))
+        problems, checkpoints, note = _with_checkpoints(ctx, problems)
         return {
             "events": [
                 {
@@ -981,20 +994,14 @@ def create_app(executor: ExecutorClient | None = None) -> FastAPI:
             "problems": [p.__dict__ for p in problems],
             "head": head,
             "checkpoints": checkpoints,
-            "note": f"Verified against {checkpoints} Ed25519 checkpoints held outside the database."
-            if key is not None
-            else "No checkpoint key configured: chain verified, checkpoints not.",
+            "note": note,
         }
 
     @r.get("/audit/verify")
     def audit_verify(_m: Me = Depends(current_user), ctx: Ctx = Depends(get_ctx)) -> dict[str, Any]:
         events = load_events(ctx.session)
         problems, last, head = verify_events(events)
-        key = _checkpoint_key()
-        if key is not None:
-            problems = list(
-                checkpoint_verify(ctx.session, key.public_key(), CheckpointStore(s.audit_checkpoint_dir))
-            )
+        problems, _n, _note = _with_checkpoints(ctx, problems)
         return {
             "events": len(events),
             "last_seq": last,
@@ -1028,4 +1035,4 @@ def _ctx() -> Any:
 def run() -> None:
     import uvicorn
 
-    uvicorn.run(create_app(), host="127.0.0.1", port=8000)
+    uvicorn.run(create_app(), host=get_settings().bind_host, port=8000)

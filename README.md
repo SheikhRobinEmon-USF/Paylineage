@@ -97,6 +97,20 @@ make dev
 
 Open http://localhost:3000, pick a fictional person, and use "Add a passkey on this device" before approving. The app works with no model running. For local AI extraction, install [Ollama](https://ollama.com), run `ollama pull qwen3.5:4b` and set `EXTRACTOR=ollama`.
 
+### Full stack in Docker
+
+```bash
+make stack
+```
+
+This creates local keys in `var/keys/`, builds the images, applies migrations, seeds fictional data if the database is empty, and starts the API, executor, mock bank and web app. The agent, executor and mock bank sit on separate internal networks (invariant I6). To run the simulated agent, which polls for new invoices and proposes payments:
+
+```bash
+docker compose --profile agent up -d ap-agent
+```
+
+Behind a TLS inspecting proxy, pass its CA to the build with `make stack BUILD_CA_FILE=/path/to/ca.pem`.
+
 The public demo needs nothing installed: it runs the same UI against an in-browser engine (`make demo`, deployed to GitHub Pages from `main`).
 
 ## Testing

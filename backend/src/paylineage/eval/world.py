@@ -145,8 +145,9 @@ class World:
         daily: int = 15_000_000,
         second_above: int = 2_500_000,
         expires_in: timedelta = timedelta(days=90),
+        key: Ed25519PrivateKey | None = None,
     ) -> None:
-        self.agent_key = Ed25519PrivateKey.generate()
+        self.agent_key = key or Ed25519PrivateKey.generate()
         pub = self.agent_key.public_key().public_bytes(
             serialization.Encoding.Raw, serialization.PublicFormat.Raw
         )

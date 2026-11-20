@@ -5,9 +5,10 @@ export PATH := $(CURDIR)/.tools/bin:$(PATH)
 UV ?= uv
 PY := $(UV) run python
 PYTEST := $(UV) run pytest
+, := ,
 TEST_DATABASE_URL ?= postgresql+psycopg://paylineage:paylineage_dev@localhost:5432/paylineage_test
 
-.PHONY: help setup db-up db-down migrate policy-build policy-test policy-mutants parity vectors test-fast test-deep \
+.PHONY: help setup keys images stack db-up db-down migrate policy-build policy-test policy-mutants parity vectors test-fast test-deep \
         mutation lint dev demo eval web-test e2e seed clean
 
 help: ## Show targets
@@ -18,6 +19,10 @@ setup: ## uv sync, pnpm install, pinned OPA, .env
 	pnpm install --frozen-lockfile
 	./scripts/install_opa.sh
 	@[ -f .env ] || cp .env.example .env
+	$(MAKE) keys
+
+keys: ## Local Ed25519 keys for audit checkpoints and the simulated agent (kept if present)
+	$(PY) -m paylineage.devkeys
 
 db-up: ## Start PostgreSQL in docker
 	docker compose up -d postgres
@@ -71,6 +76,14 @@ eval: ## Tracks B and C, all layers, writes eval/results
 
 seed: ## Seed fictional demo data into DATABASE_URL
 	$(PY) -m paylineage.db.seed
+
+images: ## Build container images (BUILD_CA_FILE=path adds a CA for TLS inspecting proxies)
+	docker build $(if $(BUILD_CA_FILE),--secret id=ca$(,)src=$(BUILD_CA_FILE)) -f backend/Dockerfile -t paylineage-api:local .
+	docker build $(if $(BUILD_CA_FILE),--secret id=ca$(,)src=$(BUILD_CA_FILE)) -f apps/web/Dockerfile -t paylineage-web:local .
+
+stack: keys images ## Full stack in docker: migrate, seed if empty, api, executor, mock bank, web
+	KEYS_GID=$$($(PY) -c "import os; print(os.stat('var/keys/checkpoint_ed25519.pem').st_gid)") docker compose up -d --no-build
+	@echo "Open http://localhost:3000 (simulation only). Agent: docker compose --profile agent up -d ap-agent"
 
 dev: ## backend + executor + mockbank + web locally
 	./scripts/dev.sh
