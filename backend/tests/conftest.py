@@ -11,6 +11,8 @@ from hypothesis import HealthCheck, settings
 from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.orm import Session, sessionmaker
 
+from paylineage.db.base import truncate_all
+
 settings.register_profile("fast", max_examples=200, deadline=None)
 settings.register_profile(
     "deep", max_examples=5000, deadline=None, suppress_health_check=[HealthCheck.too_slow]
@@ -46,18 +48,7 @@ def db_engine() -> Iterator[Engine]:
 def reset_db(maker_or_engine) -> None:  # type: ignore[no-untyped-def]
     eng = maker_or_engine.kw["bind"] if isinstance(maker_or_engine, sessionmaker) else maker_or_engine
     with eng.begin() as c:
-        tables = [
-            r[0]
-            for r in c.execute(
-                text(
-                    "SELECT tablename FROM pg_tables "
-                    "WHERE schemaname='public' AND tablename <> 'alembic_version'"
-                )
-            )
-        ]
-        c.execute(text("ALTER TABLE audit_events DISABLE TRIGGER USER"))
-        c.execute(text(f"TRUNCATE {', '.join(tables)} RESTART IDENTITY CASCADE"))
-        c.execute(text("ALTER TABLE audit_events ENABLE TRIGGER USER"))
+        truncate_all(c)
 
 
 @pytest.fixture

@@ -28,11 +28,12 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-from sqlalchemy import Engine, create_engine, select, text, update
+from sqlalchemy import Engine, create_engine, select, update
 from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker
 
 from paylineage.agents.planner import AdversarialPlanner, DeterministicPlanner, PlannerInput
+from paylineage.db.base import truncate_all
 from paylineage.db.models import Execution, Payment, PolicyDecisionRow, Supplier, SupplierBankAccount, User
 from paylineage.db.vault import account_token, normalize_account
 from paylineage.domain.clock import FrozenClock
@@ -103,17 +104,7 @@ def migrate(engine: Engine) -> None:
 
 def reset(engine: Engine) -> None:
     with engine.begin() as c:
-        tables = [
-            r[0]
-            for r in c.execute(
-                text(
-                    "SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename <> 'alembic_version'"
-                )
-            )
-        ]
-        c.execute(text("ALTER TABLE audit_events DISABLE TRIGGER USER"))
-        c.execute(text(f"TRUNCATE {', '.join(tables)} RESTART IDENTITY CASCADE"))
-        c.execute(text("ALTER TABLE audit_events ENABLE TRIGGER USER"))
+        truncate_all(c)
 
 
 # ---------------- Track B ----------------
