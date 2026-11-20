@@ -1,5 +1,5 @@
 import { startAuthentication, startRegistration } from "@simplewebauthn/browser";
-import { ApiError, type AuditView, type DataSource } from "@paylineage/ui";
+import { ApiError, type AuditView, type DataSource, type Me } from "@paylineage/ui";
 
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(path, {
@@ -25,14 +25,7 @@ const post = <T,>(path: string, body?: unknown) => call<T>(path, body === undefi
 /** DataSource over the real API. The browser holds no authority; every call is re-derived server side. */
 export const liveSource: DataSource = {
   mode: "live",
-  me: async () => {
-    try {
-      return await call("/v1/me");
-    } catch (e) {
-      if (e instanceof ApiError && e.status === 401) return null;
-      throw e;
-    }
-  },
+  me: async () => (await call<{ user: Me | null }>("/v1/session")).user,
   personas: () => call("/v1/auth/personas"),
   signInAs: async (handle) => {
     await post("/v1/auth/dev-login", { handle });

@@ -11,7 +11,7 @@ import {
 } from "@tanstack/react-table";
 import { ArrowDownUp, Keyboard } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Dialog, DialogTrigger, Heading, Modal, ModalOverlay, TextArea, TextField, Label } from "react-aria-components";
+import { Dialog, Heading, Modal, ModalOverlay, TextArea, TextField, Label } from "react-aria-components";
 import { ExposureByReason } from "./charts";
 import { ago, compactMoney, money } from "./format";
 import { Banner, Button, cx, Empty, Kbd, Money, Panel, ReasonChip, StateBadge, Stat } from "./primitives";
@@ -264,9 +264,12 @@ function DenyDialog({ item, onClose, onDeny }: { item: QueueItem | null; onClose
   const [reason, setReason] = useState("Confirmed fraud with the supplier on file.");
   const [err, setErr] = useState<string | null>(null);
   return (
-    <DialogTrigger isOpen={item !== null} onOpenChange={(o) => !o && onClose()}>
-      <span />
-      <ModalOverlay className="fixed inset-0 z-40 grid place-items-center bg-ink/30 p-4">
+    <ModalOverlay
+      isOpen={item !== null}
+      onOpenChange={(o) => { if (!o) { setErr(null); onClose(); } }}
+      isDismissable
+      className="fixed inset-0 z-40 grid place-items-center bg-ink/30 p-4"
+    >
         <Modal className="w-full max-w-md rounded-lg border border-line bg-surface p-5 shadow-card">
           <Dialog className="outline-none">
             <Heading slot="title" className="text-[15px] font-semibold">Close this held payment as denied?</Heading>
@@ -281,12 +284,11 @@ function DenyDialog({ item, onClose, onDeny }: { item: QueueItem | null; onClose
             </TextField>
             {err && <div className="mt-2"><Banner tone="deny">{err}</Banner></div>}
             <div className="mt-4 flex justify-end gap-2">
-              <Button onPress={onClose}>Cancel</Button>
+              <Button onPress={() => { setErr(null); onClose(); }}>Cancel</Button>
               <Button variant="danger" onPress={() => onDeny(reason).catch((e: Error) => setErr(e.message))}>Deny payment</Button>
             </div>
           </Dialog>
         </Modal>
-      </ModalOverlay>
-    </DialogTrigger>
+    </ModalOverlay>
   );
 }

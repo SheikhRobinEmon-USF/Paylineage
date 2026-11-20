@@ -2,7 +2,7 @@
 
 import { Bot, KeyRound, UserCheck, Users } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Dialog, DialogTrigger, Heading, Modal, ModalOverlay } from "react-aria-components";
+import { Dialog, Heading, Modal, ModalOverlay } from "react-aria-components";
 import { compactMoney, when } from "./format";
 import { Banner, Button, Empty, Panel, Pill, cx } from "./primitives";
 import { PageHeader, useEnv } from "./shell";
@@ -138,21 +138,32 @@ export function AgentAuthority() {
           </Panel>
         );
       })}
-      <DialogTrigger isOpen={confirm !== null} onOpenChange={(o) => !o && setConfirm(null)}>
-        <span />
-        <ModalOverlay className="fixed inset-0 z-40 grid place-items-center bg-ink/30 p-4">
+      <ModalOverlay
+        isOpen={confirm !== null}
+        onOpenChange={(o) => { if (!o) setConfirm(null); }}
+        className="fixed inset-0 z-40 grid place-items-center bg-ink/30 p-4"
+      >
           <Modal className="w-full max-w-md rounded-lg border border-line bg-surface p-5 shadow-card">
             <Dialog className="outline-none" role="alertdialog">
               <Heading slot="title" className="text-[15px] font-semibold">Revoke the mandate for {confirm}?</Heading>
               <p className="mt-2 text-[13px] text-ink-2">Every proposal under this mandate loses execution eligibility immediately, including approved payments with valid signatures. This cannot be undone; a new version must be issued.</p>
               <div className="mt-4 flex justify-end gap-2">
                 <Button onPress={() => setConfirm(null)}>Cancel</Button>
-                <Button variant="danger" onPress={async () => { if (confirm) { await source.revokeMandate(confirm, "Revoked from Agent Authority"); setMsg("Mandate revoked. Try executing an approved payment to see revalidation refuse it."); setConfirm(null); refresh(); } }}>Revoke</Button>
+                <Button variant="danger" onPress={async () => {
+                  if (!confirm) return;
+                  try {
+                    await source.revokeMandate(confirm, "Revoked from Agent Authority");
+                    setMsg("Mandate revoked. Try executing an approved payment to see revalidation refuse it.");
+                  } catch (e) {
+                    setMsg(`Revocation refused: ${(e as Error).message}`);
+                  }
+                  setConfirm(null);
+                  refresh();
+                }}>Revoke</Button>
               </div>
             </Dialog>
           </Modal>
-        </ModalOverlay>
-      </DialogTrigger>
+      </ModalOverlay>
     </div>
   );
 }

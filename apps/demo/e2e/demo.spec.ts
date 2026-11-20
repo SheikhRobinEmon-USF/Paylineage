@@ -74,3 +74,32 @@ test("keyboard triage: j moves, Enter opens the case", async ({ page }) => {
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/case\/?\?id=/);
 });
+
+test("deny dialog: d opens it on a held payment, Escape closes it, axe passes while open", async ({ page }) => {
+  await signIn(page, /Continue as Quinn/);
+  await page.keyboard.press("h");
+  await page.keyboard.press("d");
+  const dialog = page.getByRole("dialog", { name: /Close this held payment as denied/ });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole("textbox", { name: "Reason" })).toBeVisible();
+  await noSeriousAxe(page);
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await page.keyboard.press("d");
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole("button", { name: "Cancel" }).click();
+  await expect(dialog).toBeHidden();
+});
+
+test("revoke mandate: confirm dialog, cancel keeps it, revoke records it", async ({ page }) => {
+  await signIn(page, /Continue as Drew/);
+  await page.goto("/agents/");
+  await page.getByRole("button", { name: "Revoke mandate" }).first().click();
+  const dialog = page.getByRole("alertdialog", { name: /Revoke the mandate/ });
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole("button", { name: "Cancel" }).click();
+  await expect(dialog).toBeHidden();
+  await page.getByRole("button", { name: "Revoke mandate" }).first().click();
+  await dialog.getByRole("button", { name: "Revoke", exact: true }).click();
+  await expect(page.getByText(/Mandate revoked/)).toBeVisible();
+});
