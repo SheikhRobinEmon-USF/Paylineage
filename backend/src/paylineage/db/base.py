@@ -6,7 +6,7 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from functools import lru_cache
 
-from sqlalchemy import Engine, MetaData, create_engine
+from sqlalchemy import Connection, Engine, MetaData, create_engine, text
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from paylineage.settings import get_settings
@@ -50,3 +50,30 @@ def transaction(factory: sessionmaker[Session] | None = None) -> Iterator[Sessio
             yield session
     finally:
         session.close()
+
+
+# One constant statement: Postgres quotes each table name with format('%I'), so no
+# identifier is ever spliced into SQL text in Python. The audit trigger that blocks
+# deletes is paused for the reset only (dev, seed and test databases).
+_TRUNCATE_ALL = text(
+    """
+    DO $$
+    DECLARE stmt text;
+    BEGIN
+      SELECT 'TRUNCATE ' || string_agg(format('%I', tablename), ', ') || ' RESTART IDENTITY CASCADE'
+        INTO stmt
+        FROM pg_tables
+       WHERE schemaname = 'public' AND tablename <> 'alembic_version';
+      ALTER TABLE audit_events DISABLE TRIGGER USER;
+      EXECUTE stmt;
+      ALTER TABLE audit_events ENABLE TRIGGER USER;
+    END $$;
+    """
+)
+
+
+def truncate_all(conn: Connection) -> None:
+    """Empty every application table. Never call this on a production database."""
+    if get_settings().paylineage_env == "prod":
+        raise RuntimeError("refusing to truncate a production database")
+    conn.execute(_TRUNCATE_ALL)

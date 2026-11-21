@@ -17,7 +17,7 @@ from sqlalchemy.orm import sessionmaker
 
 from paylineage.agents.planner import AdversarialPlanner, DeterministicPlanner, PlannerInput
 from paylineage.audit.checkpoint import load_or_create_key
-from paylineage.db.base import get_engine
+from paylineage.db.base import get_engine, truncate_all
 from paylineage.domain.clock import FrozenClock
 from paylineage.domain.enums import OldAccountOutcome
 from paylineage.eval.scenarios import CATALOG, generate
@@ -45,17 +45,7 @@ def seed(*, reset: bool = True) -> None:
     engine = get_engine()
     if reset:
         with engine.begin() as c:
-            tables = [
-                r[0]
-                for r in c.execute(
-                    text(
-                        "SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename <> 'alembic_version'"
-                    )
-                )
-            ]
-            c.execute(text("ALTER TABLE audit_events DISABLE TRIGGER USER"))
-            c.execute(text(f"TRUNCATE {', '.join(tables)} RESTART IDENTITY CASCADE"))
-            c.execute(text("ALTER TABLE audit_events ENABLE TRIGGER USER"))
+            truncate_all(c)
     now = datetime.now(UTC).replace(microsecond=0)
     clock = FrozenClock(now - timedelta(days=45))
     w = World(sessionmaker(bind=engine, expire_on_commit=False), clock, build_engine())

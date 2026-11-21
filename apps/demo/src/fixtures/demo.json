@@ -1,16 +1,16 @@
 {
  "generated_by": "paylineage.eval.export_demo",
- "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+ "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
  "payments": [
   {
    "detail": {
-    "id": "01a1f528-8fc5-7014-93ef-c7346bf9a363",
+    "id": "01a1f94e-4152-7101-9dc1-db39d0736804",
     "state": "awaiting_approval",
     "version": 1,
     "amount_minor": 1151600,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -18,7 +18,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -28,52 +41,39 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-1177",
     "decision": "allow",
     "reasons": [],
     "exposure_minor": 0,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-04T21:53:57+00:00",
-    "updated_at": "2026-11-04T21:53:57+00:00",
+    "created_at": "2026-11-05T17:13:36+00:00",
+    "updated_at": "2026-11-05T17:13:36+00:00",
     "scenario": "L1-acme-101300",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-8fc5-7014-93ef-c7346bf9a363",
+     "payment_id": "01a1f94e-4152-7101-9dc1-db39d0736804",
      "version": 1,
      "amount_minor": 1151600,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "invoice_id": "01a1f528-8fb2-74ea-8c1a-33b7a3f4808c",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "invoice_id": "01a1f94e-413c-722b-8d9e-1fa943ebec94",
      "invoice_digest": "273575d04cb9fb920f0912b12a45268a9c3f8d35aba9ec5f22eee02fb844ce4b",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "0628227ecafce976ed3472391a917cbb",
-     "expires_at_ms": 1794434037000
+     "nonce": "a6f6f0b5f771e5167e3a4726edf90964",
+     "expires_at_ms": 1794503616000
     },
-    "digest": "8f07823f89dbe5624d6c80f34fac86469f992e2df0425456265ed128905a3dcb",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "633b8a63d898d0197e5094d37d3859bb42dc4a3f1b2b14e1809a2072d2081335",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [],
     "fields": [
      {
@@ -255,17 +255,17 @@
      "digest": "34e3d7f2f3d8c0c08066c02201ca8f107077b6c07a64edb4fed495753889f9ca"
     },
     "proposed_account": {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
      "masked": "\u2022\u2022\u2022\u2022 6789",
      "bank_name": "First Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_6b2557e"
     },
     "decisions": [
      {
@@ -273,10 +273,10 @@
       "decision": "allow",
       "reasons": [],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1636,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1665,
       "version": 1,
-      "at": "2026-11-04T21:53:57+00:00"
+      "at": "2026-11-05T17:13:36+00:00"
      }
     ],
     "timeline": [
@@ -284,13 +284,13 @@
       "seq": 37,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-04T21:53:57+00:00",
-      "hash": "647c8948c313",
+      "at": "2026-11-05T17:13:36+00:00",
+      "hash": "f0efce4460fc",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "34e3d7f2f3d8c0c08066c02201ca8f107077b6c07a64edb4fed495753889f9ca",
        "attachment_digest": "273575d04cb9fb920f0912b12a45268a9c3f8d35aba9ec5f22eee02fb844ce4b"
@@ -300,30 +300,30 @@
       "seq": 38,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-04T21:53:57+00:00",
-      "hash": "c7eace3dc069",
+      "at": "2026-11-05T17:13:36+00:00",
+      "hash": "55c9a04f6461",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6789",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-8fb2-74ea-8c1a-33b7a3f4808c",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-413c-722b-8d9e-1fa943ebec94",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 1151600,
-       "account_token": "acct_bb7b833d82da1fe296d1edafc52501a1"
+       "account_token": "acct_6b2557ee6d5afcee6305c045ffc62a94"
       }
      },
      {
       "seq": 39,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-04T21:53:57+00:00",
-      "hash": "c59f8b81cc33",
+      "at": "2026-11-05T17:13:36+00:00",
+      "hash": "0ac2d81fa243",
       "payload": {
        "reasons": [],
        "runtime": "wasm",
        "decision": "allow",
-       "input_digest": "0058e73170ef0cd8bd32be566cbbf073fc121372abedf26c829bc8d623a10e76",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "ce2ed51fc1d7a4045f27b3ecc2088ea417384d979982008c777c100e4defed7f",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -332,8 +332,8 @@
       "seq": 40,
       "kind": "payment.awaiting_approval",
       "actor": "AP-Agent-001",
-      "at": "2026-11-04T21:53:57+00:00",
-      "hash": "08dccab33d92",
+      "at": "2026-11-05T17:13:36+00:00",
+      "hash": "5b4aab61d5ec",
       "payload": {
        "reasons": [],
        "version": 1
@@ -347,7 +347,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793829237000,
+    "now_ms": 1793898816000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -356,7 +356,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -377,24 +377,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-8fc5-7014-93ef-c7346bf9a363",
+      "payment_id": "01a1f94e-4152-7101-9dc1-db39d0736804",
       "version": 1,
       "amount_minor": 1151600,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "invoice_id": "01a1f528-8fb2-74ea-8c1a-33b7a3f4808c",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "invoice_id": "01a1f94e-413c-722b-8d9e-1fa943ebec94",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "8f07823f89dbe5624d6c80f34fac86469f992e2df0425456265ed128905a3dcb"
+      "digest": "633b8a63d898d0197e5094d37d3859bb42dc4a3f1b2b14e1809a2072d2081335"
      },
      "requested_by": null,
-     "daily_total_minor": 0,
+     "daily_total_minor": 946900,
      "fields": [
       {
        "field_name": "amount",
@@ -433,13 +433,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -454,13 +454,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-8fff-7164-a414-bc42bb396d5f",
+    "id": "01a1f94e-4187-75e4-8b91-60af547e88d8",
     "state": "awaiting_approval",
     "version": 1,
     "amount_minor": 214800,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+     "id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
      "legal_name": "Northwind Components LLC (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -468,20 +468,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
+       "id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
        "masked": "\u2022\u2022\u2022\u2022 4556",
        "bank_name": "Harborview Fictional Bank",
        "status": "verified",
        "verified_by": "Taylor Nguyen (verifier)",
        "verified_method": "simulated_validation_service",
        "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
+       "verified_at": "2026-10-06T14:13:36+00:00",
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_6cd240c"
+       "token_prefix": "acct_88fcae9"
       },
       {
-       "id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
+       "id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
        "masked": "\u2022\u2022\u2022\u2022 3033",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -491,39 +491,39 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_89b669e"
+       "token_prefix": "acct_d759dc1"
       }
      ]
     },
-    "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+    "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
     "invoice_number": "INV-2607-9520",
     "decision": "allow",
     "reasons": [],
     "exposure_minor": 0,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T00:53:57+00:00",
-    "updated_at": "2026-11-05T00:53:57+00:00",
+    "created_at": "2026-11-05T20:13:36+00:00",
+    "updated_at": "2026-11-05T20:13:36+00:00",
     "scenario": "L1-north-101301",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-8fff-7164-a414-bc42bb396d5f",
+     "payment_id": "01a1f94e-4187-75e4-8b91-60af547e88d8",
      "version": 1,
      "amount_minor": 214800,
      "currency": "USD",
-     "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
-     "beneficiary_account_id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
-     "invoice_id": "01a1f528-8ff3-716b-85a2-16812dcf6f75",
+     "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
+     "beneficiary_account_id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
+     "invoice_id": "01a1f94e-417e-72cc-9ec8-bd68e69183b2",
      "invoice_digest": "009118bb46718d9d266dc98f7bd2d21a8e83ed6c85c01fbea1a6929d43eb5f2e",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "4b9403b7b9d78ffc7021859fea747aab",
-     "expires_at_ms": 1794444837000
+     "nonce": "6d0ca74431f2bcfaad2cbcaa325c9265",
+     "expires_at_ms": 1794514416000
     },
-    "digest": "435df44421fb343a5119efd8a2ef3d05e04b7ccd68331a3b9318aa8b6ad475da",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "69db64dd2d4d32a52a45d08386ed881206b24ed0e36748e797be9d9da8073bba",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [],
     "fields": [
      {
@@ -705,17 +705,17 @@
      "digest": "34ea158ae660279982e9f7c2bdb37d71992e8e8e5d3a90d4903c9cca10103813"
     },
     "proposed_account": {
-     "id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
+     "id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
      "masked": "\u2022\u2022\u2022\u2022 4556",
      "bank_name": "Harborview Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_6cd240c"
+     "token_prefix": "acct_88fcae9"
     },
     "decisions": [
      {
@@ -723,10 +723,10 @@
       "decision": "allow",
       "reasons": [],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1631,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1687,
       "version": 1,
-      "at": "2026-11-05T00:53:57+00:00"
+      "at": "2026-11-05T20:13:36+00:00"
      }
     ],
     "timeline": [
@@ -734,13 +734,13 @@
       "seq": 41,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T00:53:57+00:00",
-      "hash": "d235fade04d3",
+      "at": "2026-11-05T20:13:36+00:00",
+      "hash": "7aa8c4c64f84",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "northwind-components.example",
-       "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+       "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
        "duplicate_of": null,
        "email_digest": "34ea158ae660279982e9f7c2bdb37d71992e8e8e5d3a90d4903c9cca10103813",
        "attachment_digest": "009118bb46718d9d266dc98f7bd2d21a8e83ed6c85c01fbea1a6929d43eb5f2e"
@@ -750,30 +750,30 @@
       "seq": 42,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T00:53:57+00:00",
-      "hash": "cc9883fdd096",
+      "at": "2026-11-05T20:13:36+00:00",
+      "hash": "290b6b8def83",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 4556",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-8ff3-716b-85a2-16812dcf6f75",
-       "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+       "invoice_id": "01a1f94e-417e-72cc-9ec8-bd68e69183b2",
+       "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
        "amount_minor": 214800,
-       "account_token": "acct_6cd240c787f1d0062c67faf709f721c0"
+       "account_token": "acct_88fcae9b1c894e8258d017426413fc17"
       }
      },
      {
       "seq": 43,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T00:53:57+00:00",
-      "hash": "7327656a6368",
+      "at": "2026-11-05T20:13:36+00:00",
+      "hash": "406713615f63",
       "payload": {
        "reasons": [],
        "runtime": "wasm",
        "decision": "allow",
-       "input_digest": "a171481989a52eae589260b55b969ee85fece9b2ec85f6e85b35504985769569",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "d865d8086851c29561c50641596dd344b43799f32a04c392738f71bac787caaf",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -782,8 +782,8 @@
       "seq": 44,
       "kind": "payment.awaiting_approval",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T00:53:57+00:00",
-      "hash": "294c462ace7b",
+      "at": "2026-11-05T20:13:36+00:00",
+      "hash": "c7e15ee9cfd5",
       "payload": {
        "reasons": [],
        "version": 1
@@ -797,7 +797,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793840037000,
+    "now_ms": 1793909616000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -806,7 +806,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -827,24 +827,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-8fff-7164-a414-bc42bb396d5f",
+      "payment_id": "01a1f94e-4187-75e4-8b91-60af547e88d8",
       "version": 1,
       "amount_minor": 214800,
       "currency": "USD",
-      "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
-      "beneficiary_account_id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
-      "invoice_id": "01a1f528-8ff3-716b-85a2-16812dcf6f75",
+      "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
+      "beneficiary_account_id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
+      "invoice_id": "01a1f94e-417e-72cc-9ec8-bd68e69183b2",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "435df44421fb343a5119efd8a2ef3d05e04b7ccd68331a3b9318aa8b6ad475da"
+      "digest": "69db64dd2d4d32a52a45d08386ed881206b24ed0e36748e797be9d9da8073bba"
      },
      "requested_by": null,
-     "daily_total_minor": 11920320,
+     "daily_total_minor": 1883700,
      "fields": [
       {
        "field_name": "amount",
@@ -883,13 +883,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+      "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
-      "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+      "account_id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
+      "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -904,13 +904,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-9047-76ce-ace0-84b8cb1e4fe7",
+    "id": "01a1f94e-41c5-76e9-900a-4a5312edd7c2",
     "state": "held",
     "version": 1,
     "amount_minor": 732100,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -918,7 +918,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -928,24 +941,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-4684",
     "decision": "hold",
     "reasons": [
@@ -955,29 +955,29 @@
     ],
     "exposure_minor": 732100,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T03:53:57+00:00",
-    "updated_at": "2026-11-05T03:53:57+00:00",
+    "created_at": "2026-11-05T23:13:36+00:00",
+    "updated_at": "2026-11-05T23:13:36+00:00",
     "scenario": "S1-acme-100000",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-9047-76ce-ace0-84b8cb1e4fe7",
+     "payment_id": "01a1f94e-41c5-76e9-900a-4a5312edd7c2",
      "version": 1,
      "amount_minor": 732100,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
-     "invoice_id": "01a1f528-9034-749f-921a-afd631d14bab",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
+     "invoice_id": "01a1f94e-41b9-71a9-965a-5376c7003d36",
      "invoice_digest": "47dbd8d66dc4819b29beb35ab4207faa40609777554ddb762095e8ae4f4c8703",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "a89baecf07d1bc37e3f504ecaf5ceee1",
-     "expires_at_ms": 1794455637000
+     "nonce": "24e5683d21e97825aca26d3bb1b78167",
+     "expires_at_ms": 1794525216000
     },
-    "digest": "e80653253574edcc4d6c8fca886db4851e34f64b5d49c74230e729e6fe70db41",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "4fd89ed59c675fe13ba2243879d1129bf730d4d0a30a6e8434a9c24f9da5c951",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "BENEFICIARY_NOT_VERIFIED",
@@ -1181,7 +1181,7 @@
      "digest": "3ace00ec0808935359dd0ba690d8a68e75de23c628b561906b16e4cf34ccd08c"
     },
     "proposed_account": {
-     "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+     "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
      "masked": "\u2022\u2022\u2022\u2022 5964",
      "bank_name": "Second Fictional Bank",
      "status": "pending",
@@ -1191,7 +1191,7 @@
      "verified_at": null,
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_ae4e0ef"
+     "token_prefix": "acct_87d41c6"
     },
     "decisions": [
      {
@@ -1203,10 +1203,10 @@
        "SIGNAL_LOOKALIKE_DOMAIN"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1950,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1734,
       "version": 1,
-      "at": "2026-11-05T03:53:57+00:00"
+      "at": "2026-11-05T23:13:36+00:00"
      }
     ],
     "timeline": [
@@ -1214,15 +1214,15 @@
       "seq": 47,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T03:53:57+00:00",
-      "hash": "d1f75c3e812c",
+      "at": "2026-11-05T23:13:36+00:00",
+      "hash": "802437d10d95",
       "payload": {
        "signals": [
         "SIGNAL_LOOKALIKE_DOMAIN"
        ],
        "extractor": "deterministic",
        "from_domain": "acme-industria1.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "3ace00ec0808935359dd0ba690d8a68e75de23c628b561906b16e4cf34ccd08c",
        "attachment_digest": "47dbd8d66dc4819b29beb35ab4207faa40609777554ddb762095e8ae4f4c8703"
@@ -1232,24 +1232,24 @@
       "seq": 48,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T03:53:57+00:00",
-      "hash": "69f5d6f0441f",
+      "at": "2026-11-05T23:13:36+00:00",
+      "hash": "0c3c96fbfd09",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 5964",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-9034-749f-921a-afd631d14bab",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-41b9-71a9-965a-5376c7003d36",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 732100,
-       "account_token": "acct_ae4e0ef62d62345fc2d1b9d58b740d21"
+       "account_token": "acct_87d41c60928f271c85664312c85a4df9"
       }
      },
      {
       "seq": 49,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T03:53:57+00:00",
-      "hash": "b295c8801a1f",
+      "at": "2026-11-05T23:13:36+00:00",
+      "hash": "ff051854aa9e",
       "payload": {
        "reasons": [
         "BENEFICIARY_NOT_VERIFIED",
@@ -1258,8 +1258,8 @@
        ],
        "runtime": "wasm",
        "decision": "hold",
-       "input_digest": "4747ea07bb2a74774ad4ee7a6702322c7fc5b1a8a8e375b3392d556c433ec7b1",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "ff95763e789f857945d2cdb1badb4cd1db59140edf0e3e43830cf8428a87e562",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -1268,8 +1268,8 @@
       "seq": 50,
       "kind": "payment.held",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T03:53:57+00:00",
-      "hash": "b596f35d2f40",
+      "at": "2026-11-05T23:13:36+00:00",
+      "hash": "ead95ee942e3",
       "payload": {
        "reasons": [
         "BENEFICIARY_NOT_VERIFIED",
@@ -1287,7 +1287,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793850837000,
+    "now_ms": 1793920416000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -1296,7 +1296,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -1317,24 +1317,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-9047-76ce-ace0-84b8cb1e4fe7",
+      "payment_id": "01a1f94e-41c5-76e9-900a-4a5312edd7c2",
       "version": 1,
       "amount_minor": 732100,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
-      "invoice_id": "01a1f528-9034-749f-921a-afd631d14bab",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
+      "invoice_id": "01a1f94e-41b9-71a9-965a-5376c7003d36",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "e80653253574edcc4d6c8fca886db4851e34f64b5d49c74230e729e6fe70db41"
+      "digest": "4fd89ed59c675fe13ba2243879d1129bf730d4d0a30a6e8434a9c24f9da5c951"
      },
      "requested_by": null,
-     "daily_total_minor": 11403020,
+     "daily_total_minor": 1366400,
      "fields": [
       {
        "field_name": "amount",
@@ -1373,13 +1373,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "pending",
       "cooling_off_until_ms": null
      },
@@ -1399,13 +1399,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-9074-70a2-a258-2018e76a5d11",
+    "id": "01a1f94e-41ee-761b-b9fa-3ef5420db36b",
     "state": "held",
     "version": 1,
     "amount_minor": 4055800,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -1413,7 +1413,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -1423,24 +1436,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-9227",
     "decision": "hold",
     "reasons": [
@@ -1450,29 +1450,29 @@
     ],
     "exposure_minor": 4055800,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T06:53:57+00:00",
-    "updated_at": "2026-11-05T06:53:57+00:00",
+    "created_at": "2026-11-06T02:13:36+00:00",
+    "updated_at": "2026-11-06T02:13:36+00:00",
     "scenario": "S2-acme-100100",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-9074-70a2-a258-2018e76a5d11",
+     "payment_id": "01a1f94e-41ee-761b-b9fa-3ef5420db36b",
      "version": 1,
      "amount_minor": 4055800,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "beneficiary_account_id": "",
-     "invoice_id": "01a1f528-906a-7585-b6c6-973b497d95fa",
+     "invoice_id": "01a1f94e-41e4-70f0-93e0-b8b5a1927633",
      "invoice_digest": "e16e527df93b756b8225e6feba0199e6b04c2030b6a38b9eedf5e38d3c2f461c",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "3e32952079deb68d21fdc41cd1db45eb",
-     "expires_at_ms": 1794466437000
+     "nonce": "4ec3075bde54d6d8dfc6087bfd8ce1d3",
+     "expires_at_ms": 1794536016000
     },
-    "digest": "984b7cd2348a4dea6e09ed2fe30fbd07fc5fb0fb34f37d022046a80864a2c1e6",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "4c0e26685b71d09434d2589a615b9c99cb6f98f53d1f6c60df1383524fac27e1",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "BENEFICIARY_MISMATCH",
@@ -1680,10 +1680,10 @@
        "FIELD_UNTRUSTED_MATERIAL"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1596,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1585,
       "version": 1,
-      "at": "2026-11-05T06:53:57+00:00"
+      "at": "2026-11-06T02:13:36+00:00"
      }
     ],
     "timeline": [
@@ -1691,13 +1691,13 @@
       "seq": 51,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T06:53:57+00:00",
-      "hash": "67d7d61c8dd7",
+      "at": "2026-11-06T02:13:36+00:00",
+      "hash": "020f9f3a74ce",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "43dbf3c216991d60d6a2a7d60ec7eb85acc58c12ff0b64dc8821396be32c005e",
        "attachment_digest": "e16e527df93b756b8225e6feba0199e6b04c2030b6a38b9eedf5e38d3c2f461c"
@@ -1707,24 +1707,24 @@
       "seq": 52,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T06:53:57+00:00",
-      "hash": "f8e0fb6025b7",
+      "at": "2026-11-06T02:13:36+00:00",
+      "hash": "17f1c0a7bd3f",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 1876",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-906a-7585-b6c6-973b497d95fa",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-41e4-70f0-93e0-b8b5a1927633",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 4055800,
-       "account_token": "acct_ca0fdaad6d31c19a8e1b15daa3a28a39"
+       "account_token": "acct_ff59f928935e339edfed5d6edac9805b"
       }
      },
      {
       "seq": 53,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T06:53:57+00:00",
-      "hash": "9421a62da1e4",
+      "at": "2026-11-06T02:13:36+00:00",
+      "hash": "4c2ae78835dc",
       "payload": {
        "reasons": [
         "BENEFICIARY_MISMATCH",
@@ -1733,8 +1733,8 @@
        ],
        "runtime": "wasm",
        "decision": "hold",
-       "input_digest": "846d964bd6ccf64707ed5cf2b7b3e5d600b00cbb74464d825e908beba7d253dd",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "56985df3eabb135202558b2040fd9c5d1d6d55a8e531084e286310c1b074e40c",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -1743,8 +1743,8 @@
       "seq": 54,
       "kind": "payment.held",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T06:53:57+00:00",
-      "hash": "c7f634117196",
+      "at": "2026-11-06T02:13:36+00:00",
+      "hash": "7c103b7eb5c7",
       "payload": {
        "reasons": [
         "BENEFICIARY_MISMATCH",
@@ -1762,7 +1762,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793861637000,
+    "now_ms": 1793931216000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -1771,7 +1771,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -1792,24 +1792,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-9074-70a2-a258-2018e76a5d11",
+      "payment_id": "01a1f94e-41ee-761b-b9fa-3ef5420db36b",
       "version": 1,
       "amount_minor": 4055800,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "beneficiary_account_id": null,
-      "invoice_id": "01a1f528-906a-7585-b6c6-973b497d95fa",
+      "invoice_id": "01a1f94e-41e4-70f0-93e0-b8b5a1927633",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "984b7cd2348a4dea6e09ed2fe30fbd07fc5fb0fb34f37d022046a80864a2c1e6"
+      "digest": "4c0e26685b71d09434d2589a615b9c99cb6f98f53d1f6c60df1383524fac27e1"
      },
      "requested_by": null,
-     "daily_total_minor": 8079320,
+     "daily_total_minor": 10734220,
      "fields": [
       {
        "field_name": "amount",
@@ -1848,7 +1848,7 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
@@ -1864,13 +1864,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-90a0-72e7-91d2-327793db2916",
+    "id": "01a1f94e-4214-701b-a73f-3875102518c9",
     "state": "awaiting_approval",
     "version": 1,
     "amount_minor": 2224600,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -1878,7 +1878,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -1888,52 +1901,39 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-7788",
     "decision": "allow",
     "reasons": [],
     "exposure_minor": 0,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T09:53:57+00:00",
-    "updated_at": "2026-11-05T09:53:57+00:00",
+    "created_at": "2026-11-06T05:13:36+00:00",
+    "updated_at": "2026-11-06T05:13:36+00:00",
     "scenario": "S3-acme-100200",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-90a0-72e7-91d2-327793db2916",
+     "payment_id": "01a1f94e-4214-701b-a73f-3875102518c9",
      "version": 1,
      "amount_minor": 2224600,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "invoice_id": "01a1f528-9096-76bc-9dae-8526b0bdcb37",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "invoice_id": "01a1f94e-420c-7519-b784-c8812c781d1b",
      "invoice_digest": "bbda8b5c9261b8c99a15d2633d504b3aa0712089d20ca9280bd4f4b30870c8a7",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "b704cf80f03fdabe3c0587fa01177002",
-     "expires_at_ms": 1794477237000
+     "nonce": "17777b87604c201a2c09e881d28d49c5",
+     "expires_at_ms": 1794546816000
     },
-    "digest": "6f851e6ee0c803872acb21cee2cef392f5be45c1eda4e3e2d19f7405eac34f5c",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "d6abbef143296cd050d041aca1ef929410527355fba688fe14ffafa3138b6a90",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [],
     "fields": [
      {
@@ -2115,17 +2115,17 @@
      "digest": "6f10b3aa80163a9e044ee67dd0a9c4a8cc7f1ec31ee96a1da3607f28dad1fb91"
     },
     "proposed_account": {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
      "masked": "\u2022\u2022\u2022\u2022 6789",
      "bank_name": "First Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_6b2557e"
     },
     "decisions": [
      {
@@ -2133,10 +2133,10 @@
       "decision": "allow",
       "reasons": [],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1629,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1547,
       "version": 1,
-      "at": "2026-11-05T09:53:57+00:00"
+      "at": "2026-11-06T05:13:36+00:00"
      }
     ],
     "timeline": [
@@ -2144,13 +2144,13 @@
       "seq": 55,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T09:53:57+00:00",
-      "hash": "6f63a2d64b62",
+      "at": "2026-11-06T05:13:36+00:00",
+      "hash": "676fd03c88f9",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "6f10b3aa80163a9e044ee67dd0a9c4a8cc7f1ec31ee96a1da3607f28dad1fb91",
        "attachment_digest": "bbda8b5c9261b8c99a15d2633d504b3aa0712089d20ca9280bd4f4b30870c8a7"
@@ -2160,30 +2160,30 @@
       "seq": 56,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T09:53:57+00:00",
-      "hash": "13c959e0957e",
+      "at": "2026-11-06T05:13:36+00:00",
+      "hash": "34a75ada675e",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6789",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-9096-76bc-9dae-8526b0bdcb37",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-420c-7519-b784-c8812c781d1b",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 2224600,
-       "account_token": "acct_bb7b833d82da1fe296d1edafc52501a1"
+       "account_token": "acct_6b2557ee6d5afcee6305c045ffc62a94"
       }
      },
      {
       "seq": 57,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T09:53:57+00:00",
-      "hash": "506b16e551ec",
+      "at": "2026-11-06T05:13:36+00:00",
+      "hash": "cebfe790f173",
       "payload": {
        "reasons": [],
        "runtime": "wasm",
        "decision": "allow",
-       "input_digest": "6a32565b800bcb0fe6dc9d0b6178d3545e336d45be4efbd40728e5be713ff343",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "569fe3c0c0235d3470d95ec24d69c4b2302799f53e906c81675f47617fe89a89",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -2192,8 +2192,8 @@
       "seq": 58,
       "kind": "payment.awaiting_approval",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T09:53:57+00:00",
-      "hash": "7d57d2aa2060",
+      "at": "2026-11-06T05:13:36+00:00",
+      "hash": "87458c661ed6",
       "payload": {
        "reasons": [],
        "version": 1
@@ -2207,7 +2207,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793872437000,
+    "now_ms": 1793942016000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -2216,7 +2216,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -2237,24 +2237,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-90a0-72e7-91d2-327793db2916",
+      "payment_id": "01a1f94e-4214-701b-a73f-3875102518c9",
       "version": 1,
       "amount_minor": 2224600,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "invoice_id": "01a1f528-9096-76bc-9dae-8526b0bdcb37",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "invoice_id": "01a1f94e-420c-7519-b784-c8812c781d1b",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "6f851e6ee0c803872acb21cee2cef392f5be45c1eda4e3e2d19f7405eac34f5c"
+      "digest": "d6abbef143296cd050d041aca1ef929410527355fba688fe14ffafa3138b6a90"
      },
      "requested_by": null,
-     "daily_total_minor": 9910520,
+     "daily_total_minor": 12565420,
      "fields": [
       {
        "field_name": "amount",
@@ -2293,13 +2293,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -2314,13 +2314,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-90de-73ae-832e-0f5b96e28f95",
+    "id": "01a1f94e-424b-73ad-acca-3ecf59dc2368",
     "state": "held",
     "version": 1,
     "amount_minor": 1034300,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+     "id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
      "legal_name": "Northwind Components LLC (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -2328,20 +2328,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
+       "id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
        "masked": "\u2022\u2022\u2022\u2022 4556",
        "bank_name": "Harborview Fictional Bank",
        "status": "verified",
        "verified_by": "Taylor Nguyen (verifier)",
        "verified_method": "simulated_validation_service",
        "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
+       "verified_at": "2026-10-06T14:13:36+00:00",
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_6cd240c"
+       "token_prefix": "acct_88fcae9"
       },
       {
-       "id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
+       "id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
        "masked": "\u2022\u2022\u2022\u2022 3033",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -2351,11 +2351,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_89b669e"
+       "token_prefix": "acct_d759dc1"
       }
      ]
     },
-    "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+    "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
     "invoice_number": "INV-2607-4845",
     "decision": "hold",
     "reasons": [
@@ -2367,29 +2367,29 @@
     ],
     "exposure_minor": 1034300,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T12:53:57+00:00",
-    "updated_at": "2026-11-05T12:53:57+00:00",
+    "created_at": "2026-11-06T08:13:36+00:00",
+    "updated_at": "2026-11-06T08:13:36+00:00",
     "scenario": "S4-north-100301",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-90de-73ae-832e-0f5b96e28f95",
+     "payment_id": "01a1f94e-424b-73ad-acca-3ecf59dc2368",
      "version": 1,
      "amount_minor": 1034300,
      "currency": "USD",
-     "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
-     "beneficiary_account_id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
-     "invoice_id": "01a1f528-90d1-7323-a4f2-a32cc0bbdfcc",
+     "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
+     "beneficiary_account_id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
+     "invoice_id": "01a1f94e-423f-7095-8377-87c25c2258c6",
      "invoice_digest": "e74d25f0aaa4424218af401f12aec0af45447028603cbfba7882ca19c5452039",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "718b554fafda9f66e3bb4bd639889f16",
-     "expires_at_ms": 1794488037000
+     "nonce": "8e3c0e357ec84dc7e0516c7b1f9ad935",
+     "expires_at_ms": 1794557616000
     },
-    "digest": "dae71e397788457fce725f2dfc50ea30e985b1919522dc08b3b32121272e373d",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "16d2bcb9bd6e4bdcfa61397976e12d02f3e8a7da06070ee54a26023b16bc67ef",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "BENEFICIARY_NOT_VERIFIED",
@@ -2621,7 +2621,7 @@
      "digest": "e249a1445aee140c78bfbf480c7e0cf37a697ca9f411fe8429013d6712ab9eaa"
     },
     "proposed_account": {
-     "id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
+     "id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
      "masked": "\u2022\u2022\u2022\u2022 3033",
      "bank_name": "Second Fictional Bank",
      "status": "pending",
@@ -2631,7 +2631,7 @@
      "verified_at": null,
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_89b669e"
+     "token_prefix": "acct_d759dc1"
     },
     "decisions": [
      {
@@ -2645,10 +2645,10 @@
        "SIGNAL_PROMPT_INJECTION"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1691,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1858,
       "version": 1,
-      "at": "2026-11-05T12:53:57+00:00"
+      "at": "2026-11-06T08:13:36+00:00"
      }
     ],
     "timeline": [
@@ -2656,8 +2656,8 @@
       "seq": 61,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T12:53:57+00:00",
-      "hash": "340bf97f7cc3",
+      "at": "2026-11-06T08:13:36+00:00",
+      "hash": "7f74e5608ada",
       "payload": {
        "signals": [
         "SIGNAL_LOOKALIKE_DOMAIN",
@@ -2666,7 +2666,7 @@
        ],
        "extractor": "deterministic",
        "from_domain": "northwind-cornponents.example",
-       "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+       "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
        "duplicate_of": null,
        "email_digest": "e249a1445aee140c78bfbf480c7e0cf37a697ca9f411fe8429013d6712ab9eaa",
        "attachment_digest": "e74d25f0aaa4424218af401f12aec0af45447028603cbfba7882ca19c5452039"
@@ -2676,24 +2676,24 @@
       "seq": 62,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T12:53:57+00:00",
-      "hash": "c7f16b4848cc",
+      "at": "2026-11-06T08:13:36+00:00",
+      "hash": "e5aeba390c8e",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 3033",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-90d1-7323-a4f2-a32cc0bbdfcc",
-       "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+       "invoice_id": "01a1f94e-423f-7095-8377-87c25c2258c6",
+       "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
        "amount_minor": 1034300,
-       "account_token": "acct_89b669ee1376826478577c6bb3b36f73"
+       "account_token": "acct_d759dc1484b1a121f34db06fd7a4ef91"
       }
      },
      {
       "seq": 63,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T12:53:57+00:00",
-      "hash": "69f560dbbc1f",
+      "at": "2026-11-06T08:13:36+00:00",
+      "hash": "5801872da3ff",
       "payload": {
        "reasons": [
         "BENEFICIARY_NOT_VERIFIED",
@@ -2704,8 +2704,8 @@
        ],
        "runtime": "wasm",
        "decision": "hold",
-       "input_digest": "d0778f2e6f6ab2e0e9e616aad7fde2b08e663cbe60fed2bfe166dc9f738211a2",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "ccf717fce74b7fce622ec804f2a20e5f7d6a8ffd26653f6de4f0fb2481bfbbf6",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -2714,8 +2714,8 @@
       "seq": 64,
       "kind": "payment.held",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T12:53:57+00:00",
-      "hash": "616fcfd87efc",
+      "at": "2026-11-06T08:13:36+00:00",
+      "hash": "b60f78f71ce2",
       "payload": {
        "reasons": [
         "BENEFICIARY_NOT_VERIFIED",
@@ -2735,7 +2735,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793883237000,
+    "now_ms": 1793952816000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -2744,7 +2744,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -2765,24 +2765,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-90de-73ae-832e-0f5b96e28f95",
+      "payment_id": "01a1f94e-424b-73ad-acca-3ecf59dc2368",
       "version": 1,
       "amount_minor": 1034300,
       "currency": "USD",
-      "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
-      "beneficiary_account_id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
-      "invoice_id": "01a1f528-90d1-7323-a4f2-a32cc0bbdfcc",
+      "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
+      "beneficiary_account_id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
+      "invoice_id": "01a1f94e-423f-7095-8377-87c25c2258c6",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "dae71e397788457fce725f2dfc50ea30e985b1919522dc08b3b32121272e373d"
+      "digest": "16d2bcb9bd6e4bdcfa61397976e12d02f3e8a7da06070ee54a26023b16bc67ef"
      },
      "requested_by": null,
-     "daily_total_minor": 11100820,
+     "daily_total_minor": 13755720,
      "fields": [
       {
        "field_name": "amount",
@@ -2821,13 +2821,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+      "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
-      "supplier_id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+      "account_id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
+      "supplier_id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
       "status": "pending",
       "cooling_off_until_ms": null
      },
@@ -2855,13 +2855,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-910b-75cf-9aab-132b8b53684e",
+    "id": "01a1f94e-4273-7510-b86a-34a37cae27bd",
     "state": "held",
     "version": 1,
     "amount_minor": 3873520,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -2869,7 +2869,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -2879,24 +2892,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-8424",
     "decision": "hold",
     "reasons": [
@@ -2905,29 +2905,29 @@
     ],
     "exposure_minor": 3873520,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T15:53:57+00:00",
-    "updated_at": "2026-11-05T15:53:57+00:00",
+    "created_at": "2026-11-06T11:13:36+00:00",
+    "updated_at": "2026-11-06T11:13:36+00:00",
     "scenario": "S6-acme-100500",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-910b-75cf-9aab-132b8b53684e",
+     "payment_id": "01a1f94e-4273-7510-b86a-34a37cae27bd",
      "version": 1,
      "amount_minor": 3873520,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "invoice_id": "01a1f528-9101-767f-ab99-ef8fba2a26a5",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "invoice_id": "01a1f94e-426a-7559-a435-177193f6fb4d",
      "invoice_digest": "4e08a62b52db9bd162e564866ac3a66ac70c9512eef6a6394894a630f860adf0",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "5fd98363f4569e16c6e981ca0ea1b5e7",
-     "expires_at_ms": 1794498837000
+     "nonce": "22832ad90d642b6e8e86e53d3cce45f4",
+     "expires_at_ms": 1794568416000
     },
-    "digest": "362043a3000af2eaaf80a34e7d23a6aa8f06b273a7fa05a4604b3c3d99208557",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "e2ce673bfee72b5fe1ba735ab3f72e896e1319586363dbc6d25d0ccf512a7eec",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "FIELD_UNTRUSTED_MATERIAL",
@@ -3130,17 +3130,17 @@
      "digest": "825acb7d127403ca9dd1f531f431c7bf463cf7df1bac3fc9175ccb6c298b2f02"
     },
     "proposed_account": {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
      "masked": "\u2022\u2022\u2022\u2022 6789",
      "bank_name": "First Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_6b2557e"
     },
     "decisions": [
      {
@@ -3151,10 +3151,10 @@
        "SIGNAL_PROMPT_INJECTION"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1573,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1637,
       "version": 1,
-      "at": "2026-11-05T15:53:57+00:00"
+      "at": "2026-11-06T11:13:36+00:00"
      }
     ],
     "timeline": [
@@ -3162,15 +3162,15 @@
       "seq": 65,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T15:53:57+00:00",
-      "hash": "8c336740ac08",
+      "at": "2026-11-06T11:13:36+00:00",
+      "hash": "f83d13d5dc35",
       "payload": {
        "signals": [
         "SIGNAL_PROMPT_INJECTION"
        ],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "825acb7d127403ca9dd1f531f431c7bf463cf7df1bac3fc9175ccb6c298b2f02",
        "attachment_digest": "4e08a62b52db9bd162e564866ac3a66ac70c9512eef6a6394894a630f860adf0"
@@ -3180,24 +3180,24 @@
       "seq": 66,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T15:53:57+00:00",
-      "hash": "a2c6132142b0",
+      "at": "2026-11-06T11:13:36+00:00",
+      "hash": "63a2c092fff5",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6789",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-9101-767f-ab99-ef8fba2a26a5",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-426a-7559-a435-177193f6fb4d",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 3873520,
-       "account_token": "acct_bb7b833d82da1fe296d1edafc52501a1"
+       "account_token": "acct_6b2557ee6d5afcee6305c045ffc62a94"
       }
      },
      {
       "seq": 67,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T15:53:57+00:00",
-      "hash": "853e7da3a2a8",
+      "at": "2026-11-06T11:13:36+00:00",
+      "hash": "b58efa05ddbf",
       "payload": {
        "reasons": [
         "FIELD_UNTRUSTED_MATERIAL",
@@ -3205,8 +3205,8 @@
        ],
        "runtime": "wasm",
        "decision": "hold",
-       "input_digest": "888a8e843b7a627a42492af58a883df38b72a3e15f7cdd1227f43c4bc730e53c",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "ede3550cdef49954b083be1349179cad392d489b9594a7c4a6f3d08ac4de7755",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -3215,8 +3215,8 @@
       "seq": 68,
       "kind": "payment.held",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T15:53:57+00:00",
-      "hash": "14fb12717fd9",
+      "at": "2026-11-06T11:13:36+00:00",
+      "hash": "cf385ad3902d",
       "payload": {
        "reasons": [
         "FIELD_UNTRUSTED_MATERIAL",
@@ -3233,7 +3233,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793894037000,
+    "now_ms": 1793963616000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -3242,7 +3242,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -3263,24 +3263,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-910b-75cf-9aab-132b8b53684e",
+      "payment_id": "01a1f94e-4273-7510-b86a-34a37cae27bd",
       "version": 1,
       "amount_minor": 3873520,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "invoice_id": "01a1f528-9101-767f-ab99-ef8fba2a26a5",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "invoice_id": "01a1f94e-426a-7559-a435-177193f6fb4d",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "362043a3000af2eaaf80a34e7d23a6aa8f06b273a7fa05a4604b3c3d99208557"
+      "digest": "e2ce673bfee72b5fe1ba735ab3f72e896e1319586363dbc6d25d0ccf512a7eec"
      },
      "requested_by": null,
-     "daily_total_minor": 8261600,
+     "daily_total_minor": 10916500,
      "fields": [
       {
        "field_name": "amount",
@@ -3319,13 +3319,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -3345,13 +3345,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-9134-70be-b769-af55a4630b45",
+    "id": "01a1f94e-4299-7150-97c2-0453408a2ff5",
     "state": "denied",
     "version": 1,
     "amount_minor": 6200000,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -3359,7 +3359,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -3369,24 +3382,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-6650",
     "decision": "deny",
     "reasons": [
@@ -3394,29 +3394,29 @@
     ],
     "exposure_minor": 6200000,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T18:53:57+00:00",
-    "updated_at": "2026-11-05T18:53:57+00:00",
+    "created_at": "2026-11-06T14:13:36+00:00",
+    "updated_at": "2026-11-06T14:13:36+00:00",
     "scenario": "S7-acme-100600",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-9134-70be-b769-af55a4630b45",
+     "payment_id": "01a1f94e-4299-7150-97c2-0453408a2ff5",
      "version": 1,
      "amount_minor": 6200000,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "invoice_id": "01a1f528-912c-74d9-a0dc-b97c11822b57",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "invoice_id": "01a1f94e-4290-7756-b2a3-b7e01d948f8a",
      "invoice_digest": "8425e40bf4fd5fb53873e99d02c7c0927d85f7c43d47948a6a9e86edf3c6730a",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "4fda278241ef78e9a3f6b2e438151a6c",
-     "expires_at_ms": 1794509637000
+     "nonce": "db8f84de38518915725230bd2c6e5014",
+     "expires_at_ms": 1794579216000
     },
-    "digest": "efb7b66a39f135b97d1f08401533a044f348c11684fcb2b27c21aea7def42823",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "a762cbc2f3640cce1098c83a0ff1c174c0ea7b62b358d8136ed5a6b5959df666",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "OVER_CEILING",
@@ -3603,17 +3603,17 @@
      "digest": "fbcbb1956dbdf57057ce4c75a2d016697fa5c1c432fa98fcc23eca46929bcc22"
     },
     "proposed_account": {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
      "masked": "\u2022\u2022\u2022\u2022 6789",
      "bank_name": "First Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_6b2557e"
     },
     "decisions": [
      {
@@ -3623,10 +3623,10 @@
        "OVER_CEILING"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1743,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1620,
       "version": 1,
-      "at": "2026-11-05T18:53:57+00:00"
+      "at": "2026-11-06T14:13:36+00:00"
      }
     ],
     "timeline": [
@@ -3634,13 +3634,13 @@
       "seq": 69,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T18:53:57+00:00",
-      "hash": "46027d3c6e38",
+      "at": "2026-11-06T14:13:36+00:00",
+      "hash": "05c08d34959d",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "fbcbb1956dbdf57057ce4c75a2d016697fa5c1c432fa98fcc23eca46929bcc22",
        "attachment_digest": "8425e40bf4fd5fb53873e99d02c7c0927d85f7c43d47948a6a9e86edf3c6730a"
@@ -3650,32 +3650,32 @@
       "seq": 70,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T18:53:57+00:00",
-      "hash": "d4f3f387373e",
+      "at": "2026-11-06T14:13:36+00:00",
+      "hash": "d9c514898c72",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6789",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-912c-74d9-a0dc-b97c11822b57",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-4290-7756-b2a3-b7e01d948f8a",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 6200000,
-       "account_token": "acct_bb7b833d82da1fe296d1edafc52501a1"
+       "account_token": "acct_6b2557ee6d5afcee6305c045ffc62a94"
       }
      },
      {
       "seq": 71,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T18:53:57+00:00",
-      "hash": "a64e7344105d",
+      "at": "2026-11-06T14:13:36+00:00",
+      "hash": "877e80b7aca7",
       "payload": {
        "reasons": [
         "OVER_CEILING"
        ],
        "runtime": "wasm",
        "decision": "deny",
-       "input_digest": "bf7b588b6098ad06513afb19c18de32883b6c41bcea3b4706f057f0995d09263",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "abe359de4764baec1dc490e756f806c612d28922749cdaceae9861e67a97e5bb",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -3684,8 +3684,8 @@
       "seq": 72,
       "kind": "payment.denied",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T18:53:57+00:00",
-      "hash": "b44b6f7f7180",
+      "at": "2026-11-06T14:13:36+00:00",
+      "hash": "3cdaaa0cdb54",
       "payload": {
        "reasons": [
         "OVER_CEILING"
@@ -3701,7 +3701,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793904837000,
+    "now_ms": 1793974416000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -3710,7 +3710,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -3731,24 +3731,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-9134-70be-b769-af55a4630b45",
+      "payment_id": "01a1f94e-4299-7150-97c2-0453408a2ff5",
       "version": 1,
       "amount_minor": 6200000,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "invoice_id": "01a1f528-912c-74d9-a0dc-b97c11822b57",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "invoice_id": "01a1f94e-4290-7756-b2a3-b7e01d948f8a",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "efb7b66a39f135b97d1f08401533a044f348c11684fcb2b27c21aea7def42823"
+      "digest": "a762cbc2f3640cce1098c83a0ff1c174c0ea7b62b358d8136ed5a6b5959df666"
      },
      "requested_by": null,
-     "daily_total_minor": 12135120,
+     "daily_total_minor": 14790020,
      "fields": [
       {
        "field_name": "amount",
@@ -3787,13 +3787,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -3808,13 +3808,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-915f-76eb-bb7f-6378db789f81",
+    "id": "01a1f94e-42be-715e-b343-d10bc3b6544b",
     "state": "denied",
     "version": 1,
     "amount_minor": 4363900,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -3822,7 +3822,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -3832,24 +3845,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-1841",
     "decision": "deny",
     "reasons": [
@@ -3861,29 +3861,29 @@
     ],
     "exposure_minor": 4363900,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-05T21:53:57+00:00",
-    "updated_at": "2026-11-05T21:53:57+00:00",
+    "created_at": "2026-11-06T17:13:36+00:00",
+    "updated_at": "2026-11-06T17:13:36+00:00",
     "scenario": "S9-acme-100800",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-915f-76eb-bb7f-6378db789f81",
+     "payment_id": "01a1f94e-42be-715e-b343-d10bc3b6544b",
      "version": 1,
      "amount_minor": 4363900,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "beneficiary_account_id": "",
-     "invoice_id": "01a1f528-9156-74a4-8b8c-124daab0c478",
+     "invoice_id": "01a1f94e-42b7-77ff-8101-48e7cc70d3f9",
      "invoice_digest": "0ead7dc3c4b67a8b687fe396ceb322bff5d51157a4854d14d0359a3f2f8f1650",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "1fe38cd027e2857b37e8b08f9d763009",
-     "expires_at_ms": 1794520437000
+     "nonce": "247195ebed749c88f585ee84c48b4102",
+     "expires_at_ms": 1794590016000
     },
-    "digest": "214459937f8c89146ef9f6f9c7cd854ba67b6b3975d255c01c995aaa61775808",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "bbf9de7a405be11d6833c98a8bedb46cb25e1a7b5532a9dedd277d63b1b23673",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "BENEFICIARY_MISMATCH",
@@ -4101,10 +4101,10 @@
        "FIELD_UNTRUSTED_MATERIAL"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1431,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1547,
       "version": 1,
-      "at": "2026-11-05T21:53:57+00:00"
+      "at": "2026-11-06T17:13:36+00:00"
      }
     ],
     "timeline": [
@@ -4112,13 +4112,13 @@
       "seq": 73,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-05T21:53:57+00:00",
-      "hash": "390595e11294",
+      "at": "2026-11-06T17:13:36+00:00",
+      "hash": "0977a541d34a",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "7d7b2dd367cfdeec2277d784ccef9be21c9af08aea27a5644a762305c4d87b76",
        "attachment_digest": "0ead7dc3c4b67a8b687fe396ceb322bff5d51157a4854d14d0359a3f2f8f1650"
@@ -4128,24 +4128,24 @@
       "seq": 74,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T21:53:57+00:00",
-      "hash": "8d787c2a2968",
+      "at": "2026-11-06T17:13:36+00:00",
+      "hash": "2acc50e985dd",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6677",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-9156-74a4-8b8c-124daab0c478",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-42b7-77ff-8101-48e7cc70d3f9",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 4363900,
-       "account_token": "acct_5495b4e86edb00ea0ec8f8cabd7f76bf"
+       "account_token": "acct_4b5b63b9e1062706368353e8b60f841a"
       }
      },
      {
       "seq": 75,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T21:53:57+00:00",
-      "hash": "50b6b7e025f8",
+      "at": "2026-11-06T17:13:36+00:00",
+      "hash": "6190eb628af7",
       "payload": {
        "reasons": [
         "BENEFICIARY_MISMATCH",
@@ -4156,8 +4156,8 @@
        ],
        "runtime": "wasm",
        "decision": "deny",
-       "input_digest": "18a541ed3c91b387edabbc06b0385942864fe0065cece108c1da788e7831a08b",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "711cb402c518a9c8bae433cc285b4a871d97817e2b59b7fdd7628d71cb1fe075",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -4166,8 +4166,8 @@
       "seq": 76,
       "kind": "payment.denied",
       "actor": "AP-Agent-001",
-      "at": "2026-11-05T21:53:57+00:00",
-      "hash": "edc4142ce667",
+      "at": "2026-11-06T17:13:36+00:00",
+      "hash": "040c79167e74",
       "payload": {
        "reasons": [
         "BENEFICIARY_MISMATCH",
@@ -4187,7 +4187,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793915637000,
+    "now_ms": 1793985216000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -4196,7 +4196,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -4217,24 +4217,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-915f-76eb-bb7f-6378db789f81",
+      "payment_id": "01a1f94e-42be-715e-b343-d10bc3b6544b",
       "version": 1,
       "amount_minor": 4363900,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "beneficiary_account_id": null,
-      "invoice_id": "01a1f528-9156-74a4-8b8c-124daab0c478",
+      "invoice_id": "01a1f94e-42b7-77ff-8101-48e7cc70d3f9",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "214459937f8c89146ef9f6f9c7cd854ba67b6b3975d255c01c995aaa61775808"
+      "digest": "bbf9de7a405be11d6833c98a8bedb46cb25e1a7b5532a9dedd277d63b1b23673"
      },
      "requested_by": null,
-     "daily_total_minor": 12135120,
+     "daily_total_minor": 14790020,
      "fields": [
       {
        "field_name": "amount",
@@ -4273,7 +4273,7 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
@@ -4289,13 +4289,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-9184-754c-b9e5-424dd36b4559",
+    "id": "01a1f94e-42e7-75e3-8133-a246b6a05c17",
     "state": "awaiting_approval",
     "version": 1,
     "amount_minor": 1551500,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+     "id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
      "legal_name": "Bluebird Packaging Inc. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -4303,20 +4303,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-8ddb-769e-bca0-23c95def2686",
+       "id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
        "masked": "\u2022\u2022\u2022\u2022 5667",
        "bank_name": "Lakeside Fictional Bank",
        "status": "verified",
        "verified_by": "Taylor Nguyen (verifier)",
        "verified_method": "simulated_validation_service",
        "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
+       "verified_at": "2026-10-06T14:13:36+00:00",
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_169b9cc"
+       "token_prefix": "acct_76887c9"
       },
       {
-       "id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
+       "id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
        "masked": "\u2022\u2022\u2022\u2022 5271",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -4326,39 +4326,39 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ed5a816"
+       "token_prefix": "acct_876711d"
       }
      ]
     },
-    "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+    "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
     "invoice_number": "INV-2607-6476",
     "decision": "allow",
     "reasons": [],
     "exposure_minor": 0,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-06T00:53:57+00:00",
-    "updated_at": "2026-11-06T00:53:57+00:00",
+    "created_at": "2026-11-06T20:13:36+00:00",
+    "updated_at": "2026-11-06T20:13:36+00:00",
     "scenario": "L1-blue-101302",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-9184-754c-b9e5-424dd36b4559",
+     "payment_id": "01a1f94e-42e7-75e3-8133-a246b6a05c17",
      "version": 1,
      "amount_minor": 1551500,
      "currency": "USD",
-     "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
-     "beneficiary_account_id": "01a1f528-8ddb-769e-bca0-23c95def2686",
-     "invoice_id": "01a1f528-917c-724e-9f93-435636773131",
+     "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
+     "beneficiary_account_id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
+     "invoice_id": "01a1f94e-42de-7189-88f8-1853640f0bcc",
      "invoice_digest": "b98ebfa1c71f0bf40aa1637aa851728d08acfa866bd0fcb18b1a988a7a7c27a6",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "6b76ac4599345dea41ccb6157982d578",
-     "expires_at_ms": 1794531237000
+     "nonce": "47a2a4c3addd8b575af38d2fb3ac3113",
+     "expires_at_ms": 1794600816000
     },
-    "digest": "22b2ad5065da93209a7090c6cb24a63ae3ba007428418ecd0122772574563591",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "7ee64d90b507d71f01a2b7b737d11d23389143ba9c109a9059b258906ffa8300",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [],
     "fields": [
      {
@@ -4540,17 +4540,17 @@
      "digest": "727f90db9efbf10496b73d6770fa96a6b171d0771a0744972f7cd6d8e8182863"
     },
     "proposed_account": {
-     "id": "01a1f528-8ddb-769e-bca0-23c95def2686",
+     "id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
      "masked": "\u2022\u2022\u2022\u2022 5667",
      "bank_name": "Lakeside Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_169b9cc"
+     "token_prefix": "acct_76887c9"
     },
     "decisions": [
      {
@@ -4558,10 +4558,10 @@
       "decision": "allow",
       "reasons": [],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1466,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1423,
       "version": 1,
-      "at": "2026-11-06T00:53:57+00:00"
+      "at": "2026-11-06T20:13:36+00:00"
      }
     ],
     "timeline": [
@@ -4569,13 +4569,13 @@
       "seq": 77,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-06T00:53:57+00:00",
-      "hash": "2ebf95924a03",
+      "at": "2026-11-06T20:13:36+00:00",
+      "hash": "35d89a2abe4f",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "bluebird-packaging.example",
-       "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+       "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
        "duplicate_of": null,
        "email_digest": "727f90db9efbf10496b73d6770fa96a6b171d0771a0744972f7cd6d8e8182863",
        "attachment_digest": "b98ebfa1c71f0bf40aa1637aa851728d08acfa866bd0fcb18b1a988a7a7c27a6"
@@ -4585,30 +4585,30 @@
       "seq": 78,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T00:53:57+00:00",
-      "hash": "676e4af73e85",
+      "at": "2026-11-06T20:13:36+00:00",
+      "hash": "296333840ce1",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 5667",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-917c-724e-9f93-435636773131",
-       "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+       "invoice_id": "01a1f94e-42de-7189-88f8-1853640f0bcc",
+       "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
        "amount_minor": 1551500,
-       "account_token": "acct_169b9cc04aedf575e03309b8e8d31926"
+       "account_token": "acct_76887c986fe6c6c7b0e80f347078c685"
       }
      },
      {
       "seq": 79,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T00:53:57+00:00",
-      "hash": "afc8f092903d",
+      "at": "2026-11-06T20:13:36+00:00",
+      "hash": "82676ea48a01",
       "payload": {
        "reasons": [],
        "runtime": "wasm",
        "decision": "allow",
-       "input_digest": "998bc15cf64100cd4a0d230f2c7a5ab991c4eebf72f60be2d16cef38ae91bf63",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "3b17ddba2138ae46d2e7e818aced2c1e4875babdc940a95ab51b7db8770ebebe",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -4617,8 +4617,8 @@
       "seq": 80,
       "kind": "payment.awaiting_approval",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T00:53:57+00:00",
-      "hash": "6ce8514bb679",
+      "at": "2026-11-06T20:13:36+00:00",
+      "hash": "9547c1d29324",
       "payload": {
        "reasons": [],
        "version": 1
@@ -4632,7 +4632,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793926437000,
+    "now_ms": 1793996016000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -4641,7 +4641,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -4662,24 +4662,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-9184-754c-b9e5-424dd36b4559",
+      "payment_id": "01a1f94e-42e7-75e3-8133-a246b6a05c17",
       "version": 1,
       "amount_minor": 1551500,
       "currency": "USD",
-      "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
-      "beneficiary_account_id": "01a1f528-8ddb-769e-bca0-23c95def2686",
-      "invoice_id": "01a1f528-917c-724e-9f93-435636773131",
+      "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
+      "beneficiary_account_id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
+      "invoice_id": "01a1f94e-42de-7189-88f8-1853640f0bcc",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "22b2ad5065da93209a7090c6cb24a63ae3ba007428418ecd0122772574563591"
+      "digest": "7ee64d90b507d71f01a2b7b737d11d23389143ba9c109a9059b258906ffa8300"
      },
      "requested_by": null,
-     "daily_total_minor": 4500200,
+     "daily_total_minor": 13238520,
      "fields": [
       {
        "field_name": "amount",
@@ -4718,13 +4718,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+      "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8ddb-769e-bca0-23c95def2686",
-      "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+      "account_id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
+      "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -4739,13 +4739,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-91b0-7778-be32-7cf80b869f6b",
+    "id": "01a1f94e-430d-71d8-9896-df32aa0c7ab9",
     "state": "held",
     "version": 1,
     "amount_minor": 2050300,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -4753,7 +4753,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -4763,24 +4776,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-1854",
     "decision": "hold",
     "reasons": [
@@ -4788,29 +4788,29 @@
     ],
     "exposure_minor": 2050300,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-06T03:53:57+00:00",
-    "updated_at": "2026-11-06T03:53:57+00:00",
+    "created_at": "2026-11-06T23:13:36+00:00",
+    "updated_at": "2026-11-06T23:13:36+00:00",
     "scenario": "S5-acme-100400",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-91b0-7778-be32-7cf80b869f6b",
+     "payment_id": "01a1f94e-430d-71d8-9896-df32aa0c7ab9",
      "version": 1,
      "amount_minor": 2050300,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "invoice_id": "01a1f528-91a6-701f-82a1-645de48fd944",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "invoice_id": "01a1f94e-4304-75c4-8f0f-23db6e45e64e",
      "invoice_digest": "ade947835c16b5c9670fa0974e78fb24ee2fae78fc60b72873ecf979d4c9a744",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "8c873035f6cbeb8f15ed4681e5d7a57b",
-     "expires_at_ms": 1794542037000
+     "nonce": "9a830a82d5b0d10449ba70c1a50e5917",
+     "expires_at_ms": 1794611616000
     },
-    "digest": "372e2399fce71e07c8f14242e604f54bbabf166ca31215d14c33f41b6a73122c",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "560f8e607832da500f54e98d169d66effa278db76de88e45c3f14f192b5761cb",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "SIGNAL_PROMPT_INJECTION",
@@ -5009,17 +5009,17 @@
      "digest": "3c62c7dc70478bf7b86b7db5238d81c24b768c4187fd2850932f906a0d0d2d79"
     },
     "proposed_account": {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
      "masked": "\u2022\u2022\u2022\u2022 6789",
      "bank_name": "First Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_6b2557e"
     },
     "decisions": [
      {
@@ -5029,10 +5029,10 @@
        "SIGNAL_PROMPT_INJECTION"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1463,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1465,
       "version": 1,
-      "at": "2026-11-06T03:53:57+00:00"
+      "at": "2026-11-06T23:13:36+00:00"
      }
     ],
     "timeline": [
@@ -5040,15 +5040,15 @@
       "seq": 81,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-06T03:53:57+00:00",
-      "hash": "2ee3875b8874",
+      "at": "2026-11-06T23:13:36+00:00",
+      "hash": "6276e60e2556",
       "payload": {
        "signals": [
         "SIGNAL_PROMPT_INJECTION"
        ],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "3c62c7dc70478bf7b86b7db5238d81c24b768c4187fd2850932f906a0d0d2d79",
        "attachment_digest": "ade947835c16b5c9670fa0974e78fb24ee2fae78fc60b72873ecf979d4c9a744"
@@ -5058,32 +5058,32 @@
       "seq": 82,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T03:53:57+00:00",
-      "hash": "f0137ff646bf",
+      "at": "2026-11-06T23:13:36+00:00",
+      "hash": "910ef782b9ad",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6789",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-91a6-701f-82a1-645de48fd944",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-4304-75c4-8f0f-23db6e45e64e",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 2050300,
-       "account_token": "acct_bb7b833d82da1fe296d1edafc52501a1"
+       "account_token": "acct_6b2557ee6d5afcee6305c045ffc62a94"
       }
      },
      {
       "seq": 83,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T03:53:57+00:00",
-      "hash": "e1813a7df496",
+      "at": "2026-11-06T23:13:36+00:00",
+      "hash": "71a60705b4ad",
       "payload": {
        "reasons": [
         "SIGNAL_PROMPT_INJECTION"
        ],
        "runtime": "wasm",
        "decision": "hold",
-       "input_digest": "12a923e09e071b5b32cd723675134dbc26280ad789ebcd8c0f02c2826bbeeea3",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "4f65e4cf65c48a0d8c0e0d2cd7e995ee6a16b2432a13de2f8380914af9e2570b",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -5092,8 +5092,8 @@
       "seq": 84,
       "kind": "payment.held",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T03:53:57+00:00",
-      "hash": "f57e7a1707a3",
+      "at": "2026-11-06T23:13:36+00:00",
+      "hash": "e4b16903233e",
       "payload": {
        "reasons": [
         "SIGNAL_PROMPT_INJECTION"
@@ -5109,7 +5109,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793937237000,
+    "now_ms": 1794006816000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -5118,7 +5118,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -5139,24 +5139,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-91b0-7778-be32-7cf80b869f6b",
+      "payment_id": "01a1f94e-430d-71d8-9896-df32aa0c7ab9",
       "version": 1,
       "amount_minor": 2050300,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "invoice_id": "01a1f528-91a6-701f-82a1-645de48fd944",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "invoice_id": "01a1f94e-4304-75c4-8f0f-23db6e45e64e",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "372e2399fce71e07c8f14242e604f54bbabf166ca31215d14c33f41b6a73122c"
+      "digest": "560f8e607832da500f54e98d169d66effa278db76de88e45c3f14f192b5761cb"
      },
      "requested_by": null,
-     "daily_total_minor": 4001400,
+     "daily_total_minor": 12739720,
      "fields": [
       {
        "field_name": "amount",
@@ -5195,13 +5195,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -5221,13 +5221,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-91e2-72da-98c3-9b543d286063",
+    "id": "01a1f94e-433c-71b4-acff-4531252c7213",
     "state": "held",
     "version": 1,
     "amount_minor": 2449900,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+     "id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
      "legal_name": "Bluebird Packaging Inc. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -5235,20 +5235,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-8ddb-769e-bca0-23c95def2686",
+       "id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
        "masked": "\u2022\u2022\u2022\u2022 5667",
        "bank_name": "Lakeside Fictional Bank",
        "status": "verified",
        "verified_by": "Taylor Nguyen (verifier)",
        "verified_method": "simulated_validation_service",
        "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
+       "verified_at": "2026-10-06T14:13:36+00:00",
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_169b9cc"
+       "token_prefix": "acct_76887c9"
       },
       {
-       "id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
+       "id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
        "masked": "\u2022\u2022\u2022\u2022 5271",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -5258,11 +5258,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ed5a816"
+       "token_prefix": "acct_876711d"
       }
      ]
     },
-    "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+    "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
     "invoice_number": "INV-2607-6891",
     "decision": "hold",
     "reasons": [
@@ -5271,29 +5271,29 @@
     ],
     "exposure_minor": 2449900,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-06T06:53:57+00:00",
-    "updated_at": "2026-11-06T06:53:57+00:00",
+    "created_at": "2026-11-07T02:13:36+00:00",
+    "updated_at": "2026-11-07T02:13:36+00:00",
     "scenario": "L2-blue-101402",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-91e2-72da-98c3-9b543d286063",
+     "payment_id": "01a1f94e-433c-71b4-acff-4531252c7213",
      "version": 1,
      "amount_minor": 2449900,
      "currency": "USD",
-     "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
-     "beneficiary_account_id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
-     "invoice_id": "01a1f528-91da-7651-aa0c-c2518b425af7",
+     "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
+     "beneficiary_account_id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
+     "invoice_id": "01a1f94e-4334-75ed-ac68-d87644c437e6",
      "invoice_digest": "aea684c8d66c66083e00b00fc3a28ec6dc7ec4559675951a59e6d9c73ea48a9c",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "e7052d70b91587d66557c31daa2d34e4",
-     "expires_at_ms": 1794552837000
+     "nonce": "31c3821b6064abecdad77dde7ff84fc5",
+     "expires_at_ms": 1794622416000
     },
-    "digest": "3ddb15938c528a63482e7a4fb05938e261073eaf945b26ea480973f56035cb9b",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "329a00e90f0bb97bd7a1fa60060abfa78537d3d6abcdb0726babf5e78de198f6",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "BENEFICIARY_NOT_VERIFIED",
@@ -5484,7 +5484,7 @@
      "digest": "cbc6890d93d0dbd3af06c38466855b0326c871ff32ba3014aa427e702c73bcc9"
     },
     "proposed_account": {
-     "id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
+     "id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
      "masked": "\u2022\u2022\u2022\u2022 5271",
      "bank_name": "Second Fictional Bank",
      "status": "pending",
@@ -5494,7 +5494,7 @@
      "verified_at": null,
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_ed5a816"
+     "token_prefix": "acct_876711d"
     },
     "decisions": [
      {
@@ -5505,10 +5505,10 @@
        "FIELD_UNTRUSTED_MATERIAL"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1532,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1677,
       "version": 1,
-      "at": "2026-11-06T06:53:57+00:00"
+      "at": "2026-11-07T02:13:36+00:00"
      }
     ],
     "timeline": [
@@ -5516,13 +5516,13 @@
       "seq": 87,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-06T06:53:57+00:00",
-      "hash": "2cb73ec5d0d4",
+      "at": "2026-11-07T02:13:36+00:00",
+      "hash": "6cb925d16e17",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "bluebird-packaging.example",
-       "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+       "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
        "duplicate_of": null,
        "email_digest": "cbc6890d93d0dbd3af06c38466855b0326c871ff32ba3014aa427e702c73bcc9",
        "attachment_digest": "aea684c8d66c66083e00b00fc3a28ec6dc7ec4559675951a59e6d9c73ea48a9c"
@@ -5532,24 +5532,24 @@
       "seq": 88,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T06:53:57+00:00",
-      "hash": "22c496634332",
+      "at": "2026-11-07T02:13:36+00:00",
+      "hash": "4650889817f1",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 5271",
        "currency": "USD",
        "operation": "propose_payment",
-       "invoice_id": "01a1f528-91da-7651-aa0c-c2518b425af7",
-       "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+       "invoice_id": "01a1f94e-4334-75ed-ac68-d87644c437e6",
+       "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
        "amount_minor": 2449900,
-       "account_token": "acct_ed5a816e451bb834e5e01f85e1bf557c"
+       "account_token": "acct_876711d246ba54490d565fff5d58cc5f"
       }
      },
      {
       "seq": 89,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T06:53:57+00:00",
-      "hash": "77c25a5cfc56",
+      "at": "2026-11-07T02:13:36+00:00",
+      "hash": "4e73a79db346",
       "payload": {
        "reasons": [
         "BENEFICIARY_NOT_VERIFIED",
@@ -5557,8 +5557,8 @@
        ],
        "runtime": "wasm",
        "decision": "hold",
-       "input_digest": "a576ea471c49fa560a6ccacdb18ce0cf3adda42f0eaf3583b85c7d77224684f3",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "9431cdbf8608cc4a0a98e8fdeca15c67a4b93c145ceaf2d094327f28e6dfe591",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -5567,8 +5567,8 @@
       "seq": 90,
       "kind": "payment.held",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T06:53:57+00:00",
-      "hash": "eeab5c49486c",
+      "at": "2026-11-07T02:13:36+00:00",
+      "hash": "a469dedbe319",
       "payload": {
        "reasons": [
         "BENEFICIARY_NOT_VERIFIED",
@@ -5585,7 +5585,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793948037000,
+    "now_ms": 1794017616000,
     "payment": {
      "stage": "evaluate",
      "operation": "propose_payment",
@@ -5594,7 +5594,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -5615,24 +5615,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-91e2-72da-98c3-9b543d286063",
+      "payment_id": "01a1f94e-433c-71b4-acff-4531252c7213",
       "version": 1,
       "amount_minor": 2449900,
       "currency": "USD",
-      "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
-      "beneficiary_account_id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
-      "invoice_id": "01a1f528-91da-7651-aa0c-c2518b425af7",
+      "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
+      "beneficiary_account_id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
+      "invoice_id": "01a1f94e-4334-75ed-ac68-d87644c437e6",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "3ddb15938c528a63482e7a4fb05938e261073eaf945b26ea480973f56035cb9b"
+      "digest": "329a00e90f0bb97bd7a1fa60060abfa78537d3d6abcdb0726babf5e78de198f6"
      },
      "requested_by": null,
-     "daily_total_minor": 3601800,
+     "daily_total_minor": 0,
      "fields": [
       {
        "field_name": "amount",
@@ -5671,13 +5671,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+      "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
-      "supplier_id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+      "account_id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
+      "supplier_id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
       "status": "pending",
       "cooling_off_until_ms": null
      },
@@ -5692,13 +5692,13 @@
   },
   {
    "detail": {
-    "id": "01a1f528-9206-753a-9fae-a19c8449fe74",
+    "id": "01a1f94e-4360-73bd-ba84-4ebe500c54ce",
     "state": "denied",
     "version": 1,
     "amount_minor": 3837300,
     "currency": "USD",
     "supplier": {
-     "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+     "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
      "legal_name": "Acme Industrial Supply Co. (fictional)",
      "status": "verified",
      "verified_domains": [
@@ -5706,7 +5706,20 @@
      ],
      "accounts": [
       {
-       "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+       "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+       "masked": "\u2022\u2022\u2022\u2022 6789",
+       "bank_name": "First Fictional Bank",
+       "status": "verified",
+       "verified_by": "Taylor Nguyen (verifier)",
+       "verified_method": "simulated_validation_service",
+       "steward_by": "Sam Okafor (vendor data steward)",
+       "verified_at": "2026-10-06T14:13:36+00:00",
+       "cooling_off_until": null,
+       "reported_compromised_at": null,
+       "token_prefix": "acct_6b2557e"
+      },
+      {
+       "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
        "masked": "\u2022\u2022\u2022\u2022 5964",
        "bank_name": "Second Fictional Bank",
        "status": "pending",
@@ -5716,24 +5729,11 @@
        "verified_at": null,
        "cooling_off_until": null,
        "reported_compromised_at": null,
-       "token_prefix": "acct_ae4e0ef"
-      },
-      {
-       "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-       "masked": "\u2022\u2022\u2022\u2022 6789",
-       "bank_name": "First Fictional Bank",
-       "status": "verified",
-       "verified_by": "Taylor Nguyen (verifier)",
-       "verified_method": "simulated_validation_service",
-       "steward_by": "Sam Okafor (vendor data steward)",
-       "verified_at": "2026-10-05T18:53:57+00:00",
-       "cooling_off_until": null,
-       "reported_compromised_at": null,
-       "token_prefix": "acct_bb7b833"
+       "token_prefix": "acct_87d41c6"
       }
      ]
     },
-    "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+    "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
     "invoice_number": "INV-2607-9056",
     "decision": "deny",
     "reasons": [
@@ -5741,29 +5741,29 @@
     ],
     "exposure_minor": 3837300,
     "agent_id": "AP-Agent-001",
-    "created_at": "2026-11-06T09:53:57+00:00",
-    "updated_at": "2026-11-06T09:53:57+00:00",
+    "created_at": "2026-11-07T05:13:36+00:00",
+    "updated_at": "2026-11-07T05:13:36+00:00",
     "scenario": "S8-acme-100700",
     "record": {
      "schema": "paylineage.payment.v1",
-     "payment_id": "01a1f528-9206-753a-9fae-a19c8449fe74",
+     "payment_id": "01a1f94e-4360-73bd-ba84-4ebe500c54ce",
      "version": 1,
      "amount_minor": 3837300,
      "currency": "USD",
-     "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-     "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "invoice_id": "01a1f528-91fe-7048-a5f7-38a5589c7da4",
+     "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+     "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "invoice_id": "01a1f94e-4358-7491-8791-175c52b03867",
      "invoice_digest": "a15ba636a5ffea280d31507c2798e49b76d34b611581c159336dac9f0dc46299",
      "agent_id": "AP-Agent-001",
      "mandate_version": 1,
      "policy_version": "1.0.0",
-     "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+     "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
      "operation": "pay_invoice",
-     "nonce": "9c5d48acd05a8e5fc2e54f6e7a3ebb47",
-     "expires_at_ms": 1794563637000
+     "nonce": "e291ad3c0db7cbe1fd69935ea4b4bdc2",
+     "expires_at_ms": 1794633216000
     },
-    "digest": "ebcc372232bd95623a61cd628611b9819b504299173897b79bc992066bcb6bf1",
-    "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+    "digest": "2f517a4d07e2df959ce42632255d56b97108884a4b6703f99486d2f6499bb791",
+    "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
     "reason_details": [
      {
       "code": "OP_FORBIDDEN",
@@ -5950,17 +5950,17 @@
      "digest": "c03850b262b776d47782c76025ba31c4261a580906b8b4b7bfab613acffd4d42"
     },
     "proposed_account": {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
      "masked": "\u2022\u2022\u2022\u2022 6789",
      "bank_name": "First Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_6b2557e"
     },
     "decisions": [
      {
@@ -5970,10 +5970,10 @@
        "OP_FORBIDDEN"
       ],
       "runtime": "wasm",
-      "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
-      "latency_us": 1347,
+      "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
+      "latency_us": 1498,
       "version": 1,
-      "at": "2026-11-06T09:53:57+00:00"
+      "at": "2026-11-07T05:13:36+00:00"
      }
     ],
     "timeline": [
@@ -5981,13 +5981,13 @@
       "seq": 91,
       "kind": "invoice.ingested",
       "actor": "ingestion",
-      "at": "2026-11-06T09:53:57+00:00",
-      "hash": "899de4055f3e",
+      "at": "2026-11-07T05:13:36+00:00",
+      "hash": "670be9e7e814",
       "payload": {
        "signals": [],
        "extractor": "deterministic",
        "from_domain": "acme-industrial.example",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "duplicate_of": null,
        "email_digest": "c03850b262b776d47782c76025ba31c4261a580906b8b4b7bfab613acffd4d42",
        "attachment_digest": "a15ba636a5ffea280d31507c2798e49b76d34b611581c159336dac9f0dc46299"
@@ -5997,32 +5997,32 @@
       "seq": 92,
       "kind": "payment.proposed",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T09:53:57+00:00",
-      "hash": "d39f38f6c008",
+      "at": "2026-11-07T05:13:36+00:00",
+      "hash": "583d385d1631",
       "payload": {
        "account": "\u2022\u2022\u2022\u2022 6789",
        "currency": "USD",
        "operation": "change_bank_details",
-       "invoice_id": "01a1f528-91fe-7048-a5f7-38a5589c7da4",
-       "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+       "invoice_id": "01a1f94e-4358-7491-8791-175c52b03867",
+       "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
        "amount_minor": 3837300,
-       "account_token": "acct_bb7b833d82da1fe296d1edafc52501a1"
+       "account_token": "acct_6b2557ee6d5afcee6305c045ffc62a94"
       }
      },
      {
       "seq": 93,
       "kind": "policy.evaluate",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T09:53:57+00:00",
-      "hash": "c879f828a10f",
+      "at": "2026-11-07T05:13:36+00:00",
+      "hash": "8f2a48dd873e",
       "payload": {
        "reasons": [
         "OP_FORBIDDEN"
        ],
        "runtime": "wasm",
        "decision": "deny",
-       "input_digest": "50d66ca787006b27d3b32aa608798b85e1a1b841b6f9dff0850bb76d0a422719",
-       "policy_sha256": "81c92947e57086d53b75b287b8ba9f029ee7dcde0a6d7ee18b3bfe24237b0018",
+       "input_digest": "72461183c96754b64bf45e99dd48dda5261c0756cdd1a62e45433ba955d799a6",
+       "policy_sha256": "4a20d4f0b41005775d3c470220fe40e9e2b21ec87f7c5a39d0cdd5b5e9e8e468",
        "policy_version": "1.0.0",
        "payment_version": 1
       }
@@ -6031,8 +6031,8 @@
       "seq": 94,
       "kind": "payment.denied",
       "actor": "AP-Agent-001",
-      "at": "2026-11-06T09:53:57+00:00",
-      "hash": "500ee639a3ed",
+      "at": "2026-11-07T05:13:36+00:00",
+      "hash": "d3cd1e1401d8",
       "payload": {
        "reasons": [
         "OP_FORBIDDEN"
@@ -6048,7 +6048,7 @@
    "input": {
     "schema_version": "1",
     "request_kind": "payment",
-    "now_ms": 1793958837000,
+    "now_ms": 1794028416000,
     "payment": {
      "stage": "evaluate",
      "operation": "change_bank_details",
@@ -6057,7 +6057,7 @@
       "signature_valid": true
      },
      "mandate": {
-      "mandate_id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+      "mandate_id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
       "version": 1,
       "agent_id": "AP-Agent-001",
       "permitted_operations": [
@@ -6078,24 +6078,24 @@
       "daily_ceiling_minor": 100000000,
       "approver_role": "finance_approver",
       "second_approver_above_minor": 2500000,
-      "not_before_ms": 1791140037000,
-      "expires_at_ms": 1799002437000,
+      "not_before_ms": 1791209616000,
+      "expires_at_ms": 1799072016000,
       "revoked": false
      },
      "record": {
-      "payment_id": "01a1f528-9206-753a-9fae-a19c8449fe74",
+      "payment_id": "01a1f94e-4360-73bd-ba84-4ebe500c54ce",
       "version": 1,
       "amount_minor": 3837300,
       "currency": "USD",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
-      "beneficiary_account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "invoice_id": "01a1f528-91fe-7048-a5f7-38a5589c7da4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
+      "beneficiary_account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "invoice_id": "01a1f94e-4358-7491-8791-175c52b03867",
       "mandate_version": 1,
       "policy_version": "1.0.0",
-      "digest": "ebcc372232bd95623a61cd628611b9819b504299173897b79bc992066bcb6bf1"
+      "digest": "2f517a4d07e2df959ce42632255d56b97108884a4b6703f99486d2f6499bb791"
      },
      "requested_by": null,
-     "daily_total_minor": 6051700,
+     "daily_total_minor": 2449900,
      "fields": [
       {
        "field_name": "amount",
@@ -6134,13 +6134,13 @@
       }
      ],
      "supplier": {
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "has_verified_account": true
      },
      "beneficiary": {
-      "account_id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-      "supplier_id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+      "account_id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+      "supplier_id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
       "status": "verified",
       "cooling_off_until_ms": null
      },
@@ -6156,7 +6156,7 @@
  ],
  "suppliers": [
   {
-   "id": "01a1f528-8d58-75e2-aa10-d34d164eb1c7",
+   "id": "01a1f94e-3ef9-722c-bdf0-02ce07a544d8",
    "legal_name": "Acme Industrial Supply Co. (fictional)",
    "status": "verified",
    "verified_domains": [
@@ -6167,10 +6167,23 @@
     "name": "Accounts receivable desk",
     "phone": "+1-555-0100"
    },
-   "contact_recorded_at": "2026-10-05T18:53:57+00:00",
+   "contact_recorded_at": "2026-10-06T14:13:36+00:00",
    "accounts": [
     {
-     "id": "01a1f528-9021-731f-8d11-6c7eb8f73980",
+     "id": "01a1f94e-3f08-714d-863b-c8b9c814f5c4",
+     "masked": "\u2022\u2022\u2022\u2022 6789",
+     "bank_name": "First Fictional Bank",
+     "status": "verified",
+     "verified_by": "Taylor Nguyen (verifier)",
+     "verified_method": "simulated_validation_service",
+     "steward_by": "Sam Okafor (vendor data steward)",
+     "verified_at": "2026-10-06T14:13:36+00:00",
+     "cooling_off_until": null,
+     "reported_compromised_at": null,
+     "token_prefix": "acct_6b2557e"
+    },
+    {
+     "id": "01a1f94e-41a8-73e7-82a5-0f0dc307025c",
      "masked": "\u2022\u2022\u2022\u2022 5964",
      "bank_name": "Second Fictional Bank",
      "status": "pending",
@@ -6180,25 +6193,12 @@
      "verified_at": null,
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_ae4e0ef"
-    },
-    {
-     "id": "01a1f528-8d69-70b5-9ece-69f539dfd481",
-     "masked": "\u2022\u2022\u2022\u2022 6789",
-     "bank_name": "First Fictional Bank",
-     "status": "verified",
-     "verified_by": "Taylor Nguyen (verifier)",
-     "verified_method": "simulated_validation_service",
-     "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
-     "cooling_off_until": null,
-     "reported_compromised_at": null,
-     "token_prefix": "acct_bb7b833"
+     "token_prefix": "acct_87d41c6"
     }
    ],
    "requests": [
     {
-     "id": "01a1f528-9023-74e9-90db-6ed21405cedc",
+     "id": "01a1f94e-41a9-7195-9625-b9a062409f34",
      "kind": "bank_change",
      "state": "verifying",
      "channel": "email",
@@ -6207,11 +6207,11 @@
      "steward": null,
      "risk_tier": "high",
      "verification": null,
-     "created_at": "2026-11-05T00:53:57+00:00",
+     "created_at": "2026-11-05T20:13:36+00:00",
      "closed_at": null
     },
     {
-     "id": "01a1f528-8d6b-7058-b256-f641e0d2ee1f",
+     "id": "01a1f94e-3f09-726d-a81c-e1109d608b9b",
      "kind": "new_supplier",
      "state": "verified",
      "channel": "user_entered",
@@ -6222,18 +6222,18 @@
      "verification": {
       "note": "",
       "method": "simulated_validation_service",
-      "verified_by": "01a1f528-8d20-75ab-98ba-6027b7b74043",
+      "verified_by": "01a1f94e-3ecf-76c9-8d99-ff51d67e0f6b",
       "bank_confirmed": true,
       "contact_source": "none",
       "registry_match": true,
       "claimed_domains": [
        "acme-industrial.example"
       ],
-      "request_created_at_ms": 1791226437000,
+      "request_created_at_ms": 1791296016000,
       "contact_recorded_at_ms": null
      },
-     "created_at": "2026-10-05T18:53:57+00:00",
-     "closed_at": "2026-10-05T18:53:57+00:00"
+     "created_at": "2026-10-06T14:13:36+00:00",
+     "closed_at": "2026-10-06T14:13:36+00:00"
     }
    ],
    "events": [
@@ -6241,48 +6241,48 @@
      "seq": 2,
      "kind": "supplier.requested",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "a7be292a2b74"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "245e58937de0"
     },
     {
      "seq": 3,
      "kind": "supplier.record_opened",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "2aab897e120f"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "7ac8a20252c1"
     },
     {
      "seq": 5,
      "kind": "supplier.verifier_assigned",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "bd98901bc4d0"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "911df8bab080"
     },
     {
      "seq": 7,
      "kind": "supplier.verification_recorded",
      "actor": "Taylor Nguyen (verifier)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "e9ce02b2875e"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "2ae21d4b1c49"
     },
     {
      "seq": 9,
      "kind": "supplier.verified",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "aa65c4a3a57c"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "48151b8539e6"
     },
     {
      "seq": 46,
      "kind": "supplier.bank_change_recorded",
      "actor": "Jordan Lee (AP specialist)",
-     "at": "2026-11-05T00:53:57+00:00",
-     "hash": "3501d7d60fd2"
+     "at": "2026-11-05T20:13:36+00:00",
+     "hash": "7494ed62cc03"
     }
    ]
   },
   {
-   "id": "01a1f528-8dd6-7312-acd4-40585a7fdd6f",
+   "id": "01a1f94e-3f74-747c-b4f7-e82e05b52669",
    "legal_name": "Bluebird Packaging Inc. (fictional)",
    "status": "verified",
    "verified_domains": [
@@ -6293,23 +6293,23 @@
     "name": "Accounts receivable desk",
     "phone": "+1-555-0100"
    },
-   "contact_recorded_at": "2026-10-05T18:53:57+00:00",
+   "contact_recorded_at": "2026-10-06T14:13:36+00:00",
    "accounts": [
     {
-     "id": "01a1f528-8ddb-769e-bca0-23c95def2686",
+     "id": "01a1f94e-3f78-7272-9c26-e846f5bbaf2e",
      "masked": "\u2022\u2022\u2022\u2022 5667",
      "bank_name": "Lakeside Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_169b9cc"
+     "token_prefix": "acct_76887c9"
     },
     {
-     "id": "01a1f528-91cb-70c3-8372-e2ec873c5651",
+     "id": "01a1f94e-4325-74bd-9df8-edfb963255e0",
      "masked": "\u2022\u2022\u2022\u2022 5271",
      "bank_name": "Second Fictional Bank",
      "status": "pending",
@@ -6319,12 +6319,12 @@
      "verified_at": null,
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_ed5a816"
+     "token_prefix": "acct_876711d"
     }
    ],
    "requests": [
     {
-     "id": "01a1f528-91cc-710c-bf4f-fbde5ba4c13e",
+     "id": "01a1f94e-4326-73fc-b805-663a55fbc703",
      "kind": "bank_change",
      "state": "verifying",
      "channel": "email",
@@ -6333,11 +6333,11 @@
      "steward": null,
      "risk_tier": "high",
      "verification": null,
-     "created_at": "2026-11-06T03:53:57+00:00",
+     "created_at": "2026-11-06T23:13:36+00:00",
      "closed_at": null
     },
     {
-     "id": "01a1f528-8ddc-70d6-818a-525c4eda9609",
+     "id": "01a1f94e-3f79-7022-b22d-822f3db9ee5b",
      "kind": "new_supplier",
      "state": "verified",
      "channel": "user_entered",
@@ -6348,18 +6348,18 @@
      "verification": {
       "note": "",
       "method": "simulated_validation_service",
-      "verified_by": "01a1f528-8d20-75ab-98ba-6027b7b74043",
+      "verified_by": "01a1f94e-3ecf-76c9-8d99-ff51d67e0f6b",
       "bank_confirmed": true,
       "contact_source": "none",
       "registry_match": true,
       "claimed_domains": [
        "bluebird-packaging.example"
       ],
-      "request_created_at_ms": 1791226437000,
+      "request_created_at_ms": 1791296016000,
       "contact_recorded_at_ms": null
      },
-     "created_at": "2026-10-05T18:53:57+00:00",
-     "closed_at": "2026-10-05T18:53:57+00:00"
+     "created_at": "2026-10-06T14:13:36+00:00",
+     "closed_at": "2026-10-06T14:13:36+00:00"
     }
    ],
    "events": [
@@ -6367,48 +6367,48 @@
      "seq": 20,
      "kind": "supplier.requested",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "f462b10be1f6"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "4c9749092935"
     },
     {
      "seq": 21,
      "kind": "supplier.record_opened",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "06565159ed2b"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "399a70f03740"
     },
     {
      "seq": 23,
      "kind": "supplier.verifier_assigned",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "342823a4d4c8"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "e63d78cce6b5"
     },
     {
      "seq": 25,
      "kind": "supplier.verification_recorded",
      "actor": "Taylor Nguyen (verifier)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "1e3fd5c1be44"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "1ee9905c48e0"
     },
     {
      "seq": 27,
      "kind": "supplier.verified",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "2e24f5ea96b3"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "9a9c5f3a133e"
     },
     {
      "seq": 86,
      "kind": "supplier.bank_change_recorded",
      "actor": "Jordan Lee (AP specialist)",
-     "at": "2026-11-06T03:53:57+00:00",
-     "hash": "846bd449e9b7"
+     "at": "2026-11-06T23:13:36+00:00",
+     "hash": "0362265efd91"
     }
    ]
   },
   {
-   "id": "01a1f528-8da5-70ce-a803-ec47c7994c5e",
+   "id": "01a1f94e-3f42-76b0-bf0f-3cb34f1a8cae",
    "legal_name": "Northwind Components LLC (fictional)",
    "status": "verified",
    "verified_domains": [
@@ -6419,23 +6419,23 @@
     "name": "Accounts receivable desk",
     "phone": "+1-555-0100"
    },
-   "contact_recorded_at": "2026-10-05T18:53:57+00:00",
+   "contact_recorded_at": "2026-10-06T14:13:36+00:00",
    "accounts": [
     {
-     "id": "01a1f528-8daa-708d-b7ee-f35cbd449db9",
+     "id": "01a1f94e-3f47-778c-851b-b1fdaec43fb9",
      "masked": "\u2022\u2022\u2022\u2022 4556",
      "bank_name": "Harborview Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_6cd240c"
+     "token_prefix": "acct_88fcae9"
     },
     {
-     "id": "01a1f528-90c0-70e0-8884-ada49bfc3a7b",
+     "id": "01a1f94e-422f-72ae-b0bb-255f726cebc9",
      "masked": "\u2022\u2022\u2022\u2022 3033",
      "bank_name": "Second Fictional Bank",
      "status": "pending",
@@ -6445,12 +6445,12 @@
      "verified_at": null,
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_89b669e"
+     "token_prefix": "acct_d759dc1"
     }
    ],
    "requests": [
     {
-     "id": "01a1f528-90c1-719f-81c9-c74b6ed81f1f",
+     "id": "01a1f94e-4230-7012-ab0e-319739166328",
      "kind": "bank_change",
      "state": "verifying",
      "channel": "email",
@@ -6459,11 +6459,11 @@
      "steward": null,
      "risk_tier": "high",
      "verification": null,
-     "created_at": "2026-11-05T09:53:57+00:00",
+     "created_at": "2026-11-06T05:13:36+00:00",
      "closed_at": null
     },
     {
-     "id": "01a1f528-8dab-74b0-8a55-3b845930d320",
+     "id": "01a1f94e-3f48-736c-84e1-a342cf9acbb9",
      "kind": "new_supplier",
      "state": "verified",
      "channel": "user_entered",
@@ -6474,18 +6474,18 @@
      "verification": {
       "note": "",
       "method": "simulated_validation_service",
-      "verified_by": "01a1f528-8d20-75ab-98ba-6027b7b74043",
+      "verified_by": "01a1f94e-3ecf-76c9-8d99-ff51d67e0f6b",
       "bank_confirmed": true,
       "contact_source": "none",
       "registry_match": true,
       "claimed_domains": [
        "northwind-components.example"
       ],
-      "request_created_at_ms": 1791226437000,
+      "request_created_at_ms": 1791296016000,
       "contact_recorded_at_ms": null
      },
-     "created_at": "2026-10-05T18:53:57+00:00",
-     "closed_at": "2026-10-05T18:53:57+00:00"
+     "created_at": "2026-10-06T14:13:36+00:00",
+     "closed_at": "2026-10-06T14:13:36+00:00"
     }
    ],
    "events": [
@@ -6493,48 +6493,48 @@
      "seq": 11,
      "kind": "supplier.requested",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "1a044c6f9d0e"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "dd16d388da9e"
     },
     {
      "seq": 12,
      "kind": "supplier.record_opened",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "2ce8b43c7956"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "612bfd743cec"
     },
     {
      "seq": 14,
      "kind": "supplier.verifier_assigned",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "b5fd2f687a83"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "9decfd930ccd"
     },
     {
      "seq": 16,
      "kind": "supplier.verification_recorded",
      "actor": "Taylor Nguyen (verifier)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "d720514c9c61"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "c527d50de65c"
     },
     {
      "seq": 18,
      "kind": "supplier.verified",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "46b7bb850676"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "3b2b1161cf47"
     },
     {
      "seq": 60,
      "kind": "supplier.bank_change_recorded",
      "actor": "Jordan Lee (AP specialist)",
-     "at": "2026-11-05T09:53:57+00:00",
-     "hash": "2faff3d78449"
+     "at": "2026-11-06T05:13:36+00:00",
+     "hash": "9f491c9def8d"
     }
    ]
   },
   {
-   "id": "01a1f528-8e0c-73d3-8758-566aabfe4cfc",
+   "id": "01a1f94e-3fa1-75db-827c-3527caff9819",
    "legal_name": "Orbit Fasteners Ltd. (fictional)",
    "status": "verified",
    "verified_domains": [
@@ -6545,25 +6545,25 @@
     "name": "Accounts receivable desk",
     "phone": "+1-555-0100"
    },
-   "contact_recorded_at": "2026-10-05T18:53:57+00:00",
+   "contact_recorded_at": "2026-10-06T14:13:36+00:00",
    "accounts": [
     {
-     "id": "01a1f528-8e12-732c-8be9-d3a39cfbb1e4",
+     "id": "01a1f94e-3fa5-7521-8122-8207eb2d9ea1",
      "masked": "\u2022\u2022\u2022\u2022 6778",
      "bank_name": "Summit Fictional Bank",
      "status": "verified",
      "verified_by": "Taylor Nguyen (verifier)",
      "verified_method": "simulated_validation_service",
      "steward_by": "Sam Okafor (vendor data steward)",
-     "verified_at": "2026-10-05T18:53:57+00:00",
+     "verified_at": "2026-10-06T14:13:36+00:00",
      "cooling_off_until": null,
      "reported_compromised_at": null,
-     "token_prefix": "acct_29c4ade"
+     "token_prefix": "acct_e1d54fe"
     }
    ],
    "requests": [
     {
-     "id": "01a1f528-8e13-76cf-96aa-4096bf6dca3d",
+     "id": "01a1f94e-3fa5-7522-a4e0-1c6c80916d39",
      "kind": "new_supplier",
      "state": "verified",
      "channel": "user_entered",
@@ -6574,18 +6574,18 @@
      "verification": {
       "note": "",
       "method": "simulated_validation_service",
-      "verified_by": "01a1f528-8d20-75ab-98ba-6027b7b74043",
+      "verified_by": "01a1f94e-3ecf-76c9-8d99-ff51d67e0f6b",
       "bank_confirmed": true,
       "contact_source": "none",
       "registry_match": true,
       "claimed_domains": [
        "orbit-fasteners.example"
       ],
-      "request_created_at_ms": 1791226437000,
+      "request_created_at_ms": 1791296016000,
       "contact_recorded_at_ms": null
      },
-     "created_at": "2026-10-05T18:53:57+00:00",
-     "closed_at": "2026-10-05T18:53:57+00:00"
+     "created_at": "2026-10-06T14:13:36+00:00",
+     "closed_at": "2026-10-06T14:13:36+00:00"
     }
    ],
    "events": [
@@ -6593,36 +6593,36 @@
      "seq": 29,
      "kind": "supplier.requested",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "43f11ca0d1fd"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "e3a9ed02835c"
     },
     {
      "seq": 30,
      "kind": "supplier.record_opened",
      "actor": "Avery Park (AP specialist)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "ff68153de69a"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "7e0b0d848788"
     },
     {
      "seq": 32,
      "kind": "supplier.verifier_assigned",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "721874cc5446"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "571bfb315666"
     },
     {
      "seq": 34,
      "kind": "supplier.verification_recorded",
      "actor": "Taylor Nguyen (verifier)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "d4a7f9ca45ca"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "6471d13cec28"
     },
     {
      "seq": 36,
      "kind": "supplier.verified",
      "actor": "Sam Okafor (vendor data steward)",
-     "at": "2026-10-05T18:53:57+00:00",
-     "hash": "dc99b8a8b972"
+     "at": "2026-10-06T14:13:36+00:00",
+     "hash": "fbd59f3042de"
     }
    ]
   }
@@ -6636,7 +6636,7 @@
    "public_key_hex": "6f67f0d00b18cd14e35ca5e5e2f81fe4e4df4ae05d78dfcb879da220bf3b960e",
    "mandates": [
     {
-     "id": "01a1f528-8d4f-7491-93cf-cf2d5d2f62e5",
+     "id": "01a1f94e-3ef3-71fc-bb26-226fe836c793",
      "version": 1,
      "permitted_operations": [
       "read_invoice",
@@ -6656,8 +6656,8 @@
      "daily_ceiling_minor": 100000000,
      "approver_role": "finance_approver",
      "second_approver_above_minor": 2500000,
-     "not_before": "2026-10-04T18:53:57+00:00",
-     "expires_at": "2027-01-03T18:53:57+00:00",
+     "not_before": "2026-10-05T14:13:36+00:00",
+     "expires_at": "2027-01-04T14:13:36+00:00",
      "revoked_at": null,
      "created_by": "Drew Kim (AP platform engineer)"
     }
@@ -6671,7 +6671,7 @@
    "roles": [
     "admin"
    ],
-   "id": "01a1f528-8d43-75fe-bb3f-3702373aac7c"
+   "id": "01a1f94e-3eea-75ae-aba8-1ecf3fff8aa2"
   },
   {
    "handle": "ana1",
@@ -6679,7 +6679,7 @@
    "roles": [
     "analyst"
    ],
-   "id": "01a1f528-8d32-7087-ba59-decf170146ae"
+   "id": "01a1f94e-3edc-7235-9bdc-9b2c4d1efd47"
   },
   {
    "handle": "ap1",
@@ -6687,7 +6687,7 @@
    "roles": [
     "ap_specialist"
    ],
-   "id": "01a1f528-8cd6-77d8-9e6a-0a45ca318436"
+   "id": "01a1f94e-3e6e-7569-b4b8-cbd1cafe3abe"
   },
   {
    "handle": "ap2",
@@ -6695,7 +6695,7 @@
    "roles": [
     "ap_specialist"
    ],
-   "id": "01a1f528-8cef-74d1-92eb-a2c9d63d426f"
+   "id": "01a1f94e-3eb0-775c-bec0-a91aa4fda211"
   },
   {
    "handle": "eng1",
@@ -6703,7 +6703,7 @@
    "roles": [
     "platform_engineer"
    ],
-   "id": "01a1f528-8d3a-7695-a229-1294b78cb1e7"
+   "id": "01a1f94e-3ee3-778e-ab52-287f092f7725"
   },
   {
    "handle": "fin1",
@@ -6711,7 +6711,7 @@
    "roles": [
     "finance_approver"
    ],
-   "id": "01a1f528-8d01-7114-bb46-de4b9156b37a"
+   "id": "01a1f94e-3eb8-7585-8ca3-a48717ca86d2"
   },
   {
    "handle": "fin2",
@@ -6719,7 +6719,7 @@
    "roles": [
     "finance_approver"
    ],
-   "id": "01a1f528-8d0b-7171-a121-de3b202ff57d"
+   "id": "01a1f94e-3ec0-743a-a365-f6cc8e90b097"
   },
   {
    "handle": "stw1",
@@ -6727,7 +6727,7 @@
    "roles": [
     "steward"
    ],
-   "id": "01a1f528-8d15-74e8-bf9e-953ba56acb7c"
+   "id": "01a1f94e-3ec8-720b-85ee-fd4459facf26"
   },
   {
    "handle": "ver1",
@@ -6735,7 +6735,7 @@
    "roles": [
     "verifier"
    ],
-   "id": "01a1f528-8d20-75ab-98ba-6027b7b74043"
+   "id": "01a1f94e-3ecf-76c9-8d99-ff51d67e0f6b"
   },
   {
    "handle": "ver2",
@@ -6743,7 +6743,7 @@
    "roles": [
     "verifier"
    ],
-   "id": "01a1f528-8d29-76f5-931f-9d2a22544943"
+   "id": "01a1f94e-3ed6-721a-8b08-cc4d43e4bd78"
   }
  ]
 }
