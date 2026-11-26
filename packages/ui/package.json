@@ -21,7 +21,7 @@
     "@paylineage/canonical": "workspace:*",
     "@paylineage/policy-runtime": "workspace:*",
     "@tanstack/react-table": "^9.3.1",
-    "@xyflow/react": "^12.12.1",
+    "@xyflow/react": "^13.0.2",
     "clsx": "^2.1.1",
     "echarts": "^6.1.0",
     "lucide-react": "^1.72.0",
